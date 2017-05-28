@@ -24,8 +24,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         jlUsuario = new javax.swing.JLabel();
         jlContraseña = new javax.swing.JLabel();
         jPassword = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelFondo = new javax.swing.JLabel();
+        jlLogo = new javax.swing.JLabel();
+        jbRegistrarse = new javax.swing.JButton();
+        jlFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WorldWifi");
@@ -81,12 +82,22 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPassword.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 200, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen1.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+        jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Imagen1.png"))); // NOI18N
+        getContentPane().add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 770));
+        jbRegistrarse.setBackground(new java.awt.Color(51, 153, 255));
+        jbRegistrarse.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
+        jbRegistrarse.setText("Registrarse");
+        jbRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jbRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, 140, -1));
+
+        jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
+        getContentPane().add(jlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 770));
 
         pack();
     }// </editor-fold>                        
@@ -102,6 +113,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void jtUserActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
     }                                      
+
+    private void jbRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
 
     /**
      * @param args the command line arguments
@@ -139,12 +154,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbRegistrarse;
     private javax.swing.JButton jbSalir;
     private javax.swing.JLabel jlContraseña;
+    private javax.swing.JLabel jlFondo;
+    private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTextField jtUser;
     // End of variables declaration                   
