@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="BD/" kind="src" path="src"/>
-	<classpathentry kind="src" path="src/BD"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/mongo-java-driver-3.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/neo4j-jdbc-driver-3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/AbsoluteLayout.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Oier/OneDrive/UNI/ASIGNATURAS/Eclipse/Programacion3/Worldwifi/lib/jcalendar-1.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Oier/git/Worldwifi/lib/jcalendar-1.3.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Oier/Documents/NetBeansProjects/JavaApplication1/dist/Interfaces.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Oier/OneDrive/UNI/ASIGNATURAS/Eclipse/Programacion3/Worldwifi/lib/org-jdesktop-beansbinding.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Oier/git/Worldwifi/lib/org-jdesktop-beansbinding.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
