@@ -3,6 +3,7 @@ package ventanas;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -31,6 +32,7 @@ public class VentanaInicio extends JFrame {
         jbRegistrarse = new javax.swing.JButton();
         jlFondo = new javax.swing.JLabel();
 
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WorldWifi");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -38,6 +40,7 @@ public class VentanaInicio extends JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
 
         jbEntrar.setBackground(new java.awt.Color(51, 153, 255));
         jbEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -172,5 +175,6 @@ public class VentanaInicio extends JFrame {
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlUsuario;
     private javax.swing.JTextField jtUser;
+
     // End of variables declaration                   
 }

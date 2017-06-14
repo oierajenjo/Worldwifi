@@ -1,0 +1,296 @@
+{
+    "_id" : "001",
+    "usuario" : "mikel",
+    "contrasenya" : "12345aA",
+    "nombre" : "Mikel",
+    "apellidos" : "Martinez",
+    "telefono" : "111 111 111",
+    "nacimiento" : "1997-jul-15",
+    "correo" : "mikelmartinez999@opendeusto.es",
+    "ciudad" : "Barakaldo",
+    "amigos" : [ 
+        {
+            "id" : "002",
+            "usuario" : "oier"
+        }, 
+        {
+            "id" : "003",
+            "usuario" : "alejandro"
+        }, 
+        {
+            "id" : "004",
+            "usuario" : "victor"
+        }
+    ],
+    "twitter" : "@mikelmartiinez",
+    "facebook" : "Mikel Martinez Saez",
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 2 */
+{
+    "_id" : "002",
+    "usuario" : "oier",
+    "contrasenya" : "12345bB",
+    "nombre" : "Oier",
+    "apellidos" : "Ajenjo",
+    "telefono" : "222 222 222",
+    "nacimiento" : "1997-may-09",
+    "correo" : "oierajenjo@opendeusto.es",
+    "ciudad" : "Bilbo",
+    "amigos" : [ 
+        {
+            "id" : "001",
+            "usuario" : "mikel"
+        }, 
+        {
+            "id" : "005",
+            "usuario" : "ane"
+        }
+    ],
+    "twitter" : "@oierAjenjo",
+    "facebook" : "Oier Ajenjo",
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 3 */
+{
+    "_id" : "003",
+    "usuario" : "alejandro",
+    "contrasenya" : "12345cC",
+    "nombre" : "Alejandro",
+    "apellidos" : "Lorite",
+    "telefono" : "333 333 333",
+    "nacimiento" : "1997-mar-16",
+    "correo" : "alejandro.lorite@opendeusto.es",
+    "ciudad" : "Berango",
+    "amigos" : [ 
+        {
+            "id" : "001",
+            "usuario" : "mikel"
+        }, 
+        {
+            "id" : "004",
+            "usuario" : "victor"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 4 */
+{
+    "_id" : "004",
+    "usuario" : "victor",
+    "contrasenya" : "12345dD",
+    "nombre" : "Victor",
+    "apellidos" : "Castaño",
+    "telefono" : "444 444 444",
+    "nacimiento" : "1997-jul-20",
+    "correo" : "victorcasta@opendeusto.es",
+    "ciudad" : "Burgos",
+    "amigos" : [ 
+        {
+            "id" : "001",
+            "usuario" : "mikel"
+        }, 
+        {
+            "id" : "006",
+            "usuario" : "saul"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 5 */
+{
+    "_id" : "005",
+    "usuario" : "ane",
+    "contrasenya" : "12345eE",
+    "nombre" : "Ane",
+    "apellidos" : "Infante",
+    "telefono" : "555 555 555",
+    "nacimiento" : "1997-feb-02",
+    "correo" : "ane.infante@opendeusto.es",
+    "ciudad" : "Castro Urdiales",
+    "amigos" : [ 
+        {
+            "id" : "002",
+            "usuario" : "oier"
+        }, 
+        {
+            "id" : "007",
+            "usuario" : "amaia"
+        }, 
+        {
+            "id" : "008",
+            "usuario" : "mikel"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 6 */
+{
+    "_id" : "006",
+    "usuario" : "saul",
+    "contrasenya" : "12345fF",
+    "nombre" : "Saul",
+    "apellidos" : "Segura",
+    "telefono" : "666 666 666",
+    "nacimiento" : "1997-oct-30",
+    "correo" : "saul.segura@opendeusto.es",
+    "ciudad" : "Bilbo",
+    "amigos" : [ 
+        {
+            "id" : "004",
+            "usuario" : "victor"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 7 */
+{
+    "_id" : "007",
+    "usuario" : "amaia",
+    "contrasenya" : "12345gG",
+    "nombre" : "Amaia",
+    "apellidos" : "Goñi",
+    "telefono" : "777 777 777",
+    "nacimiento" : "1997-ene-07",
+    "correo" : "amaiagoni@opendeusto.es",
+    "ciudad" : "Pamplona",
+    "amigos" : [ 
+        {
+            "id" : "005",
+            "usuario" : "ane"
+        }, 
+        {
+            "id" : "008",
+            "usuario" : "mikel"
+        }, 
+        {
+            "id" : "009",
+            "usuario" : "carlos"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 8 */
+{
+    "_id" : "008",
+    "usuario" : "mikels",
+    "contrasenya" : "12345hH",
+    "nombre" : "Mikel",
+    "apellidos" : "Solabarrieta",
+    "telefono" : "888 888 888",
+    "nacimiento" : "1997-sep-23",
+    "correo" : "mikelsr@opendeusto.es",
+    "ciudad" : "Arrigorriaga",
+    "amigos" : [ 
+        {
+            "id" : "005",
+            "usuario" : "ane"
+        }, 
+        {
+            "id" : "007",
+            "usuario" : "amaia"
+        }, 
+        {
+            "id" : "010",
+            "usuario" : "rafa"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 9 */
+{
+    "_id" : "009",
+    "usuario" : "carlos",
+    "contrasenya" : "12345iI",
+    "nombre" : "Carlos",
+    "apellidos" : "Lago",
+    "telefono" : "999 999 999",
+    "nacimiento" : "1997-nov-19",
+    "correo" : "carloslago@opendeusto.es",
+    "ciudad" : "Gijón",
+    "amigos" : [ 
+        {
+            "id" : "007",
+            "usuario" : "amaia"
+        }, 
+        {
+            "id" : "008",
+            "usuario" : "mikel"
+        }, 
+        {
+            "id" : "010",
+            "usuario" : "rafael"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 10 */
+{
+    "_id" : "010",
+    "usuario" : "rafael",
+    "contrasenya" : "12345jJ",
+    "nombre" : "Rafael",
+    "apellidos" : "Romón",
+    "telefono" : "101 010 101",
+    "nacimiento" : "1997-dic-05",
+    "correo" : "rafaelromonsagredo@opendeusto.es",
+    "ciudad" : "Miranda de Ebro",
+    "amigos" : [ 
+        {
+            "id" : "009",
+            "usuario" : "carlos"
+        }, 
+        {
+            "id" : "011",
+            "usuario" : "gonzalo"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}
+
+/* 11 */
+{
+    "_id" : "011",
+    "usuario" : "gonzalo",
+    "contrasenya" : "12345kK",
+    "nombre" : "Gonzalo",
+    "apellidos" : "Arribas",
+    "telefono" : "110 110 110",
+    "nacimiento" : "1997-may-03",
+    "correo" : "g.arribas@opendeusto.es",
+    "ciudad" : "Bilbo",
+    "amigos" : [ 
+        {
+            "id" : "010",
+            "usuario" : "rafael"
+        }
+    ],
+    "twitter" : null,
+    "facebook" : null,
+    "registrado" : "2005-04-24T10:33:31 -02:00"
+}

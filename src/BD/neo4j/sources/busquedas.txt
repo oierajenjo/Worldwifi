@@ -1,0 +1,27 @@
+LOAD CSV WITH HEADERS FROM
+'file:///216619_0_wifi_municipal.csv' AS line FIELDTERMINATOR ';'
+WITH line
+LIMIT 1000000
+create (w:Wifi {id: line.PK, nombre: line.NOMBRE, x: line.COORDENADAX,  y: line.COORDENADAY, la: line.LATITUD, lo: line.LONGITUD})
+merge (ci: Ciudad {ci: line.LOCALIDAD,  pr: line.PROVINCIA})
+merge (b:Barrio {ba: line.BARRIO})
+merge (d:Distrito {di: line.DISTRITO})
+merge (ci)-[:En]->(d)
+merge (d)-[:En]->(b)
+merge (b)-[:Tiene]->(w)
+
+CONSULTAS
+
+MATCH (n) RETURN n
+
+MATCH (b:Barrio)-[h:Tiene]->(w:Wifi) RETURN b.ba AS Nombre_Barrio, count(b.ba) AS Wifis_Barrio ORDER BY Wifis_Barrio
+
+MATCH (b:Barrio)-[h:Tiene]->(w:Wifi) RETURN count(b.ba) AS Total_Wifis 
+
+MATCH (d:Distrito)-[e3:En]->(b:Barrio) RETURN count(d.di) AS Total_Barrios
+
+MATCH (d:Distrito)-[e3:En]->(b:Barrio) RETURN  d.di AS nombre, count(d.di) AS Barrios_Por_Distrito ORDER BY Barrios_Por_Distrito
+
+MATCH (b:Barrio)-[h:Tiene]->(w:Wifi) WHERE w.nombre = "Agencia de Actividades" RETURN b.ba AS Barrio, w.id AS ID_Wifi;
+
+MATCH (w:Wifi) RETURN w.id ORDER BY w.id;
