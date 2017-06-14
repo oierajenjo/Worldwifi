@@ -1,6 +1,7 @@
 package ventanas;
 
 
+@SuppressWarnings("serial")
 public class VentanaInicio extends javax.swing.JFrame {
 
     
