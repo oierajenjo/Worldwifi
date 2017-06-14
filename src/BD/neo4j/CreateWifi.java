@@ -1,4 +1,4 @@
-package neo4j;
+package BD.neo4j;
 
 import java.sql.*;
 

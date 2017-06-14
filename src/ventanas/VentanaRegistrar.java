@@ -6,11 +6,13 @@
 package ventanas;
 
 import com.toedter.calendar.JCalendar;
-import javax.swing.JInternalFrame.JDesktopIcon;
+
+import javax.swing.*;
 
 
 
-public class VentanaRegistrar extends javax.swing.JFrame {
+@SuppressWarnings("serial")
+public class VentanaRegistrar extends JFrame {
 
     /**
      * Creates new form VentanaRegistrar

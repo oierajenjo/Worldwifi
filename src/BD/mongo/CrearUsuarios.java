@@ -1,4 +1,4 @@
-package mongo;
+package BD.mongo;
 
 import com.mongodb.*;
 
