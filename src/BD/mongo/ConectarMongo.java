@@ -1,4 +1,4 @@
-package mongo;
+package BD.mongo;
 import com.mongodb.*;
 
 import com.mongodb.client.MongoDatabase;
@@ -11,6 +11,8 @@ import static com.mongodb.client.model.Filters.*;
 import com.mongodb.client.result.DeleteResult;
 import static com.mongodb.client.model.Updates.*;
 import com.mongodb.client.result.UpdateResult;
+import com.mongodb.diagnostics.logging.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 

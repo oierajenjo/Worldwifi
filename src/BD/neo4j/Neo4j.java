@@ -1,6 +1,10 @@
-package neo4j;
+package BD.neo4j;
 
 import static org.neo4j.driver.v1.Values.parameters;
+
+import java.util.logging.*;
+
+
 
 
 public class Neo4j{
@@ -25,7 +29,6 @@ public class Neo4j{
 	    private Driver driver;
 	    private Session session;
 
-	    private MySQL mySQL;
 	    private Statement statement;
 
 

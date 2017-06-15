@@ -1,195 +1,233 @@
 package usuario;
 
-import javafx.scene.chart.PieChart.Data;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
-public class Usuario {
+import pr7.TipoUsuario;
 
-	private String nombreUsuario;
+public class Usuario implements Serializable {
+
+	private static final long serialVersionUID = 8119678942285632886L;
+
+	private int id;
+	private String user;
+	private String password;
 	private String nombre;
-	private String apellido;
-	private int numTelef;//opcional
-	private Data fechaNacimiento;
-	private String correo;
-	private String contrasenya;
-	private String repiteContrasenya;
+	private String apellidos;
+	private long nacimiento;
+	private String email;
+	private String ciudad;
 	private String twitter;
 	private String facebook;
+	private ArrayList<Amigo> amigos;
+	private long fechaCreacion;
 	private TipoUsuario tipo;
-	private long fechaUltimoLogin;
-	
-	
 
-
-	public Usuario(String nombreUsuario, String nombre, String apellido, int numTelef, Data fechaNacimiento,
-			String correo, String contrasenya, String repiteContrasenya, String twitter, String facebook,
-			TipoUsuario tipo, long fechaUltimoLogin) {
-		super();
-		this.nombreUsuario = nombreUsuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.numTelef = numTelef;
-		this.fechaNacimiento = fechaNacimiento;
-		this.correo = correo;
-		this.contrasenya = contrasenya;
-		this.repiteContrasenya = repiteContrasenya;
-		this.twitter = twitter;
-		this.facebook = facebook;
-		this.tipo = tipo;
-		this.fechaUltimoLogin = fechaUltimoLogin;
+	public int getId() {
+		return id;
 	}
-
-	
-
-
-	public long getFechaUltimoLogin() {
-		return fechaUltimoLogin;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-
-
-
-	public void setFechaUltimoLogin(long fechaUltimoLogin) {
-		this.fechaUltimoLogin = fechaUltimoLogin;
+	public String getUser() {
+		return user;
 	}
-
-
-
-
-	public TipoUsuario getTipo() {
-		return tipo;
+	public void setUser(String user) {
+		this.user = user;
 	}
-
-
-
-	public void setTipo(TipoUsuario tipo) {
-		this.tipo = tipo;
+	public String getPassword() {
+		return password;
 	}
-
-
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-
-
-
 	public String getNombre() {
 		return nombre;
 	}
-
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
-	public String getApellido() {
-		return apellido;
+	public String getApellidos() {
+		return apellidos;
 	}
-
-
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
-
-
-
-	public int getNumTelef() {
-		return numTelef;
+	public long getNacimiento() {
+		return nacimiento;
 	}
-
-
-
-	public void setNumTelef(int numTelef) {
-		this.numTelef = numTelef;
+	public void setNacimiento(long nacimiento) {
+		this.nacimiento = nacimiento;
+	}	
+	public String getEmail() {
+		return email;
 	}
-
-
-
-	public Data getFechaNacimiento() {
-		return fechaNacimiento;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-
-
-	public void setFechaNacimiento(Data fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public String getCiudad() {
+		return ciudad;
 	}
-
-
-
-	public String getCorreo() {
-		return correo;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
-
-
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public ArrayList<Amigo> getAmigo() {
+		return amigos;
 	}
-
-
-
-	public String getContrasenya() {
-		return contrasenya;
+	public void setAmigo(ArrayList<Amigo> amigos) {
+		this.amigos = amigos;
 	}
-
-
-
-	public void setContrasenya(String contrasenya) {
-		this.contrasenya = contrasenya;
-	}
-
-
-
-	public String getRepiteContrasenya() {
-		return repiteContrasenya;
-	}
-
-
-
-	public void setRepiteContrasenya(String repiteContrasenya) {
-		this.repiteContrasenya = repiteContrasenya;
-	}
-
-
-
+//	public String getAmigo() {
+//		ArrayList<Amigo> ret;
+//		if (amigos.size()>0) ret = amigos.get(0);
+//		for (int i=1; i<amigos.size(); i++) ret (", " + amigos.get(i));
+//		return ret;
+//	}
 	public String getTwitter() {
 		return twitter;
 	}
-
-
-
 	public void setTwitter(String twitter) {
 		this.twitter = twitter;
 	}
-
-
-
 	public String getFacebook() {
 		return facebook;
 	}
-
-
-
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
 	}
-
-
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public long getFechaCreacion() {
+		return fechaCreacion;
+	}
+	public void setFechaCreacion(long fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+	/** Constructor privado, sólo para uso interno
+	 */
+	private Usuario() {
+	}
+	
+	/** Constructor principal de usuario
+	 * @param user
+	 * @param password
+	 * @param nombre
+	 * @param apellidos
+	 * @param telefono
+	 * @param tipo
+	 * @param email
+	 */
+	
+	public Usuario(int id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
+			String ciudad, String twitter, String facebook, ArrayList<Amigo> amigos, long fechaCreacion,
+			TipoUsuario tipo) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.nacimiento = nacimiento;
+		this.email = email;
+		this.ciudad = ciudad;
+		this.twitter = twitter;
+		this.facebook = facebook;
+		this.amigos = amigos;
+		this.fechaCreacion = fechaCreacion;
+		this.tipo = tipo;
+	}
+	/** Constructor de usuario recibiendo los email como una lista de parámetros de tipo String
+	 * @param user
+	 * @param password
+	 * @param nombre
+	 * @param apellidos
+	 * @param telefono
+	 * @param tipo
+	 * @param email
+	 * @param 
+	 */
+	
+	public Usuario(int id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
+			String ciudad, String twitter, String facebook, Amigo... amigo, long fechaCreacion,
+			TipoUsuario tipo ) {
+		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Amigo> (Arrays.asList(amigo),
+			fechaCreacion, tipo);
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", user=" + user + ", password=" + password + ", nombre=" + nombre + ", apellidos="
+				+ apellidos + ", nacimiento=" + nacimiento + ", email=" + email + ", ciudad=" + ciudad + ", twitter="
+				+ twitter + ", facebook=" + facebook + ", fechaCreacion=" + fechaCreacion + ", tipo=" + tipo + "]";
 	}
 
+
+	
+	/** Devuelve los datos del usuario en una línea separados por comas<p>
+	 * Formato: user,password,nombre,apellidos,telefono,fechaCreacion(msgs.),tipo,email1,email2...
+	 * @return	Línea con los datos formateados
+	 */
+	public String aLinea() {
+		String ret = user + "," + password + "," + nombre + "," + apellidos + "," +
+			 "," + fechaCreacion + "," + tipo + "," + email;
+		return ret;
+	}
+
+
+	/** Crea y devuelve un nuevo Usuario partiendo de los datos de una línea separados por comas
+	 * Formato: user,password,nombre,apellidos,telefono,fechaCreacion(msgs.),tipo,email1,email2...
+	 * @param linea	Línea de texto
+	 * @return	Usuario creado partiendo de la línea, null si hay cualquier error
+	 */
+	public static Usuario crearDeLinea( String linea ) {
+		Usuario u = new Usuario();
+		StringTokenizer st = new StringTokenizer( linea, "," );
+		try {
+			u.id = st.countTokens();
+			u.user = st.nextToken();
+			u.password = st.nextToken();
+			u.nombre = st.nextToken();
+			u.apellidos = st.nextToken();
+			u.nacimiento = Long.parseLong( st.nextToken() );
+			u.fechaCreacion = Long.parseLong( st.nextToken() );
+			u.tipo = TipoUsuario.valueOf( st.nextToken() );
+			u.email = st.nextToken();
+			u.amigos = new ArrayList<Amigo>();
+			while (st.hasMoreTokens()) {
+				
+				u.amigos.add( st.nextToken() );
+			}
+			return u;
+			
+		} catch (NoSuchElementException e) {  // Error en datos insuficientes (faltan campos)
+			return null;
+		} catch (NumberFormatException e) {  // Error en tipo long de telefono o fechaLogin
+			return null;
+		} catch (IllegalArgumentException e) {  // Error en tipo usuario (enumerado)
+			return null;
+		} catch (Exception e) {  // Cualquier otro error
+			return null;
+		}
+		return u;
+	}
+
+	/** main de prueba
+	 * @param s	Parámetros estándar (no se utilizan)
+	 */
+	public static void main( String[] s ) {
+//		Usuario u = new Usuario( "buzz", "#9abbf", "Buzz", "Lightyear", 101202303, TipoUsuario.Admin, "buzz@gmail.com", "amigo.de.woody@gmail.com" );
+//		u.getListaEmails().add( "buzz@hotmail.com" );
+//		// String ape = u.getApellidos(); ape = "Apellido falso";  // esto no cambia nada
+//		System.out.println( u );
+	}
+
+	
 }

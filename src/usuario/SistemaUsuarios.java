@@ -1,11 +1,12 @@
 package usuario;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.*;
 import usuario.Usuario;
 
-public class SistemaUsuarios {
+public class SistemaUsuarios implements Serializable {
+
 	public HashMap<String, Usuario> grupoUsuarios;
 	public ArrayList<Usuario> usuariosLoggeados;
 	
@@ -15,12 +16,13 @@ public class SistemaUsuarios {
 	}
 	
 	public boolean addNewUser( Usuario u ){
-		String nick = u.getNombreUsuario();
-		if( grupoUsuarios.containsKey(nick)){
+		String user = u.getUser();
+		if( grupoUsuarios.containsKey(user)){
 			return false;
 		}
 		else{
-			grupoUsuarios.put(nick, u);
+			grupoUsuarios.put( user, u);
+			u.setFechaCreacion(System.currentTimeMillis());
 			return true;
 		}
 	}
@@ -32,7 +34,7 @@ public class SistemaUsuarios {
 		
 		Usuario u = grupoUsuarios.get(nick); 
 		
-		if (! u.getContrasenya().equals(contrasenya)){
+		if (! u.getPassword().equals(contrasenya)){
 			return false;
 		}
 		
@@ -41,19 +43,18 @@ public class SistemaUsuarios {
 		}
 		
 		usuariosLoggeados.add(u);
-		u.setFechaUltimoLogin(System.currentTimeMillis());
 		return true;
 		
 	}
 	
-	public boolean logout (String nick){
-		if (!grupoUsuarios.containsKey(nick)){
+	public boolean logout (String user){
+		if (!grupoUsuarios.containsKey(user)){
 			return false;
 		}
 		
-		Usuario u = grupoUsuarios.get(nick);
+		Usuario u = grupoUsuarios.get(user);
 			
-		if (!usuariosLoggeados.contains(nick)){
+		if (!usuariosLoggeados.contains(user)){
 			return false;
 		}
 		
