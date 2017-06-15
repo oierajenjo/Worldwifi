@@ -22,13 +22,11 @@ public class Usuario implements Serializable {
 	private String ciudad;
 	private String twitter;
 	private String facebook;
-	private ArrayList<Amigo> amigos;
+	private ArrayList<Usuario> amigos;
 	private long fechaCreacion;
 	private TipoUsuario tipo;
+	private long fechaUltimoLogin;
 
-	public String getId() {
-		return id;
-	}
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -74,10 +72,10 @@ public class Usuario implements Serializable {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	public ArrayList<Amigo> getAmigo() {
+	public ArrayList<Usuario> getAmigo() {
 		return amigos;
 	}
-	public void setAmigo(ArrayList<Amigo> amigos) {
+	public void setAmigo(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
 	}
 //	public String getAmigo() {
@@ -126,7 +124,7 @@ public class Usuario implements Serializable {
 	 */
 	
 	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, ArrayList<Amigo> amigos, long fechaCreacion,
+			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, long fechaCreacion,
 			TipoUsuario tipo) {
 		super();
 		this.id = id;
@@ -155,9 +153,8 @@ public class Usuario implements Serializable {
 	 */
 	
 	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, Amigo... amigo, long fechaCreacion,
-			TipoUsuario tipo ) {
-		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Amigo> (Arrays.asList(amigo),
+			String ciudad, String twitter, String facebook, Usuario... amigo, long fechaCreacion, TipoUsuario tipo ) {
+		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Usuario> ,
 			fechaCreacion, tipo);
 	}
 	
@@ -199,10 +196,10 @@ public class Usuario implements Serializable {
 			u.fechaCreacion = Long.parseLong( st.nextToken() );
 			u.tipo = TipoUsuario.valueOf( st.nextToken() );
 			u.email = st.nextToken();
-			u.amigos = new ArrayList<Amigo>();
+			u.amigos = new ArrayList<Usuario>();
 			while (st.hasMoreTokens()) {
 				
-				u.amigos.addAll( st.nextToken() );
+				u.amigos.add( st.nextToken() );
 			}
 			return u;
 			
