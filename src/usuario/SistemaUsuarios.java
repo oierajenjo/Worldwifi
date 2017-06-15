@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import usuario.Usuario;
 
+@SuppressWarnings("serial")
 public class SistemaUsuarios implements Serializable {
 
 	public HashMap<String, Usuario> grupoUsuarios;

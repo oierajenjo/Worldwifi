@@ -7,13 +7,12 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-import pr7.TipoUsuario;
 
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 8119678942285632886L;
 
-	private int id;
+	private String id;
 	private String user;
 	private String password;
 	private String nombre;
@@ -27,10 +26,10 @@ public class Usuario implements Serializable {
 	private long fechaCreacion;
 	private TipoUsuario tipo;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getUser() {
@@ -84,7 +83,7 @@ public class Usuario implements Serializable {
 //	public String getAmigo() {
 //		ArrayList<Amigo> ret;
 //		if (amigos.size()>0) ret = amigos.get(0);
-//		for (int i=1; i<amigos.size(); i++) ret (", " + amigos.get(i));
+//		for (String i=1; i<amigos.size(); i++) ret (", " + amigos.get(i));
 //		return ret;
 //	}
 	public String getTwitter() {
@@ -111,7 +110,7 @@ public class Usuario implements Serializable {
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
-	/** Constructor privado, sólo para uso interno
+	/** Constructor privado, sólo para uso Stringerno
 	 */
 	private Usuario() {
 	}
@@ -126,7 +125,7 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
-	public Usuario(int id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
+	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
 			String ciudad, String twitter, String facebook, ArrayList<Amigo> amigos, long fechaCreacion,
 			TipoUsuario tipo) {
 		super();
@@ -155,7 +154,7 @@ public class Usuario implements Serializable {
 	 * @param 
 	 */
 	
-	public Usuario(int id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
+	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
 			String ciudad, String twitter, String facebook, Amigo... amigo, long fechaCreacion,
 			TipoUsuario tipo ) {
 		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Amigo> (Arrays.asList(amigo),
@@ -191,7 +190,7 @@ public class Usuario implements Serializable {
 		Usuario u = new Usuario();
 		StringTokenizer st = new StringTokenizer( linea, "," );
 		try {
-			u.id = st.countTokens();
+			u.id = st.nextToken();
 			u.user = st.nextToken();
 			u.password = st.nextToken();
 			u.nombre = st.nextToken();
@@ -203,7 +202,7 @@ public class Usuario implements Serializable {
 			u.amigos = new ArrayList<Amigo>();
 			while (st.hasMoreTokens()) {
 				
-				u.amigos.add( st.nextToken() );
+				u.amigos.addAll( st.nextToken() );
 			}
 			return u;
 			
@@ -229,5 +228,5 @@ public class Usuario implements Serializable {
 //		System.out.println( u );
 	}
 
-	
+
 }
