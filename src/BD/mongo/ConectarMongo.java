@@ -138,6 +138,17 @@ public class ConectarMongo {
 	        }
 	    }
 	   
+	   public static boolean userExists(String userName){
+		   userName = userName.toLowerCase();
+		   
+		   MongoDatabase db = getUsersDB();
+		   MongoCollection collection = db.getCollection(COLLECTION);
+		   BasicDBObject query = new BasicDBObject();
+		   query.put("username", userName);
+		   
+		   return collection.count(query) != 0;
+	   }
+	   
 	   
 }
 
