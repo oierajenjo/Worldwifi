@@ -2,6 +2,7 @@ package usuario;
 
 import javafx.scene.chart.PieChart.Data;
 
+
 public class Usuario {
 
 	private String nombreUsuario;
@@ -17,8 +18,6 @@ public class Usuario {
 	private TipoUsuario tipo;
 	private long fechaUltimoLogin;
 	
-	
-
 
 	public Usuario(String nombreUsuario, String nombre, String apellido, int numTelef, Data fechaNacimiento,
 			String correo, String contrasenya, String repiteContrasenya, String twitter, String facebook,

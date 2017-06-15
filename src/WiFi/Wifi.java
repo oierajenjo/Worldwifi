@@ -117,7 +117,7 @@ public class Wifi {
 	public void setAltura(int longitud) {
 		this.altura = longitud;
 	}
-
+	
 
 
 	public int getLongitud() {
@@ -143,12 +143,9 @@ public class Wifi {
 
 
 	public static void main(String[] args) {
-		System.out.println( "a");
 		// TODO Auto-generated method stub
 		try {
-			System.out.println( "b");
 			verRedesWifi();
-			System.out.println( "c");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,3 +153,4 @@ public class Wifi {
 	}
 
 }
+
