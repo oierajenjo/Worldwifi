@@ -79,6 +79,7 @@ public class ConectarMongo {
 		   FindIterable iterable = collection.find(new BasicDBObject("username", userName)); 
 	   }
 	   
+	   
 	   public static MongoCollection getCollection(){
 		   MongoClient mongoClient = new MongoClient(ns, port);
 		   MongoDatabase database = mongoClient.getDatabase("mydb");
