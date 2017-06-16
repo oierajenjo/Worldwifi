@@ -27,37 +27,32 @@ public class funciones {
 	/*
 	 * Devuelve el conjunto de direcciones postales asociadas al punto geográfico (latitude/longitude)
 	 * Nos devuelve:
-	 * 		Plaza Puerta del Sol, 6, 28013 Madrid, España
-	 * 		Puerta del Sol, 28013 Madrid, España
-	 * 		Sol, Madrid, España
-	 * 		28013 Madrid, España
-	 * 		Centro, Madrid, España
-	 * 		Madrid, España
-	 * 		Madrid, España
-	 * 		Área Metropolitalitana y Corredor del Henares, Madrid, España
-	 * 		Madrid, España
-	 * 		Comunidad de Madrid, España
-	 * 		España
+	 * 		Calle, nº, C.P. Ciudad, Pais
+	 * 		Barrio, C.P. Ciudad, Pais
+	 * 		Atoche, Ciudad, Pais
+	 * 		Distrito, Ciudad, Pais
+	 * 		Ciudad, Pais
+	 * 		C.P. Ciudad, Pais
+	 * 		Ciudad, Pais
+	 * 		Área Metropolitalitana y Corredor del Henares, Ciudad, Pais
+	 * 		Ciudad, Pais
+	 * 		Provincio, Pais
+	 * 		Pais
 	 */
-	public static String getDireccion(Double latitud, Double longitud){
-		String d = null;
+	public static void getDireccion(Double latitud, Double longitud){
 		Geocoding ObjGeocod=new Geocoding();
 		ArrayList<String> resultadoCI = null;
 		try {
 			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
 			for(String direccion:resultadoCI){
 				System.out.println(direccion);
-				d = ""+ direccion;
 			}
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
 		}	
-
-		
-		return d;
 	}
 	public static void main(String[] args) {
 		System.out.println(getCoordenadas("Bilbao, adsndasds"));
-		System.out.println(getDireccion(40.40044959, -3.688268601));
+		getDireccion(40.40044959, -3.688268601);
 	}
 }
