@@ -154,7 +154,7 @@ public class Usuario implements Serializable {
 	
 	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
 			String ciudad, String twitter, String facebook, Usuario... amigo, long fechaCreacion, TipoUsuario tipo ) {
-		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Usuario> ,
+		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Usuario>(),
 			fechaCreacion, tipo);
 	}
 	

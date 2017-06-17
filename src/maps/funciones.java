@@ -41,7 +41,7 @@ public class funciones {
 	 * 		Provincio, Pais
 	 * 		Pais
 	 */
-	public static void getDireccion(Double latitud, Double longitud){
+	public static ArrayList<String> getDireccion(Double latitud, Double longitud){
 		Geocoding ObjGeocod=new Geocoding();
 		ArrayList<String> resultadoCI = null;
 		try {
@@ -51,12 +51,14 @@ public class funciones {
 			}
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
-		}	
+		}
+		return resultadoCI;
 	}
 	
 	
 	public static void main(String[] args) {
 		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
-		getDireccion(40.40044959, -3.688268601);
+		System.out.println("");
+		System.out.println(getDireccion(40.40044959, -3.688268601));
 	}
 }
