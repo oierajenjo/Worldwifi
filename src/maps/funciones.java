@@ -16,13 +16,15 @@ public class funciones {
 	public static String getCoordenadas(String sitio){
 		Geocoding ObjGeocod = new Geocoding();
 		Point2D.Double resultadoCD = null;
+		String Address = null;
 		try {
 			resultadoCD = ObjGeocod.getCoordinates(sitio);
+			Address = ObjGeocod.getAddressFound();
 
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
 		}
-		return resultadoCD.x + "," + resultadoCD.y;
+		return Address + ": " + resultadoCD.x + "," + resultadoCD.y;
 	}
 	/*
 	 * Devuelve el conjunto de direcciones postales asociadas al punto geográfico (latitude/longitude)
@@ -51,8 +53,10 @@ public class funciones {
 			e.printStackTrace();
 		}	
 	}
+	
+	
 	public static void main(String[] args) {
-		System.out.println(getCoordenadas("Bilbao, adsndasds"));
+		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		getDireccion(40.40044959, -3.688268601);
 	}
 }
