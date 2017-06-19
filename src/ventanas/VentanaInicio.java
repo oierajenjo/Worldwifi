@@ -3,8 +3,10 @@ package ventanas;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-
 import javax.swing.*;
+import java.awt.event.*;
+
+
 
 @SuppressWarnings("serial")
 public class VentanaInicio extends JFrame {
@@ -22,18 +24,18 @@ public class VentanaInicio extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jbEntrar = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
-        jtUser = new javax.swing.JTextField();
-        jlUsuario = new javax.swing.JLabel();
-        jlContraseña = new javax.swing.JLabel();
-        jPassword = new javax.swing.JPasswordField();
-        jlLogo = new javax.swing.JLabel();
-        jbRegistrarse = new javax.swing.JButton();
-        jlFondo = new javax.swing.JLabel();
+        jbEntrar = new JButton();
+        jbSalir = new JButton();
+        jtUser = new JTextField();
+        jlUsuario = new JLabel();
+        jlContraseña = new JLabel();
+        jPassword = new JPasswordField();
+        jlLogo = new JLabel();
+        jbRegistrarse = new JButton();
+        jlFondo = new JLabel();
 
         
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("WorldWifi");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImage(getIconImage());
@@ -46,8 +48,8 @@ public class VentanaInicio extends JFrame {
         jbEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jbEntrar.setText("Entrar");
-        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jbEntrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jbEntrarActionPerformed(evt);
             }
         });
@@ -58,8 +60,8 @@ public class VentanaInicio extends JFrame {
         jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
         jbSalir.setActionCommand("jbSalir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jbSalir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
@@ -68,8 +70,8 @@ public class VentanaInicio extends JFrame {
         jtUser.setBackground(new java.awt.Color(204, 204, 204));
         jtUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jtUser.setForeground(new java.awt.Color(255, 255, 255));
-        jtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jtUser.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jtUserActionPerformed(evt);
             }
         });
@@ -90,46 +92,56 @@ public class VentanaInicio extends JFrame {
         jPassword.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 200, 50));
 
-        jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
+        jlLogo.setIcon(new ImageIcon(getClass().getResource("/imagenes/logo.png"))); // NOI18N
         getContentPane().add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
         jbRegistrarse.setBackground(new java.awt.Color(51, 153, 255));
         jbRegistrarse.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         jbRegistrarse.setText("Registrarse");
-        jbRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jbRegistrarse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jbRegistrarseActionPerformed(evt);
             }
         });
         getContentPane().add(jbRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, 140, -1));
 
-        jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
+        jlFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
         getContentPane().add(jlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 770));
 
         pack();
     }// </editor-fold>                        
 
-    private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    //Getters
+
+    public JPasswordField getjPassword() {
+		return jPassword;
+	}
+
+	public JTextField getJtUser() {
+		return jtUser;
+	}
+	
+	private void jbEntrarActionPerformed(ActionEvent evt) {                                         
         VentanaMapa a = new VentanaMapa();
         a.setVisible(true);
         this.setVisible(false);
     }                                        
-
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        System.exit(0);
-    }                                       
-
-    private void jtUserActionPerformed(java.awt.event.ActionEvent evt) {                                       
     
-    }                                      
-
-    private void jbRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                              
+	private void jbRegistrarseActionPerformed(ActionEvent evt) {                                              
         VentanaRegistrar b = new VentanaRegistrar();
         b.setVisible(true);
         this.setVisible(false);
-    }                                             
+    } 
+    
+    private void jbSalirActionPerformed(ActionEvent evt) {                                        
+        System.exit(0);
+    }                                       
 
+    private void jtUserActionPerformed(ActionEvent evt) {                                       
+    
+    }   
+    
     /**
      * @param args the command line arguments
      */
@@ -140,9 +152,9 @@ public class VentanaInicio extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -152,7 +164,7 @@ public class VentanaInicio extends JFrame {
             java.util.logging.Logger.getLogger(VentanaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -166,15 +178,15 @@ public class VentanaInicio extends JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JPasswordField jPassword;
-    private javax.swing.JButton jbEntrar;
-    private javax.swing.JButton jbRegistrarse;
-    private javax.swing.JButton jbSalir;
-    private javax.swing.JLabel jlContraseña;
-    private javax.swing.JLabel jlFondo;
-    private javax.swing.JLabel jlLogo;
-    private javax.swing.JLabel jlUsuario;
-    private javax.swing.JTextField jtUser;
+    private JPasswordField jPassword;
+    private JButton jbEntrar;
+    private JButton jbRegistrarse;
+    private JButton jbSalir;
+    private JLabel jlContraseña;
+    private JLabel jlFondo;
+    private JLabel jlLogo;
+    private JLabel jlUsuario;
+    private JTextField jtUser;
 
     // End of variables declaration                   
 }
