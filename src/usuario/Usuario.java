@@ -30,6 +30,24 @@ public class Usuario implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public ArrayList<Usuario> getAmigos() {
+		return amigos;
+	}
+	public void setAmigos(ArrayList<Usuario> amigos) {
+		this.amigos = amigos;
+	}
+	public long getFechaUltimoLogin() {
+		return fechaUltimoLogin;
+	}
+	public void setFechaUltimoLogin(long fechaUltimoLogin) {
+		this.fechaUltimoLogin = fechaUltimoLogin;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public String getId() {
+		return id;
+	}
 	public String getUser() {
 		return user;
 	}
@@ -153,7 +171,7 @@ public class Usuario implements Serializable {
 	 */
 	
 	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, Usuario... amigo, long fechaCreacion, TipoUsuario tipo ) {
+			String ciudad, String twitter, String facebook, Usuario amigos, long fechaCreacion, TipoUsuario tipo ) {
 		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Usuario>(),
 			fechaCreacion, tipo);
 	}
