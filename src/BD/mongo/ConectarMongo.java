@@ -1,7 +1,9 @@
 package BD.mongo;
 import com.mongodb.MongoClient;
 
+
 import Comun.*;
+import usuario.TipoUsuario;
 import usuario.Usuario;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.MongoCommandException;
@@ -126,24 +128,32 @@ public class ConectarMongo {
 	   }
 	   
 	   
-	   public static void createUser(Usuario user)  {
+	   public static void createUser(Usuario user) throws NewUserExistsException  {
 
 	        /* lowercase usernames */
-	        user.setUserName(user.getUserName().toLowerCase());
+	        user.setUser(user.getUser().toLowerCase());
 //	        UserAuthentication.checkAdmin(user.getUserName());
 //	        UserAuthentication.isValidName(user.getUserName());
 
-	        if (!userExists(user.getNombreUsuario())) {
+
+	    	
+	        if (!userExists(user.getUser())) {
 	            MongoDatabase db = getUsersDB();
 	            MongoCollection collection = db.getCollection(COLLECTION);
-	            BasicDBObject doc = new BasicDBObject("username", user.getNombreUsuario())
+	            BasicDBObject doc = new BasicDBObject("username", user.getUser())
+	            		.append("id", user.getId())
+	            		.append("password", new String(user.getPassword()))
 	            		.append("nombre", user.getNombre())
-	                    .append("apellido", user.getApellido())
-	                    .append("fechaNacimiento", user.getFechaNacimiento())
-	                    .append("correo", user.getCorreo())
-	                    .append("numTelef", user.getNumTelef())
-	                    .append("contrasenya", new String(user.getContrasenya()))
-	                    .append("tipo", user.getTipo().toString());
+	                    .append("apellidos", user.getApellidos())
+	                    .append("nacimiento", user.getNacimiento())
+	                    .append("email", user.getEmail())
+	                    .append("ciudad", user.getCiudad())
+	                    .append("twitter", user.getTwitter())
+	                    .append("facebook", user.getFacebook())
+	                    .append("amigos", user.getAmigos())
+	                    .append("fechaCreacion", user.getFechaCreacion())
+	                    .append("tipo", user.getTipo().toString())
+	            		.append("fechaUltimoLogin", user.getFechaUltimoLogin());
 	            collection.insertOne(Document.parse(doc.toJson()));
 	            StringBuilder logInfo = new StringBuilder();
 	            int i = 1;
@@ -156,7 +166,7 @@ public class ConectarMongo {
 	            }
 	            LOG.log(Level.INFO, "New user created:" + logInfo);
 	        } else {
-	            throw new Exception(user.getUser());
+	        	throw new NewUserExistsException(user.getUser());
 	        }
 	    }
 	   

@@ -30,6 +30,24 @@ public class Usuario implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public ArrayList<Usuario> getAmigos() {
+		return amigos;
+	}
+	public void setAmigos(ArrayList<Usuario> amigos) {
+		this.amigos = amigos;
+	}
+	public long getFechaUltimoLogin() {
+		return fechaUltimoLogin;
+	}
+	public void setFechaUltimoLogin(long fechaUltimoLogin) {
+		this.fechaUltimoLogin = fechaUltimoLogin;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public String getId() {
+		return id;
+	}
 	public String getUser() {
 		return user;
 	}
