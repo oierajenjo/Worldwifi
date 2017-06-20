@@ -1,4 +1,4 @@
-package ud.binmonkey.prog3_proyecto_server.mongodb;
+package BD.mongo;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;

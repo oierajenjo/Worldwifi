@@ -1,8 +1,8 @@
 package BD.mongo;
 import com.mongodb.MongoClient;
 
+import Comun.*;
 import usuario.Usuario;
-import usuario.Usuario.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.MongoCommandException;
 import com.mongodb.MongoException;
@@ -38,10 +38,10 @@ import java.util.logging.Logger;
 public class ConectarMongo {
 	private static final Logger LOG = Logger.getLogger(ConectarMongo.class.getName());
     private static String COLLECTION = "users";
-//    private static final String ns = DocumentReader.getAttr(DocumentReader.getDoc("conf/properties.xml"),
-//            "network", "mongodb-server", "host").getTextContent();
-//    private static final int port = Integer.parseInt(DocumentReader.getAttr(DocumentReader.getDoc("conf/properties.xml"),
-//            "network", "mongodb-server", "port").getTextContent());
+    private static final String ns = DocumentReader.getAttr(DocumentReader.getDoc("conf/properties.xml"),
+            "network", "mongodb-server", "host").getTextContent();
+    private static final int port = Integer.parseInt(DocumentReader.getAttr(DocumentReader.getDoc("conf/properties.xml"),
+            "network", "mongodb-server", "port").getTextContent());
 
    public static void main( String args[] ) {
 	
@@ -53,7 +53,7 @@ public class ConectarMongo {
          // Now connect to your databases
          DB db = mongoClient.getDB( "test" );
          System.out.println("Connect to database successfully");
-         boolean auth = db.authenticate(myUserName, myPassword);
+         boolean auth = db.authenticate(user, password);
          System.out.println("Authentication: "+auth);
 			
       }catch(Exception e){
@@ -76,17 +76,39 @@ public class ConectarMongo {
 	   public void coseguirUsuarios(){
 		   MongoDatabase db = getUsersDB();
 		   MongoCollection collection = db.getCollection(COLLECTION);
-		   FindIterable iterable = collection.find(new BasicDBObject("username", userName)); 
+		   FindIterable iterable = collection.find(new BasicDBObject("username", user)); 
 	   }
-	   
-	   
-	   public static MongoCollection getCollection(){
-		   MongoClient mongoClient = new MongoClient(ns, port);
-		   MongoDatabase database = mongoClient.getDatabase("mydb");
-		   MongoCollection<Document> collection = database.getCollection("test");
-		   Document doc;
-		   collection.insertOne(doc);
-	   }
+//	   public static void changePassword(Usuario usuario)
+//	            throws UserNotFoundException, IncorrectPasswordException, AdminEditException {
+//
+//	        userName = usuario.getUser();
+//	        AutentificarUsuario.checkAdmin(userName);
+//
+//	        if(userExists(userName)) {
+//	            if (getUser(userName).get("password").equals(oldPassword)) {
+//	                MongoDatabase db = getUsersDB();
+//	                MongoCollection collection = db.getCollection(COLLECTION);
+//	                collection.updateMany(
+//	                        new BasicDBObject("username", userName),
+//	                        new BasicDBObject("$set",
+//	                                new BasicDBObject("password", newPassword)
+//	                        )
+//	                );
+//	                LOG.log(Level.INFO, "Changed password of user `" + userName +  "`.");
+//	            } else {
+//	                throw new IncorrectPasswordException(userName);
+//	            }
+//	        } else {
+//	            throw new UserNotFoundException(userName);
+//	        }
+//	    }
+//
+//	   
+//	   public static void changePassword(String userName, char[] oldPassword, char[] newPassword)
+//	            throws UserNotFoundException, IncorrectPasswordException, AdminEditException {
+//	        changePassword(userName, new String(oldPassword), new String(newPassword));
+//	    }
+	  
 	   
 	   public static void createUser(Document user) {
 	       MongoDatabase db = getUsersDB();
@@ -134,7 +156,7 @@ public class ConectarMongo {
 	            }
 	            LOG.log(Level.INFO, "New user created:" + logInfo);
 	        } else {
-	            throw new Exception(user.getNombreUsuario());
+	            throw new Exception(user.getUser());
 	        }
 	    }
 	   
