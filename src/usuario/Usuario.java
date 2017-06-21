@@ -96,12 +96,6 @@ public class Usuario implements Serializable {
 	public void setAmigo(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
 	}
-//	public String getAmigo() {
-//		ArrayList<Amigo> ret;
-//		if (amigos.size()>0) ret = amigos.get(0);
-//		for (String i=1; i<amigos.size(); i++) ret (", " + amigos.get(i));
-//		return ret;
-//	}
 	public String getTwitter() {
 		return twitter;
 	}

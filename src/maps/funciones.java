@@ -46,9 +46,12 @@ public class funciones {
 		ArrayList<String> resultadoCI = null;
 		try {
 			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
-			for(String direccion:resultadoCI){
-				System.out.println(direccion);
-			}
+			System.out.println("a");
+			System.out.println( resultadoCI.get(0) );
+//			for(String direccion:resultadoCI){
+//				System.out.println(direccion);
+//			}
+			System.out.println("a");
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
 		}
