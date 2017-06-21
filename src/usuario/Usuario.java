@@ -103,8 +103,10 @@ public class Usuario implements Serializable {
 		this.amigos = amigos;
 	}
 	public String getAmigo() {
-		
-		return apellidos;
+		String amigo = "";
+		if (amigos.size()>0) amigo = "" + amigos.get(0);
+		for (int i=0; i<amigos.size(); i++) amigo += (", " + amigos.get(i));
+		return amigo;
 	}
 	public long getFechaCreacion() {
 		return fechaCreacion;
