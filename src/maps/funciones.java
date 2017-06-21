@@ -41,27 +41,27 @@ public class funciones {
 	 * 		Provincio, Pais
 	 * 		Pais
 	 */
-	public static ArrayList<String> getDireccion(Double latitud, Double longitud){
+	public static String getDireccion(Double latitud, Double longitud){
 		Geocoding ObjGeocod=new Geocoding();
 		ArrayList<String> resultadoCI = null;
+		String direccion = null;
 		try {
 			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
-			System.out.println("a");
-			System.out.println( resultadoCI.get(0) );
+			direccion = resultadoCI.get(0);
+			System.out.println( direccion );
 //			for(String direccion:resultadoCI){
 //				System.out.println(direccion);
 //			}
-			System.out.println("a");
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
 		}
-		return resultadoCI;
+		return direccion;
 	}
 	
 	
 	public static void main(String[] args) {
 		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		System.out.println("");
-		System.out.println(getDireccion(40.40044959, -3.688268601));
+		System.out.println(getDireccion(43.2642276,-2.9234477));
 	}
 }

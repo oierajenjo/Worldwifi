@@ -30,12 +30,6 @@ public class Usuario implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public ArrayList<Usuario> getAmigos() {
-		return amigos;
-	}
-	public void setAmigos(ArrayList<Usuario> amigos) {
-		this.amigos = amigos;
-	}
 	public long getFechaUltimoLogin() {
 		return fechaUltimoLogin;
 	}
@@ -90,12 +84,6 @@ public class Usuario implements Serializable {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	public ArrayList<Usuario> getAmigo() {
-		return amigos;
-	}
-	public void setAmigo(ArrayList<Usuario> amigos) {
-		this.amigos = amigos;
-	}
 	public String getTwitter() {
 		return twitter;
 	}
@@ -107,6 +95,16 @@ public class Usuario implements Serializable {
 	}
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
+	}
+	public ArrayList<Usuario> getAmigos() {
+		return amigos;
+	}
+	public void setAmigos(ArrayList<Usuario> amigos) {
+		this.amigos = amigos;
+	}
+	public String getAmigo() {
+		
+		return apellidos;
 	}
 	public long getFechaCreacion() {
 		return fechaCreacion;
@@ -208,13 +206,7 @@ public class Usuario implements Serializable {
 			u.fechaCreacion = Long.parseLong( st.nextToken() );
 			u.tipo = TipoUsuario.valueOf( st.nextToken() );
 			u.email = st.nextToken();
-			u.amigos = new ArrayList<Usuario>();
-			while (st.hasMoreTokens()) {
-				
-				u.amigos.add( st.nextToken() );
-			}
-			return u;
-			
+			u.amigos = new ArrayList<Usuario>();			
 		} catch (NoSuchElementException e) {  // Error en datos insuficientes (faltan campos)
 			return null;
 		} catch (NumberFormatException e) {  // Error en tipo long de telefono o fechaLogin
