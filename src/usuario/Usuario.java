@@ -1,9 +1,7 @@
 package usuario;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -204,7 +202,7 @@ public class Usuario implements Serializable {
 			u.password = st.nextToken();
 			u.nombre = st.nextToken();
 			u.apellidos = st.nextToken();
-			u.nacimiento = Long.parseLong( st.nextToken() );
+			u.nacimiento = Long.parseLong(st.nextToken());
 			u.fechaCreacion = Long.parseLong( st.nextToken() );
 			u.tipo = TipoUsuario.valueOf( st.nextToken() );
 			u.email = st.nextToken();

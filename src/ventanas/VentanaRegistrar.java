@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.*;
+
+import usuario.SistemaUsuarios;
+import usuario.Usuario;
 
 
 
@@ -35,8 +37,6 @@ public class VentanaRegistrar extends JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
-
         jbEntrar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jtNombre = new javax.swing.JTextField();
@@ -46,6 +46,8 @@ public class VentanaRegistrar extends JFrame {
         jpContrasena = new javax.swing.JPasswordField();
         jpConfirmacion = new javax.swing.JPasswordField();
         jtCiudad = new javax.swing.JTextField();
+        jtTwitter = new javax.swing.JTextField();
+        jtFacebook = new javax.swing.JTextField();
         jdNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,7 +56,9 @@ public class VentanaRegistrar extends JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jbAtras = new javax.swing.JButton();
         jlFondo = new javax.swing.JLabel();
 
@@ -150,6 +154,26 @@ public class VentanaRegistrar extends JFrame {
         });
         getContentPane().add(jtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 150, 30));
 
+        jtTwitter.setBackground(new java.awt.Color(204, 204, 204));
+        jtTwitter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtTwitter.setForeground(new java.awt.Color(255, 255, 255));
+        jtTwitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtTwitterActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtTwitter, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 150, 30));
+
+        jtFacebook.setBackground(new java.awt.Color(204, 204, 204));
+        jtFacebook.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtFacebook.setForeground(new java.awt.Color(255, 255, 255));
+        jtFacebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtFacebookActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtFacebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 150, 30));
+
         jdNacimiento.setBackground(new java.awt.Color(204, 204, 204));
         jdNacimiento.setForeground(new java.awt.Color(255, 255, 255));
         jdNacimiento.setMaxSelectableDate(jdNacimiento.getDate());
@@ -191,10 +215,20 @@ public class VentanaRegistrar extends JFrame {
         jLabel7.setText("Nacimiento:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Ciudad:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Ciudad:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
+        jLabel8.setText("Twitter");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Facebook");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, -1, -1));
 
         jbAtras.setBackground(new java.awt.Color(51, 153, 255));
         jbAtras.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -209,16 +243,33 @@ public class VentanaRegistrar extends JFrame {
 
         jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jlFondo, org.jdesktop.beansbinding.ObjectProperty.create(), jlFondo, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
+	
 
         getContentPane().add(jlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 790));
 
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>                        
-
+	private static SimpleDateFormat myDF = new SimpleDateFormat( "dd/mmm/yyyy" );
+    public void cargaUsuario( Usuario u ) {
+		
+    	jtUser.setText( u.getUser());
+		if (jpConfirmacion == jpContrasena){
+			jpContrasena.setText( u.getPassword() );
+		}
+		jtNombre.setText( u.getNombre() );
+		jtApellidos.setText( u.getApellidos() );
+		jdNacimiento.setToolTipText(myDF.format( new Date(u.getNacimiento())));
+		jtCorreo.setText( u.getEmail());
+		jtCiudad.setText( u.getCiudad());
+		jtCiudad.setText( u.getCiudad());
+		jtCiudad.setText( u.getCiudad());
+		jtCiudad.setText( u.getCiudad());
+		jtCiudad.setText( u.getCiudad());
+		jtTwitter.setText(u.getTwitter());
+		jtFacebook.setText(u.getFacebook());
+		u.setId("" + (SistemaUsuarios.this.grupoUsuarios.size() + 1));
+	}
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         VentanaInicio a = new VentanaInicio();
         a.setVisible(true);
@@ -249,9 +300,17 @@ public class VentanaRegistrar extends JFrame {
 
     }                                        
 
-    private void jtCiudadActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jtFacebookActionPerformed(java.awt.event.ActionEvent evt) {                                           
 
+    }                                          
+
+    private void jtCiudadActionPerformed(java.awt.event.ActionEvent evt) {                                         
+     
     }                                        
+
+    private void jtTwitterActionPerformed(java.awt.event.ActionEvent evt) {                                          
+     
+    }                                       
 
     /**
      * @param args the command line arguments
@@ -290,6 +349,7 @@ public class VentanaRegistrar extends JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -297,6 +357,7 @@ public class VentanaRegistrar extends JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jbAtras;
     private javax.swing.JButton jbEntrar;
     private javax.swing.JButton jbSalir;
@@ -307,8 +368,9 @@ public class VentanaRegistrar extends JFrame {
     private javax.swing.JTextField jtApellidos;
     private javax.swing.JTextField jtCiudad;
     private javax.swing.JTextField jtCorreo;
+    private javax.swing.JTextField jtFacebook;
     private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtTwitter;
     private javax.swing.JTextField jtUser;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration                   
 }

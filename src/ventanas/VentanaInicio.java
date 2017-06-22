@@ -6,7 +6,10 @@ import java.awt.Toolkit;
 import javax.swing.*;
 import java.awt.event.*;
 
-
+/**
+*
+* @author Oier
+*/
 
 @SuppressWarnings("serial")
 public class VentanaInicio extends JFrame {
