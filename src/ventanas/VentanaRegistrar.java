@@ -8,8 +8,7 @@ import java.util.Date;
 
 import javax.swing.*;
 
-import usuario.SistemaUsuarios;
-import usuario.Usuario;
+import usuario.*;
 
 
 
@@ -268,7 +267,7 @@ public class VentanaRegistrar extends JFrame {
 		jtCiudad.setText( u.getCiudad());
 		jtTwitter.setText(u.getTwitter());
 		jtFacebook.setText(u.getFacebook());
-		u.setId("" + (SistemaUsuarios.this.grupoUsuarios.size() + 1));
+		u.setId("" + (grupoUsuarios.size() + 1));
 	}
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         VentanaInicio a = new VentanaInicio();
