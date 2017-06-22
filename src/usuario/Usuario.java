@@ -23,16 +23,9 @@ public class Usuario implements Serializable {
 	private ArrayList<Usuario> amigos;
 	private long fechaCreacion;
 	private TipoUsuario tipo;
-	private long fechaUltimoLogin;
 
 	public void setId(String id) {
 		this.id = id;
-	}
-	public long getFechaUltimoLogin() {
-		return fechaUltimoLogin;
-	}
-	public void setFechaUltimoLogin(long fechaUltimoLogin) {
-		this.fechaUltimoLogin = fechaUltimoLogin;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

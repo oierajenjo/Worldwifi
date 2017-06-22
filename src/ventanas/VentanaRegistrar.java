@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.*;
-
+import ventanas.*;
 import usuario.*;
 
 
@@ -249,30 +249,88 @@ public class VentanaRegistrar extends JFrame {
 
         pack();
     }// </editor-fold>                        
-	private static SimpleDateFormat myDF = new SimpleDateFormat( "dd/mmm/yyyy" );
-    public void cargaUsuario( Usuario u ) {
-		
-    	jtUser.setText( u.getUser());
-		if (jpConfirmacion == jpContrasena){
-			jpContrasena.setText( u.getPassword() );
-		}
-		jtNombre.setText( u.getNombre() );
-		jtApellidos.setText( u.getApellidos() );
-		jdNacimiento.setToolTipText(myDF.format( new Date(u.getNacimiento())));
-		jtCorreo.setText( u.getEmail());
-		jtCiudad.setText( u.getCiudad());
-		jtCiudad.setText( u.getCiudad());
-		jtCiudad.setText( u.getCiudad());
-		jtCiudad.setText( u.getCiudad());
-		jtCiudad.setText( u.getCiudad());
-		jtTwitter.setText(u.getTwitter());
-		jtFacebook.setText(u.getFacebook());
-		u.setId("" + (grupoUsuarios.size() + 1));
+
+    public com.toedter.calendar.JDateChooser getJdNacimiento() {
+		return jdNacimiento;
 	}
-    private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        VentanaInicio a = new VentanaInicio();
+
+	public void setJdNacimiento(com.toedter.calendar.JDateChooser jdNacimiento) {
+		this.jdNacimiento = jdNacimiento;
+	}
+
+	public javax.swing.JPasswordField getJpContrasena() {
+		if (jpContrasena == jpConfirmacion){
+			return jpContrasena;
+		}
+		return null;
+	}
+
+	public void setJpContrasena(javax.swing.JPasswordField jpContrasena) {
+		this.jpContrasena = jpContrasena;
+	}
+
+	public javax.swing.JTextField getJtApellidos() {
+		return jtApellidos;
+	}
+
+	public void setJtApellidos(javax.swing.JTextField jtApellidos) {
+		this.jtApellidos = jtApellidos;
+	}
+
+	public javax.swing.JTextField getJtCiudad() {
+		return jtCiudad;
+	}
+
+	public void setJtCiudad(javax.swing.JTextField jtCiudad) {
+		this.jtCiudad = jtCiudad;
+	}
+
+	public javax.swing.JTextField getJtCorreo() {
+		return jtCorreo;
+	}
+
+	public void setJtCorreo(javax.swing.JTextField jtCorreo) {
+		this.jtCorreo = jtCorreo;
+	}
+
+	public javax.swing.JTextField getJtFacebook() {
+		return jtFacebook;
+	}
+
+	public void setJtFacebook(javax.swing.JTextField jtFacebook) {
+		this.jtFacebook = jtFacebook;
+	}
+
+	public javax.swing.JTextField getJtNombre() {
+		return jtNombre;
+	}
+
+	public void setJtNombre(javax.swing.JTextField jtNombre) {
+		this.jtNombre = jtNombre;
+	}
+
+	public javax.swing.JTextField getJtTwitter() {
+		return jtTwitter;
+	}
+
+	public void setJtTwitter(javax.swing.JTextField jtTwitter) {
+		this.jtTwitter = jtTwitter;
+	}
+
+	public javax.swing.JTextField getJtUser() {
+		return jtUser;
+	}
+
+	public void setJtUser(javax.swing.JTextField jtUser) {
+		this.jtUser = jtUser;
+	}
+
+	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       if(jtUser != SistemaUsuarios.this.grupoUsuarios.getUser()){
+    	VentanaInicio a = new VentanaInicio();
         a.setVisible(true);
         this.setVisible(false);
+        }
     }                                        
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        

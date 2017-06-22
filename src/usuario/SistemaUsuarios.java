@@ -28,14 +28,14 @@ public class SistemaUsuarios implements Serializable {
 		}
 	}
 
-	public boolean login (String nick, String contrasenya){
-		if (!grupoUsuarios.containsKey(nick)){
+	public boolean login (String user, String password){
+		if (!grupoUsuarios.containsKey(user)){
 			return false;
 		}
 		
-		Usuario u = grupoUsuarios.get(nick); 
+		Usuario u = grupoUsuarios.get(user); 
 		
-		if (! u.getPassword().equals(contrasenya)){
+		if (! u.getPassword().equals(password)){
 			return false;
 		}
 		
