@@ -1,8 +1,7 @@
 {
-"usuarios": [
+"usuario": [
 
 {
-    "_id" : "001",
     "usuario" : "mikel",
     "contrasenya" : "12345aA",
     "nombre" : "Mikel",
@@ -12,15 +11,12 @@
     "ciudad" : "Barakaldo",
     "amigos" : [ 
         {
-            "_id" : "002",
             "usuario" : "oier"
         }, 
         {
-            "_id" : "003",
             "usuario" : "alejandro"
         }, 
         {
-            "_id" : "004",
             "usuario" : "victor"
         }
     ],
@@ -28,11 +24,8 @@
     "facebook" : "Mikel Martinez Saez",
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Admin"
-}
-
-
+},
 {
-    "_id" : "002",
     "usuario" : "oier",
     "contrasenya" : "12345bB",
     "nombre" : "Oier",
@@ -42,11 +35,9 @@
     "ciudad" : "Bilbo",
     "amigos" : [ 
         {
-            "_id" : "001",
             "usuario" : "mikel"
         }, 
         {
-            "_id" : "005",
             "usuario" : "ane"
         }
     ],
@@ -54,11 +45,8 @@
     "facebook" : "Oier Ajenjo",
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Admin"
-}
-
-
+},
 {
-    "_id" : "003",
     "usuario" : "alejandro",
     "contrasenya" : "12345cC",
     "nombre" : "Alejandro",
@@ -68,11 +56,9 @@
     "ciudad" : "Berango",
     "amigos" : [ 
         {
-            "_id" : "001",
             "usuario" : "mikel"
         }, 
         {
-            "_id" : "004",
             "usuario" : "victor"
         }
     ],
@@ -80,11 +66,8 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "004",
     "usuario" : "victor",
     "contrasenya" : "12345dD",
     "nombre" : "Victor",
@@ -94,11 +77,9 @@
     "ciudad" : "Burgos",
     "amigos" : [ 
         {
-            "_id" : "001",
             "usuario" : "mikel"
         }, 
         {
-            "_id" : "006",
             "usuario" : "saul"
         }
     ],
@@ -106,11 +87,8 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "005",
     "usuario" : "ane",
     "contrasenya" : "12345eE",
     "nombre" : "Ane",
@@ -120,15 +98,12 @@
     "ciudad" : "Castro Urdiales",
     "amigos" : [ 
         {
-            "_id" : "002",
             "usuario" : "oier"
         }, 
         {
-            "_id" : "007",
             "usuario" : "amaia"
         }, 
         {
-            "_id" : "008",
             "usuario" : "mikel"
         }
     ],
@@ -136,11 +111,8 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "006",
     "usuario" : "saul",
     "contrasenya" : "12345fF",
     "nombre" : "Saul",
@@ -150,7 +122,6 @@
     "ciudad" : "Bilbo",
     "amigos" : [ 
         {
-            "_id" : "004",
             "usuario" : "victor"
         }
     ],
@@ -158,11 +129,8 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "007",
     "usuario" : "amaia",
     "contrasenya" : "12345gG",
     "nombre" : "Amaia",
@@ -172,15 +140,12 @@
     "ciudad" : "Pamplona",
     "amigos" : [ 
         {
-            "_id" : "005",
             "usuario" : "ane"
         }, 
         {
-            "_id" : "008",
             "usuario" : "mikel"
         }, 
         {
-            "_id" : "009",
             "usuario" : "carlos"
         }
     ],
@@ -188,29 +153,23 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "008",
     "usuario" : "mikels",
     "contrasenya" : "12345hH",
     "nombre" : "Mikel",
     "apellidos" : "Solabarrieta",
     "nacimiento" : "1997-sep-23",
     "correo" : "mikelsr@opendeusto.es",
-    "ciudad" : "Arrigorriaga",
+    "ciudad" : "Bilbao",
     "amigos" : [ 
         {
-            "_id" : "005",
             "usuario" : "ane"
         }, 
         {
-            "_id" : "007",
             "usuario" : "amaia"
         }, 
         {
-            "_id" : "010",
             "usuario" : "rafa"
         }
     ],
@@ -218,11 +177,8 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "009",
     "usuario" : "carlos",
     "contrasenya" : "12345iI",
     "nombre" : "Carlos",
@@ -232,15 +188,12 @@
     "ciudad" : "Gijon",
     "amigos" : [ 
         {
-            "_id" : "007",
             "usuario" : "amaia"
         }, 
         {
-            "_id" : "008",
             "usuario" : "mikel"
         }, 
         {
-            "_id" : "010",
             "usuario" : "rafael"
         }
     ],
@@ -248,12 +201,9 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "010",
-    "usuario" : "rafael",
+	"usuario" : "rafael",
     "contrasenya" : "12345jJ",
     "nombre" : "Rafael",
     "apellidos" : "Romon",
@@ -262,11 +212,9 @@
     "ciudad" : "Miranda de Ebro",
     "amigos" : [ 
         {
-            "_id" : "009",
             "usuario" : "carlos"
         }, 
         {
-            "_id" : "011",
             "usuario" : "gonzalo"
         }
     ],
@@ -274,12 +222,9 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
-
-
+},
 {
-    "_id" : "011",
-    "usuario" : "gonzalo",
+	"usuario" : "gonzalo",
     "contrasenya" : "12345kK",
     "nombre" : "Gonzalo",
     "apellidos" : "Arribas",
@@ -288,7 +233,6 @@
     "ciudad" : "Bilbo",
     "amigos" : [ 
         {
-            "_id" : "010",
             "usuario" : "rafael"
         }
     ],
@@ -296,6 +240,6 @@
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
     "role" : "Cliente"
-}
+},
 ]
 }

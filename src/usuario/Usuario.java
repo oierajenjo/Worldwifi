@@ -93,10 +93,14 @@ public class Usuario implements Serializable {
 	public void setAmigos(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
 	}
-	public String getAmigo() {
+	public String getAmigoString() {
 		String amigo = "";
-		if (amigos.size()>0) amigo = "" + amigos.get(0);
-		for (int i=0; i<amigos.size(); i++) amigo += (", " + amigos.get(i));
+		for (Usuario usuario: amigos) {
+			amigo += usuario.id + ":" + usuario.user;
+			if (!amigos.get(amigos.size() - 1).equals(usuario)) {
+				amigo += ",\r\n";
+			}
+		}
 		return amigo;
 	}
 	public long getFechaCreacion() {
