@@ -326,7 +326,8 @@ public class VentanaRegistrar extends JFrame {
 	}
 
 	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       if(jtUser != SistemaUsuarios.this.grupoUsuarios.getUser()){
+       if(jtUser != SistemaUsuarios.this.grupoUsuarios.getUser() && jpConfirmacion == jpContrasena 
+    		   && jtCorreo !=  ){
     	VentanaInicio a = new VentanaInicio();
         a.setVisible(true);
         this.setVisible(false);
