@@ -37,6 +37,7 @@ import java.util.logging.Logger;
 
 public class ConectarMongo {
 
+   @SuppressWarnings("deprecation")
    public static void main( String args[] ) {
 	
       try{
@@ -56,7 +57,8 @@ public class ConectarMongo {
    }
 
    
-	   private static MongoDatabase getUsersDB(){
+	   @SuppressWarnings("resource")
+	private static MongoDatabase getUsersDB(){
 	       MongoClient mongoClient = new MongoClient("localhost", 27890);
 	       MongoDatabase db = mongoClient.getDatabase("Usuarios");
 	       try {
@@ -73,33 +75,35 @@ public class ConectarMongo {
 		   FindIterable iterable = collection.find(new BasicDBObject("username", user)); //nombre de tu usuario
 	   }
 	   
-	   public static void createUser(Document user) {
+	   @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void createUser(Document user) {
 	       MongoDatabase db = getUsersDB();
 	       MongoCollection collection = db.getCollection("usuario");
 	       collection.insertOne(user);
 	   }
-	   
-	   public static void printCollection(MongoCollection collection){
+	   @SuppressWarnings("rawtypes")
+	   public static void printCollection( MongoCollection collection){
 		   Document myDoc = (Document) (collection).find().first();
 		   System.out.println(myDoc.toJson());
 	   }
-	   
-	   public static void actualizarDoc (MongoCollection collection){
+	   @SuppressWarnings("rawtypes")
+	   public static void actualizarDoc ( MongoCollection collection){
 	   collection.updateOne(eq("i", 10), new Document("$set", new Document("i", 110)));
 	   }
 	   
-	   public static void crearUsuario (JSONObject ousuario){
+	   @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void crearUsuario (JSONObject ousuario){
            MongoDatabase db = getUsersDB();
-		   MongoCollection collection = db.getCollection("usuario");
+		MongoCollection collection = db.getCollection("usuario");
 		   collection.insertOne(Document.parse(ousuario.toString()));
 	   }
-	   public static void createUser(Usuario user) throws NewUserExistsException  {
+	   @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void createUser(Usuario user) throws NewUserExistsException  {
 	    	
 	        if (!userExists(user.getUser())) {
 	            MongoDatabase db = getUsersDB();
 	            MongoCollection collection = db.getCollection("usuario");
 	            BasicDBObject doc = new BasicDBObject("username", user.getUser())
-	            		.append("_id", user.getId())
 	            		.append("password", new String(user.getPassword()))
 	            		.append("nombre", user.getNombre())
 	                    .append("apellidos", user.getApellidos())
@@ -117,7 +121,8 @@ public class ConectarMongo {
 	        }
 	    }
 	   
-	   public static boolean userExists(String userName){
+	   @SuppressWarnings("rawtypes")
+	public static boolean userExists(String userName){
 		   userName = userName.toLowerCase();
 		   
 		   MongoDatabase db = getUsersDB();
