@@ -9,6 +9,11 @@ import java.io.IOException;
 
 public class CrearUsuarios {
 
+	public CrearUsuarios() {
+		
+		
+		
+	}
     public static void main(String[] args) throws UserNotFoundException, IOException,
             InvalidNameException {
 

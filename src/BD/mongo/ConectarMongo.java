@@ -48,8 +48,8 @@ public class ConectarMongo {
          // Now connect to your databases
          DB db = mongoClient.getDB( "Usuarios" );
          System.out.println("Connect to database successfully");
-         boolean auth = db.authenticate("", "");//tu usuario y contraseña
-         System.out.println("Authentication: "+auth);
+//         boolean auth = ((Object) db).authenticate("", "");//tu usuario y contraseña
+//         System.out.println("Authentication: "+auth);
 			
       }catch(Exception e){
          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -76,7 +76,7 @@ public class ConectarMongo {
 	   }
 	   
 	   @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void createUser(Document user) {
+	   public static void createUser(Document user) {
 	       MongoDatabase db = getUsersDB();
 	       MongoCollection collection = db.getCollection("usuario");
 	       collection.insertOne(user);
@@ -92,9 +92,9 @@ public class ConectarMongo {
 	   }
 	   
 	   @SuppressWarnings({ "rawtypes", "unchecked" })
-	public static void crearUsuario (JSONObject ousuario){
+	   public static void crearUsuario (JSONObject ousuario){
            MongoDatabase db = getUsersDB();
-		MongoCollection collection = db.getCollection("usuario");
+           MongoCollection collection = db.getCollection("usuario");
 		   collection.insertOne(Document.parse(ousuario.toString()));
 	   }
 	   @SuppressWarnings({ "rawtypes", "unchecked" })
