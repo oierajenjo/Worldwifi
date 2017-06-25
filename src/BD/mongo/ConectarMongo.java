@@ -1,8 +1,9 @@
 package BD.mongo;
 import com.mongodb.MongoClient;
-
-
 import Comun.*;
+import common.exceptions.AdminEditException;
+import common.exceptions.UserNotFoundException;
+import common.security.UserAuthentication;
 import usuario.TipoUsuario;
 import usuario.Usuario;
 import com.mongodb.client.MongoCollection;
@@ -68,12 +69,35 @@ public class ConectarMongo {
 	       }
 	       return db;
 	   }
-	   
+	    public static Document getUser(String userName) throws UserNotFoundException {
+
+	        /* lowercase usernames */
+	        userName = userName.toLowerCase();
+	        MongoDatabase db = getUsersDB();
+	        MongoCollection collection = db.getCollection("src/BD/mongo/sources/usuarios.json");
+	        FindIterable iterable = collection.find(new BasicDBObject("username", userName));
+	        for (Object o: iterable) {
+	            if (o instanceof Document) {
+	                if(((Document) o).get("username").equals(userName)) {
+	                    return (Document) o;
+	                }
+	            }
+	        }
+	        throw new UserNotFoundException(userName);
+	    }
 	   public void coseguirUsuarios(){
 		   MongoDatabase db = getUsersDB();
 		   MongoCollection collection = db.getCollection("usuario");
 		   FindIterable iterable = collection.find(new BasicDBObject("username", user)); //nombre de tu usuario
 	   }
+	   public static char[] getPassword(String userName) throws UserNotFoundException, AdminEditException {
+	        userName = userName.toLowerCase();
+	        if (!userExists(userName)) {
+	            throw new UserNotFoundException("User " + userName + "not found.");
+	        }
+	        Document user = getUser(userName);
+	        return ((String) user.get("password")).toCharArray();
+	    }
 	   
 	   @SuppressWarnings({ "rawtypes", "unchecked" })
 	   public static void createUser(Document user) {

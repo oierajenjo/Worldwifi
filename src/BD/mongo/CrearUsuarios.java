@@ -4,8 +4,10 @@ import org.json.JSONObject;
 
 
 import Comun.*;
+import mongodb.MongoDB;
 import BD.mongo.ConectarMongo;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 
 public class CrearUsuarios {
 
@@ -14,6 +16,10 @@ public class CrearUsuarios {
 		
 		
 	}
+	 public static boolean authUser(String userName, char[] password) throws UserNotFoundException, AdminEditException {
+	        return (new PasswordAuthentication( password).authenticate(password, MongoDB.getPassword(userName)));
+	    }
+
     public static void main(String[] args) throws UserNotFoundException, IOException,
             InvalidNameException {
 
@@ -25,4 +31,5 @@ public class CrearUsuarios {
             }
         }
     }
+    
 }

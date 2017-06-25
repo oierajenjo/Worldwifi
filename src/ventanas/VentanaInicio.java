@@ -2,6 +2,9 @@ package ventanas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import BD.mongo.*;
+import common.exceptions.AdminEditException;
+import common.exceptions.UserNotFoundException;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -126,9 +129,16 @@ public class VentanaInicio extends JFrame {
 	}
 	
 	private void jbEntrarActionPerformed(ActionEvent evt) {                                         
-        VentanaMapa a = new VentanaMapa();
-        a.setVisible(true);
-        this.setVisible(false);
+        try {
+			if (jPassword.getPassword()== BD.mongo.ConectarMongo.getPassword(jtUser.getText())){
+				VentanaMapa a = new VentanaMapa();
+				a.setVisible(true);
+				this.setVisible(false);
+			}
+		} catch (UserNotFoundException | AdminEditException e) {
+			e.printStackTrace();
+		}
+
     }                                        
     
 	private void jbRegistrarseActionPerformed(ActionEvent evt) {                                              

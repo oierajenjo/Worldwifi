@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
 
 	private String id;
 	private String user;
-	private String password;
+	private char[] password;
 	private String nombre;
 	private String apellidos;
 	private long nacimiento;
@@ -39,10 +39,10 @@ public class Usuario implements Serializable {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	public String getPassword() {
+	public char[] getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public void setPassword(char[] password) {
 		this.password = password;
 	}
 	public String getNombre() {
@@ -96,7 +96,7 @@ public class Usuario implements Serializable {
 	public String getAmigoString() {
 		String amigo = "";
 		for (Usuario usuario: amigos) {
-			amigo += usuario.id + ":" + usuario.user;
+			amigo += usuario.id + ": " + usuario.user;
 			if (!amigos.get(amigos.size() - 1).equals(usuario)) {
 				amigo += ",\r\n";
 			}
@@ -115,11 +115,6 @@ public class Usuario implements Serializable {
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
-	/** Constructor privado, sólo para uso Stringerno
-	 */
-	private Usuario() {
-	}
-	
 	/** Constructor principal de usuario
 	 * @param user
 	 * @param password
@@ -130,7 +125,7 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
-	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
+	public Usuario(String id, String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
 			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, long fechaCreacion,
 			TipoUsuario tipo) {
 		super();
@@ -148,83 +143,4 @@ public class Usuario implements Serializable {
 		this.fechaCreacion = fechaCreacion;
 		this.tipo = tipo;
 	}
-	/** Constructor de usuario recibiendo los email como una lista de parámetros de tipo String
-	 * @param user
-	 * @param password
-	 * @param nombre
-	 * @param apellidos
-	 * @param telefono
-	 * @param tipo
-	 * @param email
-	 * @param 
-	 */
-	
-	public Usuario(String id, String user, String password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, Usuario amigos, long fechaCreacion, TipoUsuario tipo ) {
-		this(id, user, password, nombre, apellidos, nacimiento, email, ciudad, twitter, facebook, new ArrayList<Usuario>(),
-			fechaCreacion, tipo);
-	}
-	
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", user=" + user + ", password=" + password + ", nombre=" + nombre + ", apellidos="
-				+ apellidos + ", nacimiento=" + nacimiento + ", email=" + email + ", ciudad=" + ciudad + ", twitter="
-				+ twitter + ", facebook=" + facebook + ", fechaCreacion=" + fechaCreacion + ", tipo=" + tipo + "]";
-	}
-
-
-	
-	/** Devuelve los datos del usuario en una línea separados por comas<p>
-	 * Formato: user,password,nombre,apellidos,telefono,fechaCreacion(msgs.),tipo,email1,email2...
-	 * @return	Línea con los datos formateados
-	 */
-	public String aLinea() {
-		String ret = user + "," + password + "," + nombre + "," + apellidos + "," +
-			 "," + fechaCreacion + "," + tipo + "," + email;
-		return ret;
-	}
-
-
-	/** Crea y devuelve un nuevo Usuario partiendo de los datos de una línea separados por comas
-	 * Formato: user,password,nombre,apellidos,telefono,fechaCreacion(msgs.),tipo,email1,email2...
-	 * @param linea	Línea de texto
-	 * @return	Usuario creado partiendo de la línea, null si hay cualquier error
-	 */
-	public static Usuario crearDeLinea( String linea ) {
-		Usuario u = new Usuario();
-		StringTokenizer st = new StringTokenizer( linea, "," );
-		try {
-			u.id = st.nextToken();
-			u.user = st.nextToken();
-			u.password = st.nextToken();
-			u.nombre = st.nextToken();
-			u.apellidos = st.nextToken();
-			u.nacimiento = Long.parseLong(st.nextToken());
-			u.fechaCreacion = Long.parseLong( st.nextToken() );
-			u.tipo = TipoUsuario.valueOf( st.nextToken() );
-			u.email = st.nextToken();
-			u.amigos = new ArrayList<Usuario>();			
-		} catch (NoSuchElementException e) {  // Error en datos insuficientes (faltan campos)
-			return null;
-		} catch (NumberFormatException e) {  // Error en tipo long de telefono o fechaLogin
-			return null;
-		} catch (IllegalArgumentException e) {  // Error en tipo usuario (enumerado)
-			return null;
-		} catch (Exception e) {  // Cualquier otro error
-			return null;
-		}
-		return u;
-	}
-
-	/** main de prueba
-	 * @param s	Parámetros estándar (no se utilizan)
-	 */
-	public static void main( String[] s ) {
-//		Usuario u = new Usuario( "buzz", "#9abbf", "Buzz", "Lightyear", 101202303, TipoUsuario.Admin, "buzz@gmail.com", "amigo.de.woody@gmail.com" );
-//		u.getListaEmails().add( "buzz@hotmail.com" );
-//		// String ape = u.getApellidos(); ape = "Apellido falso";  // esto no cambia nada
-//		System.out.println( u );
-	}
-
-
 }
