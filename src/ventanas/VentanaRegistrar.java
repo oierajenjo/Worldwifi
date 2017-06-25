@@ -333,8 +333,8 @@ public class VentanaRegistrar extends JFrame {
     		   && jtCorreo.getText() != SistemaUsuarios.this.grupoUsuarios.g ){
     	   ConectarMongo.createUser(jtUser.getText());
     	   VentanaInicio a = new VentanaInicio();
-        a.setVisible(true);
-        this.setVisible(false);
+    	   a.setVisible(true);
+    	   this.setVisible(false);
         }
     }                                        
 
@@ -343,11 +343,12 @@ public class VentanaRegistrar extends JFrame {
     }                                       
 
     private void jbAtrasActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+ 	   VentanaInicio a = new VentanaInicio();
+ 	   a.setVisible(true);
+ 	   this.setVisible(false);
     }                                       
 
     private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
     }                                        
 
     private void jtApellidosActionPerformed(java.awt.event.ActionEvent evt) {                                            
