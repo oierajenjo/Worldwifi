@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.swing.*;
 import ventanas.*;
 import usuario.*;
-
+import BD.mongo.*;
 
 
 @SuppressWarnings("serial")
@@ -325,10 +325,14 @@ public class VentanaRegistrar extends JFrame {
 		this.jtUser = jtUser;
 	}
 
+	public void setTipo(){
+		
+	}
 	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       if(jtUser != SistemaUsuarios.this.grupoUsuarios.getUser() && jpConfirmacion == jpContrasena 
-    		   && jtCorreo !=  ){
-    	VentanaInicio a = new VentanaInicio();
+       if( !ConectarMongo.userExists(jtUser.getText())  && jpConfirmacion.getPassword() == jpContrasena.getPassword()
+    		   && jtCorreo.getText() != SistemaUsuarios.this.grupoUsuarios.g ){
+    	   ConectarMongo.createUser(jtUser.getText());
+    	   VentanaInicio a = new VentanaInicio();
         a.setVisible(true);
         this.setVisible(false);
         }

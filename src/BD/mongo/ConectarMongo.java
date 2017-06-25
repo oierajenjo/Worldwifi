@@ -90,6 +90,7 @@ public class ConectarMongo {
 		   MongoCollection collection = db.getCollection("usuario");
 		   FindIterable iterable = collection.find(new BasicDBObject("username", user)); //nombre de tu usuario
 	   }
+	   
 	   public static char[] getPassword(String userName) throws UserNotFoundException, AdminEditException {
 	        userName = userName.toLowerCase();
 	        if (!userExists(userName)) {
@@ -121,6 +122,7 @@ public class ConectarMongo {
            MongoCollection collection = db.getCollection("usuario");
 		   collection.insertOne(Document.parse(ousuario.toString()));
 	   }
+	   
 	   @SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void createUser(Usuario user) throws NewUserExistsException  {
 	    	
