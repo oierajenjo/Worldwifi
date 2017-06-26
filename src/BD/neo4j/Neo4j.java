@@ -1,4 +1,3 @@
-
 package BD.neo4j;
 
 import org.apache.http.client.utils.DateUtils;
@@ -7,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
+import Comun.DocumentReader;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
