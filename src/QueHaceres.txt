@@ -1,0 +1,7 @@
+
+-Neo4j->SQL pasar en las que busca la gente las wifis ()por barrios
+-SQL->PIII_03_Ficheros-BasesDeDatos.pdf
+
+-Error ventana registrar
+-Servidor local o uno externo?
+-Array dentro de array, re-recordar (Usuario amigos)
