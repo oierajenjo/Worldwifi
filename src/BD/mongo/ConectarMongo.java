@@ -3,7 +3,6 @@ import com.mongodb.MongoClient;
 import Comun.*;
 import common.exceptions.AdminEditException;
 import common.exceptions.UserNotFoundException;
-import common.security.UserAuthentication;
 import usuario.TipoUsuario;
 import usuario.Usuario;
 import com.mongodb.client.MongoCollection;

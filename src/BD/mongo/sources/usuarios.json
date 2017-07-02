@@ -23,7 +23,7 @@
     "twitter" : "@mikelmartiinez",
     "facebook" : "Mikel Martinez Saez",
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Admin"
+    "role" : "admin"
 },
 {
     "usuario" : "oier",
@@ -44,7 +44,7 @@
     "twitter" : "@oierAjenjo",
     "facebook" : "Oier Ajenjo",
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Admin"
+    "role" : "admin"
 },
 {
     "usuario" : "alejandro",
@@ -65,7 +65,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "victor",
@@ -86,7 +86,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "ane",
@@ -110,7 +110,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "saul",
@@ -128,7 +128,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "amaia",
@@ -152,7 +152,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "mikels",
@@ -176,7 +176,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
     "usuario" : "carlos",
@@ -200,7 +200,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
 	"usuario" : "rafael",
@@ -221,7 +221,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 {
 	"usuario" : "gonzalo",
@@ -239,7 +239,7 @@
     "twitter" : null,
     "facebook" : null,
     "registrado" : "2005-04-24T10:33:31 -02:00",
-    "role" : "Cliente"
+    "role" : "cliente"
 },
 ]
 }

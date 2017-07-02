@@ -1,3 +1,3 @@
 package usuario;
 
-public enum TipoUsuario {Admin, Cliente}
+public enum TipoUsuario {admin, cliente}
