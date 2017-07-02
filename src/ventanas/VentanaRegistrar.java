@@ -36,32 +36,32 @@ public class VentanaRegistrar extends JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-        jbEntrar = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
-        jtNombre = new javax.swing.JTextField();
-        jtApellidos = new javax.swing.JTextField();
-        jtUser = new javax.swing.JTextField();
-        jtCorreo = new javax.swing.JTextField();
-        jpContrasena = new javax.swing.JPasswordField();
-        jpConfirmacion = new javax.swing.JPasswordField();
-        jtCiudad = new javax.swing.JTextField();
-        jtTwitter = new javax.swing.JTextField();
-        jtFacebook = new javax.swing.JTextField();
+        jbEntrar = new JButton();
+        jbSalir = new JButton();
+        jtNombre = new JTextField();
+        jtApellidos = new JTextField();
+        jtUser = new JTextField();
+        jtCorreo = new JTextField();
+        jpContrasena = new JPasswordField();
+        jpConfirmacion = new JPasswordField();
+        jtCiudad = new JTextField();
+        jtTwitter = new JTextField();
+        jtFacebook = new JTextField();
         jdNacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jbAtras = new javax.swing.JButton();
-        jlFondo = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
+        jLabel2 = new JLabel();
+        jLabel3 = new JLabel();
+        jLabel4 = new JLabel();
+        jLabel5 = new JLabel();
+        jLabel6 = new JLabel();
+        jLabel7 = new JLabel();
+        jLabel9 = new JLabel();
+        jLabel8 = new JLabel();
+        jLabel10 = new JLabel();
+        jbAtras = new JButton();
+        jlFondo = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("WorldWifi");
         setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(610, 770));
@@ -240,7 +240,7 @@ public class VentanaRegistrar extends JFrame {
         });
         getContentPane().add(jbAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 120, 40));
 
-        jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
+        jlFondo.setIcon(new ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
 
 	
 
@@ -258,70 +258,70 @@ public class VentanaRegistrar extends JFrame {
 		this.jdNacimiento = jdNacimiento;
 	}
 
-	public javax.swing.JPasswordField getJpContrasena() {
+	public JPasswordField getJpContrasena() {
 		if (jpContrasena == jpConfirmacion){
 			return jpContrasena;
 		}
 		return null;
 	}
 
-	public void setJpContrasena(javax.swing.JPasswordField jpContrasena) {
+	public void setJpContrasena(JPasswordField jpContrasena) {
 		this.jpContrasena = jpContrasena;
 	}
 
-	public javax.swing.JTextField getJtApellidos() {
+	public JTextField getJtApellidos() {
 		return jtApellidos;
 	}
 
-	public void setJtApellidos(javax.swing.JTextField jtApellidos) {
+	public void setJtApellidos(JTextField jtApellidos) {
 		this.jtApellidos = jtApellidos;
 	}
 
-	public javax.swing.JTextField getJtCiudad() {
+	public JTextField getJtCiudad() {
 		return jtCiudad;
 	}
 
-	public void setJtCiudad(javax.swing.JTextField jtCiudad) {
+	public void setJtCiudad(JTextField jtCiudad) {
 		this.jtCiudad = jtCiudad;
 	}
 
-	public javax.swing.JTextField getJtCorreo() {
+	public JTextField getJtCorreo() {
 		return jtCorreo;
 	}
 
-	public void setJtCorreo(javax.swing.JTextField jtCorreo) {
+	public void setJtCorreo(JTextField jtCorreo) {
 		this.jtCorreo = jtCorreo;
 	}
 
-	public javax.swing.JTextField getJtFacebook() {
+	public JTextField getJtFacebook() {
 		return jtFacebook;
 	}
 
-	public void setJtFacebook(javax.swing.JTextField jtFacebook) {
+	public void setJtFacebook(JTextField jtFacebook) {
 		this.jtFacebook = jtFacebook;
 	}
 
-	public javax.swing.JTextField getJtNombre() {
+	public JTextField getJtNombre() {
 		return jtNombre;
 	}
 
-	public void setJtNombre(javax.swing.JTextField jtNombre) {
+	public void setJtNombre(JTextField jtNombre) {
 		this.jtNombre = jtNombre;
 	}
 
-	public javax.swing.JTextField getJtTwitter() {
+	public JTextField getJtTwitter() {
 		return jtTwitter;
 	}
 
-	public void setJtTwitter(javax.swing.JTextField jtTwitter) {
+	public void setJtTwitter(JTextField jtTwitter) {
 		this.jtTwitter = jtTwitter;
 	}
 
-	public javax.swing.JTextField getJtUser() {
+	public JTextField getJtUser() {
 		return jtUser;
 	}
 
-	public void setJtUser(javax.swing.JTextField jtUser) {
+	public void setJtUser(JTextField jtUser) {
 		this.jtUser = jtUser;
 	}
 
@@ -330,8 +330,8 @@ public class VentanaRegistrar extends JFrame {
 	}
 	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if( !ConectarMongo.userExists(jtUser.getText())  && jpConfirmacion.getPassword() == jpContrasena.getPassword()
-    		   && jtCorreo.getText() != SistemaUsuarios.this.grupoUsuarios.g ){
-    	   ConectarMongo.createUser(jtUser.getText());
+    		   && jtCorreo.getText() !=  ){
+    	   ConectarMongo.createUserfromWindow(jtUser.getText());
     	   VentanaInicio a = new VentanaInicio();
     	   a.setVisible(true);
     	   this.setVisible(false);
@@ -385,9 +385,9 @@ public class VentanaRegistrar extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -397,7 +397,7 @@ public class VentanaRegistrar extends JFrame {
             java.util.logging.Logger.getLogger(VentanaRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaRegistrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -411,29 +411,29 @@ public class VentanaRegistrar extends JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton jbAtras;
-    private javax.swing.JButton jbEntrar;
-    private javax.swing.JButton jbSalir;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JButton jbAtras;
+    private JButton jbEntrar;
+    private JButton jbSalir;
     private com.toedter.calendar.JDateChooser jdNacimiento;
-    private javax.swing.JLabel jlFondo;
-    private javax.swing.JPasswordField jpConfirmacion;
-    private javax.swing.JPasswordField jpContrasena;
-    private javax.swing.JTextField jtApellidos;
-    private javax.swing.JTextField jtCiudad;
-    private javax.swing.JTextField jtCorreo;
-    private javax.swing.JTextField jtFacebook;
-    private javax.swing.JTextField jtNombre;
-    private javax.swing.JTextField jtTwitter;
-    private javax.swing.JTextField jtUser;
+    private JLabel jlFondo;
+    private JPasswordField jpConfirmacion;
+    private JPasswordField jpContrasena;
+    private JTextField jtApellidos;
+    private JTextField jtCiudad;
+    private JTextField jtCorreo;
+    private JTextField jtFacebook;
+    private JTextField jtNombre;
+    private JTextField jtTwitter;
+    private JTextField jtUser;
     // End of variables declaration                   
 }
