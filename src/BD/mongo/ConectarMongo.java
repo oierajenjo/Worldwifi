@@ -1,8 +1,6 @@
 package BD.mongo;
 import com.mongodb.MongoClient;
 import Comun.*;
-import common.exceptions.AdminEditException;
-import common.exceptions.UserNotFoundException;
 import usuario.TipoUsuario;
 import usuario.Usuario;
 import com.mongodb.client.MongoCollection;
@@ -37,7 +35,7 @@ import java.util.logging.Logger;
 
 public class ConectarMongo {
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "resource", "unused" })
 	public static void main( String args[] ) {
 
 		try{
@@ -68,6 +66,7 @@ public class ConectarMongo {
 		}
 		return db;
 	}
+	@SuppressWarnings("rawtypes")
 	public static Document getUser(String userName) throws UserNotFoundException {
 
 		/* lowercase usernames */
@@ -84,6 +83,7 @@ public class ConectarMongo {
 		}
 		throw new UserNotFoundException(userName);
 	}
+	@SuppressWarnings("rawtypes")
 	public void coseguirUsuarios(){
 		MongoDatabase db = getUsersDB();
 		MongoCollection collection = db.getCollection("usuario");

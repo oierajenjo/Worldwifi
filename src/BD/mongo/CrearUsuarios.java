@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 
 import Comun.*;
-import BD.mongo.*;
+
 import BD.mongo.ConectarMongo;
 import java.io.IOException;
 

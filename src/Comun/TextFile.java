@@ -34,7 +34,6 @@ public class TextFile {
      * @param condition starting string
      * @return true if file starts with condition
      */
-    @SuppressWarnings("unused")
     public static boolean startsWith(String fileName, String condition) throws IOException {
         String f = read(fileName);
         return f.startsWith(condition);
@@ -45,7 +44,8 @@ public class TextFile {
      * @param fileName name of the file to be modified
      * @param lines number of ending lines to be removed
      */
-    private static void deleteLastLines(String fileName, int lines) throws IOException {
+    @SuppressWarnings("resource")
+	private static void deleteLastLines(String fileName, int lines) throws IOException {
         int count = 0;
         byte b;
         RandomAccessFile f = new RandomAccessFile(fileName, "rw");
@@ -71,7 +71,6 @@ public class TextFile {
      * @param lines number of ending lines to be removed
      * @param content ending string
      */
-    @SuppressWarnings("unused")
     public static void deleteLastLines(String fileName, int lines, String content) throws IOException {
 
         if (TextFile.read(fileName).endsWith(content)) {
