@@ -1,8 +1,6 @@
 package BD.mongo;
 
 import org.json.JSONObject;
-
-
 import Comun.*;
 
 import BD.mongo.ConectarMongo;
@@ -20,10 +18,10 @@ public class CrearUsuarios {
 	public static boolean authUser(String userName, char[] password) throws UserNotFoundException, AdminEditException{	
 		try {
 			return (new PasswordAuthentication().authenticate( userName, ConectarMongo.getPassword(userName)));
-		} catch (common.exceptions.UserNotFoundException e) {
+		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			return false;
-		} catch (common.exceptions.AdminEditException e) {
+		} catch (AdminEditException e) {
 			e.printStackTrace();
 			return false;
 		}
