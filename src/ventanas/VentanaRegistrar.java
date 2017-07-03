@@ -330,7 +330,7 @@ public class VentanaRegistrar extends JFrame {
 	}
 	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
        if( !ConectarMongo.userExists(jtUser.getText())  && jpConfirmacion.getPassword() == jpContrasena.getPassword()){
-    	   ConectarMongo.createUserfromWindow(jtUser.getText());
+    	   CrearUsuarios.createUserfromWindow(jtUser.getText());
     	   VentanaInicio a = new VentanaInicio();
     	   a.setVisible(true);
     	   this.setVisible(false);

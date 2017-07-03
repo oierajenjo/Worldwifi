@@ -2,8 +2,7 @@ package usuario;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
+
 
 
 public class Usuario implements Serializable {

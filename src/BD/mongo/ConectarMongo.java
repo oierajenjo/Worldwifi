@@ -157,10 +157,5 @@ public class ConectarMongo {
 
 		return collection.count(query) != 0;
 	}
-
-
-
-
-
 }
 
