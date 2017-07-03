@@ -1,17 +1,18 @@
 package BD.neo4j;
 
-import org.apache.http.client.utils.DateUtils;
 import org.neo4j.driver.v1.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import Comun.DocumentReader;
+
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import org.apache.commons.lang3.time.DateUtils;
 
-import static org.neo4j.driver.v1.Values.parameters;
+
 
 public class Neo4j {
 
@@ -102,7 +103,7 @@ public class Neo4j {
      * Deletes all nodes and relationships from the DB
      */
     public void clearDB() {
-        session.run("MATCH (n) DETACH DELETE n;");
+        session.run("MATCH 👎 DETACH DELETE n;");
 
         cleanDB();
 
@@ -113,7 +114,7 @@ public class Neo4j {
      * Deletes all nodes without relationships from the DB
      */
     public void cleanDB() {
-        session.run("MATCH (n) WHERE size((n)--())=0 DELETE (n)");
+        session.run("MATCH 👎 WHERE size((n)--())=0 DELETE (n)");
         LOG.log(Level.INFO, "Cleaned DB");
     }
 
@@ -160,4 +161,3 @@ public class Neo4j {
     }
     /* END DB utility Methods */
 }
-
