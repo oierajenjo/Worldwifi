@@ -15,7 +15,7 @@ public class CrearUsuarios {
 	@SuppressWarnings("deprecation")
 	public static boolean authUser(String userName, char[] password) throws UserNotFoundException, AdminEditException{	
 		try {
-			return (new PasswordAuthentication().authenticate( userName, ConectarMongo.getPassword(userName).toString()));
+			return (new PasswordAuthentication().authenticate( userName, ConectarMongo.getPassword(userName)));
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			return false;
