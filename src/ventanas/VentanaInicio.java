@@ -132,7 +132,7 @@ public class VentanaInicio extends JFrame {
 	}
 	
 	private void jbEntrarActionPerformed(ActionEvent evt) throws AdminEditException, UserNotFoundException {                                         
-        if ( CrearUsuarios.authUser(getJtUser().toString(), getjPassword().toString().toCharArray())){
+        if ( CrearUsuarios.authUser(jtUser.getText(), jPassword.getPassword())){
 			VentanaMapa a = new VentanaMapa();
 			a.setVisible(true);
 			this.setVisible(false);
