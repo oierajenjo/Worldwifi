@@ -25,9 +25,7 @@ public class CrearUsuarios {
 		}
 		
 	}
-	public static void createUserfromWindow(String text) {
-		hacer
-	}
+
 	public static void main(String[] args) throws UserNotFoundException, IOException,
 	InvalidNameException {
 

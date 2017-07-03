@@ -9,7 +9,7 @@ public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 8119678942285632886L;
 
-	private String id;
+	
 	private String user;
 	private char[] password;
 	private String nombre;
@@ -20,17 +20,11 @@ public class Usuario implements Serializable {
 	private String twitter;
 	private String facebook;
 	private ArrayList<Usuario> amigos;
-	private long fechaCreacion;
+	private String fechaCreacion;
 	private TipoUsuario tipo;
 
-	public void setId(String id) {
-		this.id = id;
-	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	public String getId() {
-		return id;
 	}
 	public String getUser() {
 		return user;
@@ -92,20 +86,20 @@ public class Usuario implements Serializable {
 	public void setAmigos(ArrayList<Usuario> amigos) {
 		this.amigos = amigos;
 	}
-	public String getAmigoString() {
-		String amigo = "";
-		for (Usuario usuario: amigos) {
-			amigo += usuario.id + ": " + usuario.user;
-			if (!amigos.get(amigos.size() - 1).equals(usuario)) {
-				amigo += ",\r\n";
-			}
-		}
-		return amigo;
-	}
-	public long getFechaCreacion() {
+//	public String getAmigoString() {
+//		String amigo = "";
+//		for (Usuario usuario: amigos) {
+//			amigo += usuario.id + ": " + usuario.user;
+//			if (!amigos.get(amigos.size() - 1).equals(usuario)) {
+//				amigo += ",\r\n";
+//			}
+//		}
+//		return amigo;
+//	}
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
-	public void setFechaCreacion(long fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 	public TipoUsuario getTipo() {
@@ -124,11 +118,10 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
-	public Usuario(String id, String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, long fechaCreacion,
+	public Usuario(String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
+			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, String fechaCreacion,
 			TipoUsuario tipo) {
 		super();
-		this.id = id;
 		this.user = user;
 		this.password = password;
 		this.nombre = nombre;

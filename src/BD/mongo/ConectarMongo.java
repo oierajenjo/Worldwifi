@@ -1,37 +1,17 @@
 package BD.mongo;
 import com.mongodb.MongoClient;
 import Comun.*;
-import usuario.TipoUsuario;
 import usuario.Usuario;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.MongoCommandException;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.MongoClientURI;
-import com.mongodb.ServerAddress;
 import org.bson.Document;
 import org.json.JSONObject;
 
-import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.*;
-import com.mongodb.client.result.DeleteResult;
-import static com.mongodb.client.model.Updates.*;
-import com.mongodb.client.result.UpdateResult;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConectarMongo {
 
@@ -83,11 +63,12 @@ public class ConectarMongo {
 		}
 		throw new UserNotFoundException(userName);
 	}
-	@SuppressWarnings("rawtypes")
-	public void coseguirUsuarios(){
+
+	@SuppressWarnings({ "rawtypes", "unused" })
+	public void coseguirUsuarios(String user){
 		MongoDatabase db = getUsersDB();
 		MongoCollection collection = db.getCollection("usuario");
-		FindIterable iterable = collection.find(new BasicDBObject("username", user)); //nombre de tu usuario
+		FindIterable iterable = collection.find(new BasicDBObject("username", user)); 
 	}
 
 	public static char[] getPassword(String userName) throws UserNotFoundException, AdminEditException {

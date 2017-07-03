@@ -3,6 +3,9 @@ package usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Comun.*;
+
 import usuario.Usuario;
 
 @SuppressWarnings("serial")
@@ -23,7 +26,7 @@ public class SistemaUsuarios implements Serializable {
 		}
 		else{
 			grupoUsuarios.put( user, u);
-			u.setFechaCreacion(System.currentTimeMillis());
+			u.setFechaCreacion(DateUtils.currentFormattedDate());
 			return true;
 		}
 	}

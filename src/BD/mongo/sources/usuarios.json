@@ -22,7 +22,7 @@
     ],
     "twitter" : "@mikelmartiinez",
     "facebook" : "Mikel Martinez Saez",
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "admin"
 },
 {
@@ -43,7 +43,7 @@
     ],
     "twitter" : "@oierAjenjo",
     "facebook" : "Oier Ajenjo",
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "admin"
 },
 {
@@ -64,7 +64,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -85,7 +85,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -109,7 +109,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -127,7 +127,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -151,7 +151,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -175,7 +175,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -199,7 +199,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -220,7 +220,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 {
@@ -238,7 +238,7 @@
     ],
     "twitter" : null,
     "facebook" : null,
-    "registrado" : "2005-04-24T10:33:31 -02:00",
+    "registrado" : "2005-04-24T10:33:31-02:00",
     "role" : "cliente"
 },
 ]

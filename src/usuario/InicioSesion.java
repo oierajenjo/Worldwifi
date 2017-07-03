@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class InicioSesion {
 
-	public InicioSesion(String id, String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
+	public InicioSesion(String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
 			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, long fechaCreacion,
 			TipoUsuario tipo) {
 		super();

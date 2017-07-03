@@ -4,9 +4,12 @@ package ventanas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
+
+import Comun.*;
 import ventanas.*;
 import usuario.*;
 import BD.mongo.*;
@@ -259,10 +262,7 @@ public class VentanaRegistrar extends JFrame {
 	}
 
 	public JPasswordField getJpContrasena() {
-		if (jpContrasena == jpConfirmacion){
-			return jpContrasena;
-		}
-		return null;
+		return jpContrasena;
 	}
 
 	public void setJpContrasena(JPasswordField jpContrasena) {
@@ -329,15 +329,23 @@ public class VentanaRegistrar extends JFrame {
 		
 	}
 	private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       if( !ConectarMongo.userExists(jtUser.getText())  && jpConfirmacion.getPassword() == jpContrasena.getPassword()){
-    	   CrearUsuarios.createUserfromWindow(jtUser.getText());
-    	   VentanaInicio a = new VentanaInicio();
-    	   a.setVisible(true);
-    	   this.setVisible(false);
-        }
-    }                                        
+		Usuario nuevoUsuario = new Usuario(jtUser.getText(), jpContrasena.getPassword(), jtNombre.getText(), jtApellidos.getText(),
+				jdNacimiento.getComponentCount(), jtCorreo.getText(), jtCiudad.getText(), jtTwitter.getText(), jtFacebook.getText(),
+				null, DateUtils.currentFormattedDate(), usuario.TipoUsuario.cliente);
+		try {
+			ConectarMongo.createUser(nuevoUsuario);
+		} catch (NewUserExistsException e) {
+			e.printStackTrace();
+		} if( !ConectarMongo.userExists(jtUser.getText())  && jpConfirmacion.getPassword() == jpContrasena.getPassword()){
+			VentanaInicio a = new VentanaInicio();
+			a.setVisible(true);
+			this.setVisible(false);
+		}
+	}                                        
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
+
+
+	private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
         System.exit(0);
     }                                       
 
