@@ -10,8 +10,6 @@ public class CrearUsuarios {
 
 	public CrearUsuarios() {
 
-
-
 	}
 	
 	@SuppressWarnings("deprecation")

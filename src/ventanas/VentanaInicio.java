@@ -3,8 +3,7 @@ package ventanas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import BD.mongo.*;
-import common.exceptions.AdminEditException;
-import common.exceptions.UserNotFoundException;
+import Comun.*;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -56,7 +55,11 @@ public class VentanaInicio extends JFrame {
         jbEntrar.setText("Entrar");
         jbEntrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jbEntrarActionPerformed(evt);
+                try {
+					jbEntrarActionPerformed(evt);
+				} catch (AdminEditException | UserNotFoundException e) {
+					e.printStackTrace();
+				}
             }
         });
         getContentPane().add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, 120, 40));
@@ -128,17 +131,14 @@ public class VentanaInicio extends JFrame {
 		return jtUser;
 	}
 	
-	private void jbEntrarActionPerformed(ActionEvent evt) {                                         
-        try {
-			if (jPassword.getPassword()== BD.mongo.ConectarMongo.getPassword(jtUser.getText())){
-				VentanaMapa a = new VentanaMapa();
-				a.setVisible(true);
-				this.setVisible(false);
-			}
-		} catch (UserNotFoundException | AdminEditException e) {
-			e.printStackTrace();
+	private void jbEntrarActionPerformed(ActionEvent evt) throws AdminEditException, UserNotFoundException {                                         
+        if ( CrearUsuarios.authUser(getJtUser().toString(), getjPassword().toString().toCharArray())){
+			VentanaMapa a = new VentanaMapa();
+			a.setVisible(true);
+			this.setVisible(false);
+		}else{
+			
 		}
-
     }                                        
     
 	private void jbRegistrarseActionPerformed(ActionEvent evt) {                                              
