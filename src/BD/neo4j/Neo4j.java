@@ -1,16 +1,18 @@
 package BD.neo4j;
 
+
 import org.neo4j.driver.v1.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import Comun.DocumentReader;
-
+import Comun.DateUtils;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import org.apache.commons.lang3.time.DateUtils;
+import static org.neo4j.driver.v1.Values.parameters;
+
 
 
 
