@@ -27,7 +27,7 @@ public class VentanaRegistrar extends JFrame {
     }
 
     @Override
-        public Image getIconImage(){
+    public Image getIconImage(){
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
         return retValue;
     }
