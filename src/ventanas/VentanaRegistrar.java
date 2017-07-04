@@ -3,14 +3,9 @@ package ventanas;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import javax.swing.*;
 
 import Comun.*;
-import ventanas.*;
 import usuario.*;
 import BD.mongo.*;
 

@@ -15,16 +15,16 @@ public class MySQL {
 
     /* Logger for Neo4j */
     private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(MySQL.class.getName());
-
-    static {
-        try {
-            LOG.addHandler(new FileHandler(
-                    "logs/" + MySQL.class.getName() + "." +
-                            DateUtils.currentFormattedDate() + ".log.xml", true));
-        } catch (SecurityException | IOException e) {
-            LOG.log(Level.SEVERE, "Unable to create log file.");
-        }
-    }
+//
+//    static {
+//        try {
+//            LOG.addHandler(new FileHandler(
+//                    "logs/" + MySQL.class.getName() + "." +
+//                            DateUtils.currentFormattedDate() + ".log.xml", true));
+//        } catch (SecurityException | IOException e) {
+//            LOG.log(Level.SEVERE, "Unable to create log file.");
+//        }
+//    }
     /* END Logger for Neo4j */
 
     private String username;

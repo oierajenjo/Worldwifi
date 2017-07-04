@@ -73,11 +73,13 @@ public class VentanaMapa extends javax.swing.JFrame {
         jbBuscar.setActionCommand("jbBuscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-					try {
-						jbBuscarActionPerformed(evt);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+				try {
+					jbBuscarActionPerformed(evt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
             }
         });
         getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 120, 40));
@@ -122,7 +124,7 @@ public class VentanaMapa extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        VentanaMapa vm = new VentanaMapa();
+//        VentanaMapa vm = new VentanaMapa();
 //        if(vm.jbBuscar.)
     	try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
