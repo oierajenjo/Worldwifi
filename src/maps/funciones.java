@@ -26,6 +26,34 @@ public class funciones {
 		}
 		return Address + ": " + resultadoCD.x + "," + resultadoCD.y;
 	}
+	
+	public static double getLongitud(String sitio){
+		Geocoding ObjGeocod = new Geocoding();
+		Point2D.Double resultadoCD = null;
+		
+		try {
+			resultadoCD = ObjGeocod.getCoordinates(sitio);
+
+
+		} catch (UnsupportedEncodingException | MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return resultadoCD.y;
+	}
+	
+	public static double getLatitud(String sitio){
+		Geocoding ObjGeocod = new Geocoding();
+		Point2D.Double resultadoCD = null;
+		
+		try {
+			resultadoCD = ObjGeocod.getCoordinates(sitio);
+
+
+		} catch (UnsupportedEncodingException | MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return resultadoCD.x;
+	}
 	/*
 	 * Devuelve el conjunto de direcciones postales asociadas al punto geográfico (latitude/longitude)
 	 * Nos devuelve:
@@ -48,7 +76,23 @@ public class funciones {
 		try {
 			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
 			direccion = resultadoCI.get(0);
-			System.out.println( direccion );
+//			System.out.println( direccion );
+//			for(String direccion:resultadoCI){
+//				System.out.println(direccion);
+//			}
+		} catch (UnsupportedEncodingException | MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return direccion;
+	}
+	public static String getBarrio(Double latitud, Double longitud){
+		Geocoding ObjGeocod=new Geocoding();
+		ArrayList<String> resultadoCI = null;
+		String direccion = null;
+		try {
+			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
+			direccion = resultadoCI.get(3);
+//			System.out.println( direccion );
 //			for(String direccion:resultadoCI){
 //				System.out.println(direccion);
 //			}
@@ -58,10 +102,10 @@ public class funciones {
 		return direccion;
 	}
 	
-	
 	public static void main(String[] args) {
 		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		System.out.println("");
 		System.out.println(getDireccion(43.2642276,-2.9234477));
+		System.out.println(getBarrio(getLatitud("Bilbao, Ayuntamiento"), getLongitud("Bilbao, Ayuntamiento")));
 	}
 }

@@ -11,11 +11,14 @@ public class CrearUsuarios {
 	public CrearUsuarios() {
 
 	}
+//	PrimitiveValue texto = (PrimitiveValue) fv.getFactSlot("pregunta");
+//	theText = texto.toString();
+//	theText.replaceAll("""", "");
 	
 	@SuppressWarnings("deprecation")
 	public static boolean authUser(String userName, char[] password) throws UserNotFoundException, AdminEditException{	
 		try {
-			return (new PasswordAuthentication().authenticate( userName, ConectarMongo.getPassword(userName)));
+			return (new PasswordAuthentication().authenticate( userName.replaceAll("\"", ""), ConectarMongo.getPassword( userName.replaceAll("\"", "")).toString().replaceAll("\"", "")));
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			return false;

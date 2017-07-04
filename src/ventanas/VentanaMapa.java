@@ -1,6 +1,9 @@
 
 
 package ventanas;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import maps.*;
 /**
  *
@@ -24,7 +27,8 @@ public class VentanaMapa extends javax.swing.JFrame {
 
         jbSalir = new javax.swing.JButton();
         jlFondo = new javax.swing.JLabel();
-
+        jtLugar = new javax.swing.JTextField();
+        jbBuscar = new javax.swing.JButton("Buscar");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WorldWifi");
         setIconImage(getIconImage());
@@ -48,14 +52,47 @@ public class VentanaMapa extends javax.swing.JFrame {
 
         jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1389718468_water-drops-on-a-window_ipad.jpg"))); // NOI18N
         getContentPane().add(jlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 770));
-
+        
+        jbBuscar.setBackground(new java.awt.Color(51, 153, 255));
+        jbBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        jbBuscar.setText("Buscar");
+        jbBuscar.setActionCommand("jbBuscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+					jbBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 70, -1));
+        
+        jtLugar.setBackground(new java.awt.Color(204, 204, 204));
+        jtLugar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtLugar.setForeground(new java.awt.Color(255, 255, 255));
+        jtLugar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jtLugarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jtLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 200, 50));
         pack();
     }// </editor-fold>                        
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    protected String jbBuscarActionPerformed(ActionEvent evt){
+    	if (jtLugar.getText() != null){
+    		return funciones.getBarrio(funciones.getLatitud(jtLugar.getText()), funciones.getLongitud(jtLugar.getText()));
+    	}else{
+    		return null;
+    	}
+    	
+	}
+
+	private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {                                        
         System.exit(0);
     }                                       
 
+	private void jtLugarActionPerformed(ActionEvent evt) {
+		
+	}
     /**
      * @param args the command line arguments
      */
@@ -94,6 +131,8 @@ public class VentanaMapa extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton jbSalir;
     private javax.swing.JLabel jlFondo;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JTextField jtLugar;
     // End of variables declaration                   
 
 }
