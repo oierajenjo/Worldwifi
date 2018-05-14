@@ -6,6 +6,13 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import org.apache.http.protocol.HTTP;
+import com.google.maps.DirectionsApi;
+import com.google.maps.GeoApiContext;
+import com.google.maps.PlacesApi;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.PlaceDetails;
+import com.google.maps.model.TravelMode;
+
 
 import Comun.InvalidNameException;
 import maps.java.*;
@@ -17,6 +24,7 @@ public class Funciones {
 	 * Devuelve las coordenadas geográficas asociadas a la dirección postal enviada
 	 */
 	
+	String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
 	String YOUR_API_KEY = "AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
 	
 	public static String getCoordenadas(String sitio){
@@ -119,9 +127,35 @@ public class Funciones {
 		destinos = destinos.replace(" ", "+");
 		localizacion = localizacion.replace(", ", ",");
 		localizacion = localizacion.replace(" ", "+");
-		String URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+ localizacion + "&destinations=" + destinos + "&key=AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
+		String URL_POINT = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+ localizacion + "&destinations=" + destinos + "&key=AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
+		
 		return URL;
 	}
+	
+	public void getDirections() {
+
+        this.fromLatLngCurr = fromLatLngNew;
+        this.toLatLngCurr = toLatLngNew;
+        this.fromTitleCurr = fromTitleNew;
+        this.toTitleCurr = toTitleNew;
+
+        try {
+            calculatedRoutes = DirectionsApi.newRequest(context)
+                    .alternatives(true)
+                    .mode(TravelMode.WALKING)
+                    .origin(MapUtils.getModelLatLngFromGms(fromLatLngCurr))
+                    .destination(MapUtils.getModelLatLngFromGms(toLatLngCurr))
+                    .await();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        clearMarkersFromMap();
+        drawRouteMarkers();
+        updateBounds();
+
+    }
 	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException {
 		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		System.out.println("");
