@@ -6,12 +6,12 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import org.apache.http.protocol.HTTP;
-import com.google.maps.DirectionsApi;
-import com.google.maps.GeoApiContext;
-import com.google.maps.PlacesApi;
-import com.google.maps.model.DirectionsRoute;
-import com.google.maps.model.PlaceDetails;
-import com.google.maps.model.TravelMode;
+//import com.google.maps.DirectionsApi;
+//import com.google.maps.GeoApiContext;
+//import com.google.maps.PlacesApi;
+//import com.google.maps.model.DirectionsRoute;
+//import com.google.maps.model.PlaceDetails;
+//import com.google.maps.model.TravelMode;
 
 
 import Comun.InvalidNameException;
@@ -19,13 +19,12 @@ import maps.java.*;
 
 
 public class Funciones {
-	
 	/*
 	 * Devuelve las coordenadas geográficas asociadas a la dirección postal enviada
 	 */
+	static String DIS_API_KEY = "AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
+	static String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
 	
-	String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
-	String YOUR_API_KEY = "AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
 	
 	public static String getCoordenadas(String sitio){
 		Geocoding ObjGeocod = new Geocoding();
@@ -127,35 +126,44 @@ public class Funciones {
 		destinos = destinos.replace(" ", "+");
 		localizacion = localizacion.replace(", ", ",");
 		localizacion = localizacion.replace(" ", "+");
-		String URL_POINT = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+ localizacion + "&destinations=" + destinos + "&key=AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
+		String URL_DIST = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
 		
-		return URL;
+		return URL_DIST;
 	}
 	
-	public void getDirections() {
-
-        this.fromLatLngCurr = fromLatLngNew;
-        this.toLatLngCurr = toLatLngNew;
-        this.fromTitleCurr = fromTitleNew;
-        this.toTitleCurr = toTitleNew;
-
-        try {
-            calculatedRoutes = DirectionsApi.newRequest(context)
-                    .alternatives(true)
-                    .mode(TravelMode.WALKING)
-                    .origin(MapUtils.getModelLatLngFromGms(fromLatLngCurr))
-                    .destination(MapUtils.getModelLatLngFromGms(toLatLngCurr))
-                    .await();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        clearMarkersFromMap();
-        drawRouteMarkers();
-        updateBounds();
-
-    }
+	public static String getIndications( String localizacion, String direccion){
+		direccion = direccion.replace(", ", ",");
+		direccion = direccion.replace(" ", "+");
+		localizacion = localizacion.replace(", ", ",");
+		localizacion = localizacion.replace(" ", "+");
+		String URL_DIR = "https://maps.googleapis.com/maps/api/directions/json?origin="+ localizacion + "&destination=" + direccion + "&key=" + DIR_API_KEY;
+		return URL_DIR;
+	}
+	
+//	public void getDirections() {
+//
+//        this.fromLatLngCurr = fromLatLngNew;
+//        this.toLatLngCurr = toLatLngNew;
+//        this.fromTitleCurr = fromTitleNew;
+//        this.toTitleCurr = toTitleNew;
+//
+//        try {
+//            calculatedRoutes = DirectionsApi.newRequest(context)
+//                    .alternatives(true)
+//                    .mode(TravelMode.WALKING)
+//                    .origin(MapUtils.getModelLatLngFromGms(fromLatLngCurr))
+//                    .destination(MapUtils.getModelLatLngFromGms(toLatLngCurr))
+//                    .await();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        clearMarkersFromMap();
+//        drawRouteMarkers();
+//        updateBounds();
+//
+//    }
 	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException {
 		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		System.out.println("");
@@ -166,5 +174,6 @@ public class Funciones {
 		lista.add(getDireccion(47.298208,-2.98245));
 		lista.add(getDireccion(43.29048, -2.975375));
 		System.out.println(getDistancia(getDireccion(43.2642276,-2.9234477), lista));
+		System.out.println(getIndications(getDireccion(43.2642276,-2.9234477), getDireccion(43.29048, -2.975375)));
 	}
 }
