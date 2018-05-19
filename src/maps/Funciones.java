@@ -13,7 +13,6 @@ import org.apache.http.protocol.HTTP;
 //import com.google.maps.model.PlaceDetails;
 //import com.google.maps.model.TravelMode;
 
-
 import Comun.InvalidNameException;
 import maps.java.*;
 
