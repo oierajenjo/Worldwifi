@@ -3,7 +3,11 @@ import org.neo4j.driver.v1.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+
+
 import Comun.DocumentReader;
+import WiFi.Wifi;
 import Comun.DateUtils;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -127,39 +131,36 @@ public class Neo4j {
 		return existance;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ArrayList<ArrayList> conseguirWifis(){
-		ArrayList<ArrayList> informacionWifis = new ArrayList();
-		StatementResult result = session.run("MATCH (a) RETURN a.id, a.nombre, a.la, a.lo");
+	@SuppressWarnings("unused")
+	public void addNewCities(String fileName) {
+		StatementResult result = session.run("LOAD CSV WITH HEADERS FROM 'file:///" + fileName + "' AS line FIELDTERMINATOR ';' WITH line LIMIT 1000000"
+								+"create (w:Wifi {id: line.PK, x: line.COORDENADAX, y: line.COORDENADAY, la: line.LATITUD, lo: line.LONGITUD})" +
+								"merge (ci: Ciudad {ci: line.LOCALIDAD, pr: line.PROVINCIA})" +
+								"merge (b:Barrio {ba: line.BARRIO})" +
+								"merge (d:Distrito {di: line.DISTRITO})" +
+								"merge (ci)-[e2:En]->(d)" +
+								"merge (d)-[e3:En]->(b)" +
+								"merge (b)-[h:Tiene]->(w))");
+	}
+	
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Wifi> conseguirWifis(String ciudad){
+		ArrayList<Wifi> informacionWifis = new ArrayList();
+
+		StatementResult result = session.run("MATCH (c:Ciudad)-[:En]->(d:Distrito)-[:En]->(b:Barrio)-[:Tiene]->(w:Wifi)" +
+								"WHERE c.ci = '" + ciudad.toUpperCase() +"'" +
+								"RETURN w.id, w.la, w.lo, w.x, w.y");
 		while (result.hasNext()) {
-			ArrayList wifi = new ArrayList();
+			Wifi wifi = new Wifi(null, null, null, null, null) ;
 			Record record = result.next();
-			wifi.add(record.get("a.id").asString());
-			wifi.add(record.get("a.nombre").asString());
-			wifi.add(record.get("a.la").asInt());
-			wifi.add(record.get("a.lo").asInt());
+			wifi.setId(record.get("w.id").asString());
+			wifi.setLatitud(record.get("w.la").asDouble());
+			wifi.setLongitud(record.get("w.lo").asDouble());
+			wifi.setX(record.get("w.x").asLong());
+			wifi.setY(record.get("w.y").asLong());
 			informacionWifis.add(wifi);
 		}
 		return informacionWifis;
 	}
-
-	/*
-	 * public HashMap<String, ArrayList> conseguirWifis() {
-        HashMap<String, ArrayList> informacionWifis = new HashMap<>();
-        StatementResult result = session.run(
-                "MATCH (a) RETURN a.id, a.nombre, a.la, a.lo");
-        while (result.hasNext()) {
-            ArrayList wifi = new ArrayList();
-            Record record = result.next();
-
-            wifi.add(record.get("a.nombre").asString());
-            wifi.add(record.get("a.la").asInt());
-            wifi.add(record.get("a.lo").asInt());
-            informacionWifis.put(record.get("a.id").asString(), wifi);
-        }
-        return informacionWifis;
-    }
-	 */
-
-	/* END DB utility Methods */  
 }

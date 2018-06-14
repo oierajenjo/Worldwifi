@@ -1,152 +1,68 @@
 package WiFi;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class Wifi {
 
-	protected String nombre;
-	protected String direccion;
-	protected int intensidad;
-	protected int altura;
-	protected int longitud;
+	protected String id;
+	protected Double latitud;
+	protected Double longitud;
+	protected Long x;
+	protected Long y;
 
-	public static void verRedesWifi() throws IOException {
-		ArrayList<String>ssids=new ArrayList<String>();
-		ArrayList<String>signals=new ArrayList<String>();
-		ProcessBuilder builder1 = new ProcessBuilder( "cmd.exe", "/c","\"netsh wlan disconnect\"");
-		ProcessBuilder builder2 = new ProcessBuilder( "cmd.exe", "/c","\"netsh wlan connect name=eduroam\"");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ProcessBuilder builder = new ProcessBuilder( "cmd.exe", "/c","\"netsh wlan show all\"");
-		builder.redirectErrorStream(true);
-		Process a = builder1.start();
-		Process b = builder2.start();
-		Process p = builder.start();
-		BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-		String line;
-		do {
-		    line = r.readLine();
-	    	if (line!=null) System.out.println("#" + line);
-		    if (line == null)
-		    	;
-//		    	System.out.println("linea es null");
-		    else if (line.contains("SSID")||line.contains("Signal")){
-		        if(!line.contains("BSSID"))
-		            if(line.contains("SSID")&&!line.contains("name")&&!line.contains("SSIDs"))
-		            {
-		                line=line.substring(8);
-		                ssids.add(line);
-		            }
-		            if(line.contains("Signal"))
-		            {
-		                line=line.substring(30);
-		                signals.add(line);
-
-		            }
-
-		            if(signals.size()==7)
-		            {
-		               // break;
-		            }
-
-		    }
-
-		} while (line!=null);
-		for (int i=0;i<ssids.size();i++)
-		{
-		    System.out.println("SSID name == "+ssids.get(i)+"   and its signal == "+signals.get(i)  );
-		}
-	}
-	
-	
-	public double Distancia(){
-//		int alturaUsuario = getAlturaUsuario();
-//		int longitudUsuario = getLongituUsuario();
-//		int alturaWifi = altura;
-//		int longitudWifi = longitud;
-//		
-//		int alturaFinal = alturaWifi - alturaUsuario;
-//		int longitudFinal = longitudWifi - longitudUsuario;
-//		
-//		double distancia = Math.sqrt(alturaFinal * alturaFinal + longitudFinal * longitudFinal);
-//		
-//		return distancia;
-		return 0;
-	}
-	
-	public String getNombre() {
-		return nombre;
+	public Wifi(String id, Double latitud, Double longitud, Long x, Long y) {
+		super();
+		this.id = id;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		this.x = x;
+		this.y = y;
 	}
 
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public String getId() {
+		return id;
 	}
 
-
-
-	public int getIntensidad() {
-		return intensidad;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-
-
-	public void setIntensidad(int intensidad) {
-		this.intensidad = intensidad;
+	public Double getLatitud() {
+		return latitud;
 	}
 
-
-
-	public int getAltura() {
-		return altura;
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
 	}
 
-
-
-	public void setAltura(int longitud) {
-		this.altura = longitud;
-	}
-	
-
-
-	public int getLongitud() {
+	public Double getLongitud() {
 		return longitud;
 	}
 
-
-
-	public void setLongitud(int longitud) {
+	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
 	}
 
-
-
-	public Wifi(String nombre, int intensidad, int x, int y) {
-		super();
-		this.nombre = nombre;
-		this.intensidad = intensidad;
-		this.altura = x;
-		this.longitud = y;
+	public Long getX() {
+		return x;
 	}
 
-
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try {
-			verRedesWifi();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void setX(Long x) {
+		this.x = x;
 	}
+
+	public Long getY() {
+		return y;
+	}
+
+	public void setY(Long y) {
+		this.y = y;
+	}
+
+	@Override
+	public String toString() {
+		
+		return "";
+	}
+
 
 }
