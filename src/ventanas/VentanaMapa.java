@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 import javax.swing.WindowConstants;
 
+import com.sun.org.apache.xpath.internal.functions.FuncId;
+
 import BD.mySQL.MySQLUtils;
 import maps.*;
 /**
@@ -103,7 +105,7 @@ public class VentanaMapa extends javax.swing.JFrame {
 
     protected void jbBuscarActionPerformed(ActionEvent evt) throws SQLException{
     	if (jtLugar.getText() != null){
-        	String barrio = funciones.getBarrio(funciones.getLatitud(jtLugar.getText()), funciones.getLongitud(jtLugar.getText()));
+        	String barrio = FuncId.getBarrio(Funciones.getLatitud(jtLugar.getText()), funciones.getLongitud(jtLugar.getText()));
             MySQLUtils.dwhLog(barrio);
         }
 	}
