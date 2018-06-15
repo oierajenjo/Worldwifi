@@ -110,6 +110,29 @@ public class Funciones {
 		}
 		return direccion;
 	}
+	
+	
+	public static String getDireccionConTexto(String sitio){
+		Geocoding ObjGeocod=new Geocoding();
+		ArrayList<String> resultadoCI = null;
+		String direccion = null;
+		try {
+			resultadoCI = ObjGeocod.getAddress(getLatitud(sitio), getLongitud(sitio));
+			direccion = resultadoCI.get(0);
+			//			System.out.println( direccion );
+			//			for(String direccion:resultadoCI){
+			//				System.out.println(direccion);
+			//			}
+		} catch (Exception InvalidName) {
+			try {
+				throw new InvalidNameException("Invalid direction: " + sitio, InvalidName );
+			} catch (InvalidNameException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return direccion;
+	}
 	public static String getBarrio(Double latitud, Double longitud) throws UnsupportedEncodingException, MalformedURLException{
 		Geocoding ObjGeocod=new Geocoding();
 		ArrayList<String> resultadoCI = null;
@@ -142,27 +165,12 @@ public class Funciones {
 		return URL_DIST;
 	}
 
-	public static int getDistanciaTime (JSONObject distancias) {
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(response);
-			JSONObject jsonobj=(JSONObject)obj;
-
-			JSONArray dist=(JSONArray)jsonobj.get("rows");
-			JSONObject obj2 = (JSONObject)dist.get(0);
-			JSONArray disting=(JSONArray)obj2.get("elements");
-			JSONObject obj3 = (JSONObject)disting.get(0);
-			JSONObject obj4=(JSONObject)obj3.get("distance");
-			JSONObject obj5=(JSONObject)obj3.get("duration");
-			System.out.println(obj4.get("text"));
-			System.out.println(obj5.get("text"));
-
+	public static String getTime (ArrayList<Indicacion> indicaciones) {
+		for (Indicacion indicacion: indicaciones) {			return indicacion.getTiempo();
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
+		return null;
 	}
+		
 	//	Saca una json de la url
 	public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream is = new URL(url).openStream();
