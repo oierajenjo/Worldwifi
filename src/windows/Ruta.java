@@ -27,6 +27,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
@@ -78,8 +79,8 @@ public class Ruta extends JFrame {
 
 		setAlwaysOnTop(true);
 		setType(java.awt.Window.Type.UTILITY);
-		addWindowListener(new java.awt.event.WindowAdapter() {
-			public void windowClosing(java.awt.event.WindowEvent evt) {
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
 				formWindowClosing(evt);
 			}
 		});
@@ -95,7 +96,7 @@ public class Ruta extends JFrame {
 				}
 				) {
 			Class[] types = new Class [] {
-					java.lang.String.class, java.lang.String.class, java.lang.String.class
+					String.class, String.class, String.class
 			};
 
 			public Class getColumnClass(int columnIndex) {
