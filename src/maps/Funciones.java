@@ -189,7 +189,7 @@ public class Funciones {
 		ArrayList<Indicacion> indicaciones = new ArrayList<Indicacion>(); 
 		Route ObjRout=new Route();
 		try {
-			String[][] resultado=ObjRout.getRoute(origen, destino, null, Boolean.TRUE, Route.mode.walking, Route.avoids.nothing);
+			String[][] resultado = ObjRout.getRoute(origen, destino, null, Boolean.TRUE, Route.mode.walking, Route.avoids.nothing);
 			for(int i=0; i<resultado.length; i++){
 				Indicacion indicacion = new Indicacion(resultado[i][0], resultado[i][1], resultado[i][2], resultado[i][3], resultado[i][4]);
 				indicaciones.add(indicacion);
@@ -198,19 +198,18 @@ public class Funciones {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
-    public static void error(String funcionError){
-        System.err.println("Algo ocurrió, no se pudo ejecutar la función: " + funcionError);
-    }
-	public static String getIndications( String localizacion, String direccion){
-		direccion = direccion.replace(", ", ",");
-		direccion = direccion.replace(" ", "+");
-		localizacion = localizacion.replace(", ", ",");
-		localizacion = localizacion.replace(" ", "+");
-		String URL_DIR = "https://maps.googleapis.com/maps/api/directions/json?origin="+ localizacion + "&destination=" + direccion + "&key=" + DIR_API_KEY;
-		return URL_DIR;
-	}
+	
+	
+//   
+//	public static String getIndications( String localizacion, String direccion){
+//		direccion = direccion.replace(", ", ",");
+//		direccion = direccion.replace(" ", "+");
+//		localizacion = localizacion.replace(", ", ",");
+//		localizacion = localizacion.replace(" ", "+");
+//		String URL_DIR = "https://maps.googleapis.com/maps/api/directions/json?origin="+ localizacion + "&destination=" + direccion + "&key=" + DIR_API_KEY;
+//		return URL_DIR;
+//	}
 
 	//	public void getDirections() {
 	//
