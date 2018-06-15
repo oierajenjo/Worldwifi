@@ -50,7 +50,7 @@ public class AutentificarUsuario {
 	     */
 	    public static void isValidName(String userName) throws InvalidNameException {
 	        if (!secureName(userName)) {
-	            throw new InvalidNameException(userName);
+	            throw new InvalidNameException(userName, null);
 	        }
 	    }
 	

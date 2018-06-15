@@ -59,6 +59,7 @@ public class Neo4j {
 	public Session getSession() {
 		return session;
 	}
+	
 	public boolean startSession() {
 		try {
 			driver = GraphDatabase.driver(server_address, AuthTokens.basic(username, password));
