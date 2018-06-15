@@ -50,23 +50,24 @@ public class Ruta extends JFrame {
 	private javax.swing.JLabel label_Mapa;
 
 	public Ruta(String direccion,Boolean botonVolver) { 
-	inicializarComponentes();
-    this.flagVolver=botonVolver;
-    Ubicacion ObjUbicacion=new Ubicacion();
-    direccionLlegada=direccion;
-    direccionSalida=ObjUbicacion.getDireccion();
-    try{
-        this.calcularRuta();
-    }catch(Exception ex){
-    }
-    if(button_Volver.isEnabled()==true){
-        button_Volver.setEnabled(true);
-    }else{
-        button_Volver.setEnabled(false);
-    }
-}
-	
-	
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		inicializarComponentes();
+		this.flagVolver=botonVolver;
+		Ubicacion ObjUbicacion=new Ubicacion();
+		direccionLlegada=direccion;
+		direccionSalida=ObjUbicacion.getDireccion();
+		try{
+			this.calcularRuta();
+		}catch(Exception ex){
+		}
+		if(button_Volver.isEnabled()==true){
+			button_Volver.setEnabled(true);
+		}else{
+			button_Volver.setEnabled(false);
+		}
+	}
+
+
 	public void inicializarComponentes() {
 		setSize (800, 500);
 
@@ -95,7 +96,7 @@ public class Ruta extends JFrame {
 						"Duración del tramo", "Distancia a reccorer", "Indicaciones"
 				}
 				) {
-			
+
 			Class[] types = new Class [] {
 					String.class, String.class, String.class
 			};
@@ -247,9 +248,9 @@ public class Ruta extends JFrame {
 		}
 	}
 	private void volverVentanaInicial(ActionEvent evt) {
-        this.volver();
-    }
+		this.volver();
+	}
 
-	
+
 
 }

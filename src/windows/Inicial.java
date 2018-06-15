@@ -18,7 +18,7 @@ public class Inicial extends JFrame{
 	private JTextField textField_DirValidacion;
 	
 	public Inicial() {
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

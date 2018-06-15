@@ -14,6 +14,7 @@ import javax.swing.JButton;
 public class VentanaSeleccion extends JFrame {
 	
 	public VentanaSeleccion(Ubicacion u){
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
 		
 		JPanel panel = new JPanel();

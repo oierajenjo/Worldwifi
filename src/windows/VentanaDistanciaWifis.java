@@ -12,7 +12,7 @@ public class VentanaDistanciaWifis extends JFrame {
 	
 	public VentanaDistanciaWifis(Ubicacion u){
 		setSize (800, 500);
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
