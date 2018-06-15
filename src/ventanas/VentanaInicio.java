@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 /**
 *
-* @author Oier
+* @author Oier y Mikel
 */
 
 @SuppressWarnings("serial")
