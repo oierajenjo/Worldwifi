@@ -6,5 +6,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/AbsoluteLayout.jar"/>
 	<classpathentry kind="lib" path="lib/MapsJava.jar"/>
+	<classpathentry kind="lib" path="lib/google-maps-services-0.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mikel/Downloads/google-maps-services-0.1.7.jar"/>
+	<classpathentry kind="lib" path="/MapsJava/src/GUI/jsoup-1.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

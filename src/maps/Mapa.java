@@ -11,8 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Mapa {
-	OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,
+public class Mapa{
+	//OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,
     LocationListener {
 
 	private GoogleMap mMap;
