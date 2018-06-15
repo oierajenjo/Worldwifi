@@ -12,7 +12,7 @@ public class Inicial extends JFrame{
 	private JTextField textField_DirValidacion;
 	public Inicial() {
 		
-		setSize (600, 500);
+		setSize (450, 300);
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -38,9 +38,15 @@ public class Inicial extends JFrame{
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(298, 199, 115, 29);
 		panel.add(btnAceptar);
+		btnAceptar.setEnabled(false);
 		
 		JButton btnValidarUbicacin = new JButton("Validar Ubicaci\u00F3n");
 		btnValidarUbicacin.setBounds(128, 199, 155, 29);
 		panel.add(btnValidarUbicacin);
+	}
+	
+	public static void main(String[] args) {
+		Inicial i = new Inicial();
+		i.setVisible(true);
 	}
 }
