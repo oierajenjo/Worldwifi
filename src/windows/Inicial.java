@@ -33,6 +33,7 @@ public class Inicial extends JFrame{
 		panel.add(textField_DirUsuario);
 		textField_DirUsuario.setColumns(10);
 		
+		
 		JLabel lblDireccinDeValidacin = new JLabel("Direcci\u00F3n de validaci\u00F3n");
 		lblDireccinDeValidacin.setBounds(15, 94, 344, 20);
 		panel.add(lblDireccinDeValidacin);
