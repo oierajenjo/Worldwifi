@@ -95,6 +95,7 @@ public class Ruta extends JFrame {
 						"Duración del tramo", "Distancia a reccorer", "Indicaciones"
 				}
 				) {
+			
 			Class[] types = new Class [] {
 					String.class, String.class, String.class
 			};
