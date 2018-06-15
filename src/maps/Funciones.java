@@ -104,7 +104,6 @@ public class Funciones {
 			try {
 				throw new InvalidNameException("Invalid lat: " + latitud + ", lon: " + longitud, InvalidName );
 			} catch (InvalidNameException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -266,6 +265,6 @@ public class Funciones {
 		lista.add(getDireccion(47.298208,-2.98245));
 		lista.add(getDireccion(43.29048, -2.975375));
 		//		System.out.println(getDistancia(getDireccion(43.2642276,-2.9234477), lista));
-		System.out.println(getIndications(getDireccion(43.2642276,-2.9234477), getDireccion(43.29048, -2.975375)));
+//		System.out.println(getIndications(getDireccion(43.2642276,-2.9234477), getDireccion(43.29048, -2.975375)));
 	}
 }
