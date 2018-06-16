@@ -3,11 +3,12 @@ package maps;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 import maps.Funciones;
 
@@ -35,6 +36,7 @@ public class FuncionesVariasWifis {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return distancias.sort(Distance);;		
+		Collections.sort(distancias, Comparator.comparingInt(Distance::getDis_km));
+		return distancias;		
 	}
 }
