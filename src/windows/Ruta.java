@@ -49,13 +49,13 @@ public class Ruta extends JFrame {
 	private String[][] datosRuta;
 	private javax.swing.JLabel label_Mapa;
 
-	public Ruta(String direccion,Boolean botonVolver) { 
+	public Ruta(Ubicacion uSalida, Ubicacion uLlegada, Boolean botonVolver) { 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializarComponentes();
 		this.flagVolver=botonVolver;
-		Ubicacion ObjUbicacion=new Ubicacion();
-		direccionLlegada=direccion;
-		direccionSalida=ObjUbicacion.getDireccion();
+		
+		direccionLlegada=uLlegada.getDireccion();
+		direccionSalida= uSalida.getDireccion();
 		try{
 			this.calcularRuta();
 		}catch(Exception ex){
