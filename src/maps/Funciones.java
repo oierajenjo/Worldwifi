@@ -147,14 +147,14 @@ public class Funciones {
 		for (Wifi wifi:wifis){
 			latitud = wifi.getLatitud();
 			longitud = wifi.getLongitud();
-			destinos = destinos + latitud + "," + longitud;
+			destinos = destinos + latitud + "%2C" + longitud;
 			//			for (int i = 0; i < wifis.size(); i++) {
-			destinos = destinos + "|";
+			destinos = destinos + "%7C";
 			//			}
 		}
 		localizacion = localizacion.replace(", ", ",");
 		localizacion = localizacion.replace(" ", "+");
-		String URL_DIST = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
+		String URL_DIST = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
 
 		return URL_DIST;
 	}
@@ -168,8 +168,8 @@ public class Funciones {
 //	}
 
 	//	Saca una json de la url
-	public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-		InputStream is = new URL(url).openStream();
+	public static JSONObject readJsonFromUrl(URL url) throws IOException, JSONException {
+		InputStream is = url.openStream();
 		try {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 			String jsonText = readAll(rd);
