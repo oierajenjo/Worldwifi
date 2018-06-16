@@ -35,6 +35,6 @@ public class FuncionesVariasWifis {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return distancias.;		
+		return distancias.sort(Distance);;		
 	}
 }
