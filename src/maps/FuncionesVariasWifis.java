@@ -30,7 +30,6 @@ public class FuncionesVariasWifis {
 				distancia.setDis_seg(arr_dis.getJSONObject(i).getJSONObject("duration").getInt("value"));
 				distancias.add(distancia);
 			}
-
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
