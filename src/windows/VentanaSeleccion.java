@@ -13,6 +13,8 @@ import javax.swing.JButton;
 
 public class VentanaSeleccion extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	public VentanaSeleccion(Ubicacion u){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);

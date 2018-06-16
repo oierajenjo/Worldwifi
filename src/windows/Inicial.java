@@ -14,6 +14,7 @@ import maps.Funciones;
 import javax.swing.JButton;
 
 public class Inicial extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private JTextField textField_DirUsuario;
 	private JTextField textField_DirValidacion;
 	

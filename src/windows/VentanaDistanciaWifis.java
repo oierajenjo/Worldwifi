@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 public class VentanaDistanciaWifis extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	public VentanaDistanciaWifis(Ubicacion u){
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -34,6 +34,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 
 public class Ruta extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 	private BufferedImage mapa;
 	private JButton button_Volver;
 	private JButton btnMostrarMapa;
