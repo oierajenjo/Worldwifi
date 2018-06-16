@@ -53,6 +53,7 @@ public class Ruta extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializarComponentes();
 		this.flagVolver=botonVolver;
+		
 		direccionLlegada=uLlegada.getDireccion();
 		direccionSalida= uSalida.getDireccion();
 		try{
