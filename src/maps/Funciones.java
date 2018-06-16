@@ -67,6 +67,7 @@ public class Funciones {
 		}
 		return resultadoCD.x;
 	}
+	
 	/*
 	 * Devuelve el conjunto de direcciones postales asociadas al punto geográfico (latitude/longitude)
 	 * Nos devuelve:
@@ -82,7 +83,19 @@ public class Funciones {
 	 * 		Provincio, Pais
 	 * 		Pais
 	 */
-
+	public static String getTodo(String direccion) throws UnsupportedEncodingException, MalformedURLException{
+		Geocoding ObjGeocod=new Geocoding();
+		ArrayList<String> resultadoCI = null;
+		Double latitud = getLatitud(direccion);
+		Double longitud = getLongitud(direccion);
+		resultadoCI = ObjGeocod.getAddress(latitud,longitud);
+		String ciudad = "";
+		for (int i = 0; i < resultadoCI.size(); i++) {
+			ciudad = ciudad + resultadoCI.get(i) + "\n";
+		}
+		return ciudad;
+	}
+	
 	public static String getDireccionConLaLo(Double latitud, Double longitud){
 		Geocoding ObjGeocod=new Geocoding();
 		ArrayList<String> resultadoCI = null;
@@ -90,10 +103,6 @@ public class Funciones {
 		try {
 			resultadoCI = ObjGeocod.getAddress(latitud,longitud);
 			direccion = resultadoCI.get(0);
-			//			System.out.println( direccion );
-			//			for(String direccion:resultadoCI){
-			//				System.out.println(direccion);
-			//			}
 		} catch (Exception InvalidName) {
 			try {
 				throw new InvalidNameException("Invalid lat: " + latitud + ", lon: " + longitud, InvalidName );
@@ -112,10 +121,6 @@ public class Funciones {
 		try {
 			resultadoCI = ObjGeocod.getAddress(getLatitud(sitio), getLongitud(sitio));
 			direccion = resultadoCI.get(0);
-			//			System.out.println( direccion );
-			//			for(String direccion:resultadoCI){
-			//				System.out.println(direccion);
-			//			}
 		} catch (Exception InvalidName) {
 			try {
 				throw new InvalidNameException("Invalid direction: " + sitio, InvalidName );
@@ -126,13 +131,26 @@ public class Funciones {
 		}
 		return direccion;
 	}
-
+	
+	public static String getCiudad(String direccion) throws UnsupportedEncodingException, MalformedURLException{
+		Geocoding ObjGeocod=new Geocoding();
+		ArrayList<String> resultadoCI = null;
+		Double latitud = getLatitud(direccion);
+		Double longitud = getLongitud(direccion);
+		resultadoCI = ObjGeocod.getAddress(latitud,longitud);
+		String ciudad = resultadoCI.get(4).split(",")[0];
+		if (Character.isDigit(ciudad.charAt(0))) {
+			ciudad = resultadoCI.get(5).split(",")[0];
+		}
+		return ciudad.toUpperCase();
+	}
+	
 	//	public static String getBarrio(Double latitud, Double longitud) throws UnsupportedEncodingException, MalformedURLException{
 	//		Geocoding ObjGeocod=new Geocoding();
 	//		ArrayList<String> resultadoCI = null;
 	//		String direccion= "";
 	//		resultadoCI = ObjGeocod.getAddress(latitud,longitud);
-	//		direccion = resultadoCI.get(3).split(",")[0];
+	//		direccion = resultadoCI.get(4).split(",")[0];
 	//
 	//		//		for(String dir:resultadoCI){
 	//		//			direccion += dir + "\n";
@@ -158,14 +176,6 @@ public class Funciones {
 
 		return URL_DIST;
 	}
-
-//	public static String getDistanciasFromJson( JSONObject json){
-//		String destinos = "";
-//		Double latitud = null;
-//		Double longitud = null;
-//
-//		return ;
-//	}
 
 	//	Saca una json de la url
 	public static JSONObject readJsonFromUrl(URL url) throws IOException, JSONException {
@@ -273,6 +283,9 @@ public class Funciones {
 		//		System.out.println(getCoordenadas("Bilbao, Ayuntamiento"));
 		System.out.println("");
 		System.out.println(getDireccionConLaLo(43.2642276, -2.9234477));
+		System.out.println(getDireccionConTexto("Arabella, Bilbao"));
+		System.out.println(getCiudad(getDireccionConTexto("Arabella, Bilbao")));
+		System.out.println(getTodo(getDireccionConTexto("Arabella, Bilbao")));
 		System.out.println("");
 		//		System.out.println(getBarrio(getLatitud("Bilbao, Ayuntamiento"), getLongitud("Bilbao, Ayuntamiento")));
 		ArrayList<String> lista = new ArrayList<>();

@@ -24,10 +24,12 @@ public class FuncionesVariasWifis {
 			JSONArray arr_des = json.getJSONArray("destination_addresses");
 			JSONArray arr_dis = json.getJSONArray("elements");
 			for(int i = 0; i < arr_des.length(); i++) {
-				Distance distancia = new Distance(null, 0, 0);
+				Distance distancia = new Distance(null, 0, 0, null, null);
 				distancia.setDestino(arr_des.get(i).toString());
-				distancia.setDis_km(arr_dis.getJSONObject(i).getJSONObject("distance").getInt("value"));
+				distancia.setDis_m(arr_dis.getJSONObject(i).getJSONObject("distance").getInt("value"));
 				distancia.setDis_seg(arr_dis.getJSONObject(i).getJSONObject("duration").getInt("value"));
+				distancia.setkmTexto(arr_dis.getJSONObject(i).getJSONObject("distance").getString("text"));
+				distancia.settimeTexto(arr_dis.getJSONObject(i).getJSONObject("duration").getString("text"));
 				distancias.add(distancia);
 			}
 		} catch (JSONException e) {
@@ -35,7 +37,10 @@ public class FuncionesVariasWifis {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Collections.sort(distancias, Comparator.comparingInt(Distance::getDis_km));
+		Collections.sort(distancias, Comparator.comparingInt(Distance::getDis_m));
 		return distancias;		
 	}
+	
+	
+	
 }
