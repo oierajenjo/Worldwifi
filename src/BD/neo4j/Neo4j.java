@@ -117,21 +117,21 @@ public class Neo4j {
 		}
 		return existance;
 	}
-	/**
-	 * Check if a Relation exists in the DB
-	 */
-	public boolean checkRelation(String node, String node_type, String title, String relation_type) {
-		boolean existance = false;
-		StatementResult result = session.run("MATCH (a:" + node_type + ")-[:" + relation_type + "]->(b) " +
-				"WHERE a.name={node} AND b.name={title} RETURN a.name", parameters("node", node, "title", title));
-		while (result.hasNext()) {
-			Record record = result.next();
-			if (record.get("a.name").asString().equals(node)) {
-				existance = true;
-			}
-		}
-		return existance;
-	}
+//	/**
+//	 * Check if a Relation exists in the DB
+//	 */
+//	public boolean checkRelation(String node, String node_type, String title, String relation_type) {
+//		boolean existance = false;
+//		StatementResult result = session.run("MATCH (a:" + node_type + ")-[:" + relation_type + "]->(b) " +
+//				"WHERE a.name={node} AND b.name={title} RETURN a.name", parameters("node", node, "title", title));
+//		while (result.hasNext()) {
+//			Record record = result.next();
+//			if (record.get("a.name").asString().equals(node)) {
+//				existance = true;
+//			}
+//		}
+//		return existance;
+//	}
 
 	@SuppressWarnings("unused")
 	public void addNewCities(String fileName) {

@@ -3,13 +3,14 @@
 package ventanas;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import javax.swing.WindowConstants;
 
@@ -24,6 +25,8 @@ import maps.*;
 @SuppressWarnings("serial")
 public class VentanaMapa extends javax.swing.JFrame {
 
+	
+	
     /** Creates new form VentanaMapa */
     public VentanaMapa() {
         initComponents();
@@ -41,7 +44,7 @@ public class VentanaMapa extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+    	
         jbSalir = new javax.swing.JButton();
         jlFondo = new javax.swing.JLabel();
         jtLugar = new javax.swing.JTextField();
@@ -126,6 +129,8 @@ public class VentanaMapa extends javax.swing.JFrame {
 	private void jtLugarActionPerformed(ActionEvent evt) {
 		
 	}
+	
+
     /**
      * @param args the command line arguments
      */

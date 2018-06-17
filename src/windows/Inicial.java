@@ -7,10 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
+import BD.neo4j.Neo4j;
+import WiFi.Wifi;
 import maps.Funciones;
 
 import javax.swing.JButton;
@@ -19,7 +21,9 @@ public class Inicial extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_DirUsuario;
 	private JTextField textField_DirValidacion;
-	private String ciudad;
+	private static String ciudad;
+	private static ArrayList<Wifi> listaWifis;
+	private static Ubicacion tuUbicacion;
 	
 	public Inicial() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,14 +86,29 @@ public class Inicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String dir = textField_DirUsuario.getText();
 				textField_DirValidacion.setText(Funciones.getDireccionConTexto(dir));
+				String ubi = textField_DirValidacion.getText();
+				tuUbicacion.setDireccion(ubi);
+				tuUbicacion.setLatitud(Funciones.getLatitud(ubi));
+				tuUbicacion.setLongitud(Funciones.getLongitud(ubi));
 				System.out.println(Funciones.getDireccionConTexto(dir));
 				try {
 					setCiudad(Funciones.getCiudad(dir));
+					System.out.println(ciudad);
+					Neo4j neo = new Neo4j();
+					setListaWifis(neo.conseguirWifis(ciudad));
 				} catch (UnsupportedEncodingException e1) {
 					e1.printStackTrace();
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				}
+//				new Thread() { // Crea un hilo
+//					@Override
+//					public void run() {
+//						Neo4j neo = new Neo4j();
+//						setListaWifis(neo.conseguirWifis(ciudad));							
+//					}
+//				};
+				System.out.println(listaWifis);
 				if (!textField_DirValidacion.getText().isEmpty()) {
 					btnAceptar.setEnabled(true);
 				}
@@ -97,12 +116,28 @@ public class Inicial extends JFrame{
 		});
 	}
 	
+	public static ArrayList<Wifi> getListaWifis() {
+		return listaWifis;
+	}
+	
+	public void setListaWifis(ArrayList<Wifi> listaWifis) {
+		Inicial.listaWifis = listaWifis;
+	}
+
 	public String getCiudad() {
 		return ciudad;
 	}
 
 	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+		Inicial.ciudad = ciudad;
+	}
+
+	public static Ubicacion getTuUbicacion() {
+		return tuUbicacion;
+	}
+
+	public static void setTuUbicacion(Ubicacion tuUbicacion) {
+		Inicial.tuUbicacion = tuUbicacion;
 	}
 
 	public static void main(String[] args) {

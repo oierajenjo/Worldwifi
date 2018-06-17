@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import maps.Funciones;
+import windows.Ubicacion;
 
 
 public class FuncionesVariasWifis {
@@ -41,6 +42,16 @@ public class FuncionesVariasWifis {
 		return distancias;		
 	}
 	
+	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) {
+		
+		
+		
+		String urlS = "https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=bicycling"
+		
+		
+		
+		return url;
+	}
 	
 	
 }
