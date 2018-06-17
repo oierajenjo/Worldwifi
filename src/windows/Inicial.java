@@ -86,10 +86,9 @@ public class Inicial extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String dir = textField_DirUsuario.getText();
 				textField_DirValidacion.setText(Funciones.getDireccionConTexto(dir));
-				String ubi = textField_DirValidacion.getText();
-				tuUbicacion.setDireccion(ubi);
-				tuUbicacion.setLatitud(Funciones.getLatitud(ubi));
-				tuUbicacion.setLongitud(Funciones.getLongitud(ubi));
+				tuUbicacion.setDireccion(Funciones.getDireccionConTexto(dir));
+				tuUbicacion.setLatitud(Funciones.getLatitud(Funciones.getDireccionConTexto(dir)));
+				tuUbicacion.setLongitud(Funciones.getLongitud(Funciones.getDireccionConTexto(dir)));
 				System.out.println(Funciones.getDireccionConTexto(dir));
 				try {
 					setCiudad(Funciones.getCiudad(dir));
