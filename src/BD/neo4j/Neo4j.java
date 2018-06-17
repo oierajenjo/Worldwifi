@@ -28,10 +28,10 @@ public class Neo4j {
 		}
 	}
 	/* END Logger for Neo4j */
-	private String username;
-	private String password;
-	private String server_address;
-	private Driver driver;
+	private static String username;
+	private static String password;
+	private static String server_address;
+	private static Driver driver;
 	private static Session session;
 	/**
 	 * Constructor for the class Neoj
@@ -61,7 +61,7 @@ public class Neo4j {
 		return session;
 	}
 	
-	public boolean startSession() {
+	public static boolean startSession() {
 		try {
 			driver = GraphDatabase.driver(server_address, AuthTokens.basic(username, password));
 			session = driver.session();
