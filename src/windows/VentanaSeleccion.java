@@ -8,11 +8,13 @@ import ventanas.VentanaInicio;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 
 import javax.swing.JButton;
 
 public class VentanaSeleccion extends JFrame {
-	
+	VentanaDistanciaWifis v;
 	private static final long serialVersionUID = 1L;
 
 	public VentanaSeleccion(Ubicacion u){
@@ -30,7 +32,15 @@ public class VentanaSeleccion extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaDistanciaWifis v = new VentanaDistanciaWifis(u);
+				try {
+					v = new VentanaDistanciaWifis(u);
+				} catch (UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				v.setVisible(true);
 				dispose();
 				
