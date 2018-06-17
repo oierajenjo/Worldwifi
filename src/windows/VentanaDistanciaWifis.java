@@ -44,7 +44,9 @@ public class VentanaDistanciaWifis extends JFrame {
 		String[] cols= {"Destino", "Tiempo", "Distancia"};
 		DefaultTableModel model = new DefaultTableModel(datos, cols);
 		JTable jTabla = new JTable(model);
-
+		JPanel panel_0 = new JPanel();
+		getContentPane().add(panel_0, BorderLayout.CENTER);
+		panel_0.add(jTabla);
 		
 		//		System.out.println(ciudad);
 		//		for (Wifi w : wifiCercanas){
@@ -63,11 +65,10 @@ public class VentanaDistanciaWifis extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
+				
+				
 			}
 		});
 
