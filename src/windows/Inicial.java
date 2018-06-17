@@ -115,7 +115,7 @@ public class Inicial extends JFrame{
 		});
 	}
 	
-	
+		
 	public static ArrayList<Wifi> getListaWifis() {
 		return listaWifis;
 	}
