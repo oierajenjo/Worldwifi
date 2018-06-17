@@ -94,8 +94,8 @@ public class Inicial extends JFrame{
 				try {
 					setCiudad(Funciones.getCiudad(dir));
 					System.out.println(ciudad);
-					Neo4j neo = new Neo4j();
-					setListaWifis(neo.conseguirWifis(ciudad));
+//					Neo4j neo = new Neo4j();
+//					setListaWifis(neo.conseguirWifis(ciudad));
 				} catch (UnsupportedEncodingException e1) {
 					e1.printStackTrace();
 				} catch (MalformedURLException e1) {
