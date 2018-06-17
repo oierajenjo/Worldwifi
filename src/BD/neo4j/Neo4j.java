@@ -32,7 +32,7 @@ public class Neo4j {
 	private String password;
 	private String server_address;
 	private Driver driver;
-	private Session session;
+	private static Session session;
 	/**
 	 * Constructor for the class Neoj
 	 */
@@ -147,7 +147,7 @@ public class Neo4j {
 	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Wifi> conseguirWifis(String ciudad){
+	public static ArrayList<Wifi> conseguirWifis(String ciudad){
 		ArrayList<Wifi> informacionWifis = new ArrayList();
 
 		StatementResult result = session.run("MATCH (c:Ciudad)-[:En]->(d:Distrito)-[:En]->(b:Barrio)-[:Tiene]->(w:Wifi)" +
