@@ -14,6 +14,8 @@ import javax.swing.JButton;
 
 public class VentanaTodasLasWifis extends JFrame{
 
+	//https://datos.madrid.es/egob/new/detalle/auxiliar/mapa.jsp?geoUrl=https%3A%2F%2Fdatos.madrid.es%2Fegob%2Fcatalogo%2F216619-0-wifi-municipal.geo?millis=1529263424677
+	
 	private static final long serialVersionUID = 1L;
 
 	public VentanaTodasLasWifis (Ubicacion u){
