@@ -49,13 +49,14 @@ public class Neo4j {
 	}
 	/* Server Utility Methods */
 	private void readConfig() {
-		NodeList nList = DocumentReader.getDoc("conf/properties.xml").getElementsByTagName("neo4j-server");
+		NodeList nList = DocumentReader.getDoc("config.xml").getElementsByTagName("neo4j-server");
 		Node nNode = nList.item(0);
 		Element eElement = (Element) nNode;
 		username = eElement.getElementsByTagName("username").item(0).getTextContent();
 		password = eElement.getElementsByTagName("password").item(0).getTextContent();
 		server_address = eElement.getElementsByTagName("server_address").item(0).getTextContent();
 	}
+	
 	public Session getSession() {
 		return session;
 	}
@@ -150,7 +151,7 @@ public class Neo4j {
 		ArrayList<Wifi> informacionWifis = new ArrayList();
 
 		StatementResult result = session.run("MATCH (c:Ciudad)-[:En]->(d:Distrito)-[:En]->(b:Barrio)-[:Tiene]->(w:Wifi)" +
-								"WHERE c.ci = '" + ciudad.toUpperCase() +"'" +
+								"WHERE c.ci = '" + ciudad.toUpperCase()+"'" +
 								"RETURN w.id, w.la, w.lo, w.x, w.y");
 		while (result.hasNext()) {
 			Wifi wifi = new Wifi(null, null, null, null, null) ;

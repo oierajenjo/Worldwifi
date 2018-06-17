@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 
 
@@ -105,7 +107,14 @@ public class VentanaMapa extends javax.swing.JFrame {
 
     protected void jbBuscarActionPerformed(ActionEvent evt) throws SQLException{
     	if (jtLugar.getText() != null){
-        	String barrio = FuncId.getBarrio(Funciones.getLatitud(jtLugar.getText()), funciones.getLongitud(jtLugar.getText()));
+        	String barrio = "";
+			try {
+				barrio = Funciones.getBarrio(Funciones.getLatitud(jtLugar.getText()), Funciones.getLongitud(jtLugar.getText()));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
             MySQLUtils.dwhLog(barrio);
         }
 	}

@@ -84,7 +84,7 @@ public class Inicial extends JFrame{
 				textField_DirValidacion.setText(Funciones.getDireccionConTexto(dir));
 				System.out.println(Funciones.getDireccionConTexto(dir));
 				try {
-					ciudad = Funciones.getCiudad(dir);
+					setCiudad(Funciones.getCiudad(dir));
 				} catch (UnsupportedEncodingException e1) {
 					e1.printStackTrace();
 				} catch (MalformedURLException e1) {
@@ -97,6 +97,14 @@ public class Inicial extends JFrame{
 		});
 	}
 	
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
 	public static void main(String[] args) {
 		Inicial i = new Inicial();
 		i.setVisible(true);

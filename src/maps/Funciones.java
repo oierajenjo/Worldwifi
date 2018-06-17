@@ -140,18 +140,18 @@ public class Funciones {
 		return ciudad.toUpperCase();
 	}
 	
-	//	public static String getBarrio(Double latitud, Double longitud) throws UnsupportedEncodingException, MalformedURLException{
-	//		Geocoding ObjGeocod=new Geocoding();
-	//		ArrayList<String> resultadoCI = null;
-	//		String direccion= "";
-	//		resultadoCI = ObjGeocod.getAddress(latitud,longitud);
-	//		direccion = resultadoCI.get(4).split(",")[0];
-	//
-	//		//		for(String dir:resultadoCI){
-	//		//			direccion += dir + "\n";
-	//		//		}
-	//		return direccion;
-	//	}
+	public static String getBarrio(Double latitud, Double longitud) throws UnsupportedEncodingException, MalformedURLException{
+		Geocoding ObjGeocod=new Geocoding();
+		ArrayList<String> resultadoCI = null;
+		String direccion= "";
+		resultadoCI = ObjGeocod.getAddress(latitud,longitud);
+		direccion = resultadoCI.get(4).split(",")[0];
+
+		//		for(String dir:resultadoCI){
+		//			direccion += dir + "\n";
+		//		}
+		return direccion;
+	}
 
 	public static String getDistanciasURL( String localizacion, ArrayList<Wifi> wifis){
 		String destinos = "";
