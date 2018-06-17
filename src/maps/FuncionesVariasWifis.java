@@ -44,10 +44,15 @@ public class FuncionesVariasWifis {
 	
 	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) {
 		
+		String origenS = origen.getDireccion();
+		origenS = origenS.replace(", ", ",");
+		origenS = origenS.replace(" ", "+");
+		String destinoS = origen.getDireccion();
+		destinoS = destinoS.replace(", ", ",");
+		destinoS = destinoS.replace(" ", "+");
 		
-		
-		String urlS = "https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=bicycling"
-		
+		String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
+		URL url
 		
 		
 		return url;
