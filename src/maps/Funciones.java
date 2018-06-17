@@ -39,33 +39,29 @@ public class Funciones {
 	//		}
 	//		return Address + ": " + resultadoCD.x + "," + resultadoCD.y;
 	//	}
-
-	public static double getLongitud(String sitio){
-		Geocoding ObjGeocod = new Geocoding();
-		Point2D.Double resultadoCD = null;
-
-		try {
-			resultadoCD = ObjGeocod.getCoordinates(sitio);
-
-
-		} catch (UnsupportedEncodingException | MalformedURLException e) {
-			e.printStackTrace();
-		}
-		return resultadoCD.y;
-	}
-
+	
 	public static double getLatitud(String sitio){
 		Geocoding ObjGeocod = new Geocoding();
 		Point2D.Double resultadoCD = null;
 
 		try {
 			resultadoCD = ObjGeocod.getCoordinates(sitio);
-
-
 		} catch (UnsupportedEncodingException | MalformedURLException e) {
 			e.printStackTrace();
 		}
 		return resultadoCD.x;
+	}
+	
+	public static double getLongitud(String sitio){
+		Geocoding ObjGeocod = new Geocoding();
+		Point2D.Double resultadoCD = null;
+
+		try {
+			resultadoCD = ObjGeocod.getCoordinates(sitio);
+		} catch (UnsupportedEncodingException | MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return resultadoCD.y;
 	}
 	
 	/*
@@ -125,7 +121,6 @@ public class Funciones {
 			try {
 				throw new InvalidNameException("Invalid direction: " + sitio, InvalidName );
 			} catch (InvalidNameException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

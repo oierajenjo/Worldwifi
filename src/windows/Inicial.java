@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -17,6 +19,7 @@ public class Inicial extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_DirUsuario;
 	private JTextField textField_DirValidacion;
+	private String ciudad;
 	
 	public Inicial() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,8 +83,16 @@ public class Inicial extends JFrame{
 				String dir = textField_DirUsuario.getText();
 				textField_DirValidacion.setText(Funciones.getDireccionConTexto(dir));
 				System.out.println(Funciones.getDireccionConTexto(dir));
-				btnAceptar.setEnabled(true);
-				
+				try {
+					ciudad = Funciones.getCiudad(dir);
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}
+				if (!textField_DirValidacion.getText().isEmpty()) {
+					btnAceptar.setEnabled(true);
+				}
 			}
 		});
 	}
