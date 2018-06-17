@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import BD.neo4j.Neo4j;
 import WiFi.Wifi;
@@ -31,14 +33,19 @@ public class VentanaDistanciaWifis extends JFrame {
 		String ciudad = Funciones.getCiudad(u.getDireccion());
 		wifiCercanas = Neo4j.conseguirWifis(ciudad);
 		ArrayList<Distance> arrayDistancias= FuncionesVariasWifis.getDistanciasTotalFromJson(new URL(Funciones.getDistanciasURL(Inicial.getTuUbicacion().getDireccion(), wifiCercanas)));
+		String[][] datos = null;
+		for (int i = 0; i < arrayDistancias.size(); i++) {
+			datos[i][0] = arrayDistancias.get(i).getDestino();
+			datos[i][1] = arrayDistancias.get(i).getkmTexto();
+			datos[i][2] = arrayDistancias.get(i).gettimeTexto();
+		}
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
+		String[] cols= {"Destino", "Tiempo", "Distancia"};
+		DefaultTableModel model = new DefaultTableModel(datos, cols);
+		JTable jTabla = new JTable(model);
+
 		
-		for (int i = 1; i <= arrayDistancias.size(); i++) {
-			arrayDistancias.get(i).getDestino();
-			arrayDistancias.get(i).getkmTexto();
-			arrayDistancias.get(i).gettimeTexto();
-		}
 		//		System.out.println(ciudad);
 		//		for (Wifi w : wifiCercanas){
 		//			ArrayList<Distance> distancias =  new ArrayList<>();
