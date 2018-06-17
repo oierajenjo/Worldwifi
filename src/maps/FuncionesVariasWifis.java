@@ -1,6 +1,7 @@
 package maps;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +43,7 @@ public class FuncionesVariasWifis {
 		return distancias;		
 	}
 	
-	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) {
+	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) throws MalformedURLException {
 		
 		String origenS = origen.getDireccion();
 		origenS = origenS.replace(", ", ",");
@@ -52,9 +53,7 @@ public class FuncionesVariasWifis {
 		destinoS = destinoS.replace(" ", "+");
 		
 		String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
-		URL url
-		
-		
+		URL url = new URL(urlS);
 		return url;
 	}
 	
