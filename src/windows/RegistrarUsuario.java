@@ -27,7 +27,7 @@ public class RegistrarUsuario extends JFrame{
 	private JTextField textField_Email;
 	private JTextField textField_Ciudad;
 	private JTextField textField_Twitter;
-	private JTextField textField_Facebook;
+//	private JTextField textField_Facebook;
 	public HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -64,13 +64,13 @@ public class RegistrarUsuario extends JFrame{
 				String email = textField_Email.getText();
 				String ciudad = textField_Ciudad.getText();
 				String twitter = textField_Twitter.getText();
-				String facebook = textField_Facebook.getText();
+//				String facebook = textField_Facebook.getText();
 				
 				String password = "";
 				for (char a : pass){
 					password += a;
 				}
-				Usuario u = new Usuario(user, password, nombre, apellidos, email, ciudad, twitter, facebook);
+				Usuario u = new Usuario(user, password, nombre, apellidos, email, ciudad, twitter);
 				grupoUsuarios.put(user, u);
 				usuarios.add(u);
 				Funciones.guardarFichero(usuarios);
@@ -112,9 +112,9 @@ public class RegistrarUsuario extends JFrame{
 		lblTwitter.setBounds(15, 232, 69, 20);
 		panel_1.add(lblTwitter);
 
-		JLabel lblFacebook = new JLabel("Facebook:");
-		lblFacebook.setBounds(15, 268, 84, 20);
-		panel_1.add(lblFacebook);
+//		JLabel lblFacebook = new JLabel("Facebook:");
+//		lblFacebook.setBounds(15, 268, 84, 20);
+//		panel_1.add(lblFacebook);
 
 		textField_Nick = new JTextField();
 		textField_Nick.setBounds(114, 10, 649, 26);
@@ -150,10 +150,10 @@ public class RegistrarUsuario extends JFrame{
 		panel_1.add(textField_Twitter);
 		textField_Twitter.setColumns(10);
 
-		textField_Facebook = new JTextField();
-		textField_Facebook.setBounds(114, 265, 649, 26);
-		panel_1.add(textField_Facebook);
-		textField_Facebook.setColumns(10);
+//		textField_Facebook = new JTextField();
+//		textField_Facebook.setBounds(114, 265, 649, 26);
+//		panel_1.add(textField_Facebook);
+//		textField_Facebook.setColumns(10);
 
 	}
 

@@ -36,7 +36,7 @@ public class Funciones {
 	public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
 	public static String readApiKey(String api) {
-		NodeList nList = DocumentReader.getDoc("config.xml").getElementsByTagName("maps");
+		NodeList nList = DocumentReader.getDoc("keys.xml").getElementsByTagName("maps");
 		Node nNode = nList.item(0);
 		Element eElement = (Element) nNode;
 		String key = eElement.getElementsByTagName(api).item(0).getTextContent();
@@ -338,7 +338,15 @@ public class Funciones {
 			String line = null;
 			while ((line = bf.readLine()) != null){
 				String[] parts = line.split("/;");
-				Usuario u = new Usuario (parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6], parts[7]);
+				Usuario u = new Usuario ();
+				u.setUser(parts[0]);
+				u.setPassword(parts[1]);
+				u.setNombre(parts[2]);
+				u.setApellidos(parts[3]);
+				u.setEmail(parts[4]);
+				u.setCiudad(parts[5]);
+				u.setTwitter(parts[6]);
+//				u.setFacebook(parts[7]);
 				System.out.println(parts[1].toString());
 				grupoUsuarios.put(u.getUser(), u);
 				usuarios.add(u);
