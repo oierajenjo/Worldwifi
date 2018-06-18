@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.json.JSONException;
 
 import maps.Funciones;
 import maps.Indicacion;
@@ -32,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 //import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -90,7 +92,7 @@ public class Ruta extends JFrame {
 			public void windowClosing(WindowEvent evt) {
 				try {
 					formWindowClosing(evt);
-				} catch (UnsupportedEncodingException | MalformedURLException e) {
+				} catch (JSONException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -153,7 +155,8 @@ public class Ruta extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				try {
 					volverVentanaInicial(evt);
-				} catch (UnsupportedEncodingException | MalformedURLException e) {
+				} catch (JSONException | IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -212,11 +215,11 @@ public class Ruta extends JFrame {
 
 
 
-	private void formWindowClosing(WindowEvent evt) throws UnsupportedEncodingException, MalformedURLException {
+	private void formWindowClosing(WindowEvent evt) throws JSONException, IOException {
 		this.cerrarVentana();
 	}
 
-	private void cerrarVentana() throws UnsupportedEncodingException, MalformedURLException{
+	private void cerrarVentana() throws JSONException, IOException{
 		if(flagVolver==true){
 			this.volver();
 		}else{
@@ -224,7 +227,7 @@ public class Ruta extends JFrame {
 		}
 	}
 
-	private void volver() throws UnsupportedEncodingException, MalformedURLException{
+	private void volver() throws JSONException, IOException{
 		this.setVisible(false);
 		VentanaDistanciaWifis v =new VentanaDistanciaWifis(u);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -265,7 +268,7 @@ public class Ruta extends JFrame {
 		} catch (Exception ex) {
 		}
 	}
-	private void volverVentanaInicial(ActionEvent evt) throws UnsupportedEncodingException, MalformedURLException {
+	private void volverVentanaInicial(ActionEvent evt) throws JSONException, IOException {
 		this.volver();
 	}
 

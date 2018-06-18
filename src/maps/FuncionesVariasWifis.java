@@ -26,14 +26,14 @@ public class FuncionesVariasWifis {
 			JSONArray arr_des = json.getJSONArray("destination_addresses");
 			JSONArray arr_ro = json.getJSONArray("rows");
 			JSONArray arr_dis = arr_ro.getJSONArray(0);
-//					getJSONArray("elements");
+			//					getJSONArray("elements");
 			for(int i = 0; i < arr_des.length(); i++) {
 				Distance distancia = new Distance(null, 0, 0, null, null);
 				distancia.setDestino(arr_des.get(i).toString());
 				distancia.setDis_m(arr_dis.getJSONObject(i).getJSONObject("distance").getInt("value"));
 				distancia.setDis_seg(arr_dis.getJSONObject(i).getJSONObject("duration").getInt("value"));
 				distancia.setkmTexto(arr_dis.getJSONObject(i).getJSONObject("distance").getString("text"));
-				distancia.settimeTexto(arr_dis.getJSONObject(i).getJSONObject("duration").getString("text"));
+				distancia.setTimeTexto(arr_dis.getJSONObject(i).getJSONObject("duration").getString("text"));
 				distancias.add(distancia);
 			}
 		} catch (JSONException e) {
@@ -44,58 +44,49 @@ public class FuncionesVariasWifis {
 		Collections.sort(distancias, Comparator.comparingInt(Distance::getDis_m));
 		return distancias;		
 	}
-	
-	
-	public static Distance getDistanciaTotalFromJson(URL url_dis) {
+
+
+	public static Distance getDistanciaTotalFromJson(URL url_dis) throws JSONException,IOException {
 		Distance distancia = new Distance();
-			try {
-				JSONObject json = Funciones.readJsonFromUrl(url_dis);
-				JSONArray arr_des = json.getJSONArray("destination_addresses");
-				JSONArray arr_ro = json.getJSONArray("rows");
-				JSONObject obj = new JSONObject();
-				JSONArray arr_dis = new JSONArray();
-				System.out.println(arr_ro.length());	
-				for(int i = 0; i < arr_ro.length() - 1; i++) {
-					obj = arr_ro.getJSONObject(i);
-					arr_dis = obj.getJSONArray("elements");
-				}
-				
-				//					getJSONArray("elements");
-				distancia.setDestino(arr_des.toString());
-				for(int i = 0; i < arr_des.length(); i++) {
-					distancia.setDestino(arr_des.get(i).toString());
-					distancia.setDis_m(arr_dis.getJSONObject(i).getJSONObject("distance").getInt("value"));
-					distancia.setDis_seg(arr_dis.getJSONObject(i).getJSONObject("duration").getInt("value"));
-					distancia.setkmTexto(arr_dis.getJSONObject(i).getJSONObject("distance").getString("text"));
-					distancia.settimeTexto(arr_dis.getJSONObject(i).getJSONObject("duration").getString("text"));
-				}
-//				distancia.setDis_m(arr_dis.getJSONObject(0).getJSONObject("distance").getInt("value"));
-//				distancia.setDis_seg(arr_dis.getJSONObject(0).getJSONObject("duration").getInt("value"));
-//				distancia.setkmTexto(arr_dis.getJSONObject(0).getJSONObject("distance").getString("text"));
-//				distancia.settimeTexto(arr_dis.getJSONObject(0).getJSONObject("duration").getString("text"));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		JSONObject json = Funciones.readJsonFromUrl(url_dis);
+		JSONArray arr_des = json.getJSONArray("destination_addresses");
+		JSONArray arr_ro = json.getJSONArray("rows");
+		JSONArray arr_dis = new JSONArray();
+		System.out.println(arr_ro.length());
+		arr_dis =	arr_ro.getJSONObject(0).getJSONArray("elements");
 
-			return distancia;		
-		}	
-		public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) throws MalformedURLException {
+		//					getJSONArray("elements");
+		distancia.setDestino(arr_des.toString());
+		//				for(int i = 0; i < arr_dis.length(); i++) {
+		distancia.setDestino(arr_des.get(0).toString());
+		//					distancia.setDis_m(arr_dis.getJSONObject(i).getJSONObject("distance").getInt("value"));
+		//					distancia.setDis_seg(arr_dis.getJSONObject(i).getJSONObject("duration").getInt("value"));
+		//					distancia.setkmTexto(arr_dis.getJSONObject(i).getJSONObject("distance").getString("text"));
+		//					distancia.settimeTexto(arr_dis.getJSONObject(i).getJSONObject("duration").getString("text"));
+		//				}
 
-			String origenS = origen.getDireccion();
-			origenS = origenS.replace(", ", ",");
-			origenS = origenS.replace(" ", "+");
-			String destinoS = origen.getDireccion();
-			destinoS = destinoS.replace(", ", ",");
-			destinoS = destinoS.replace(" ", "+");
+		distancia.setDis_m(arr_dis.getJSONObject(0).getJSONObject("distance").getInt("value"));
+		distancia.setDis_seg(arr_dis.getJSONObject(0).getJSONObject("duration").getInt("value"));
+		distancia.setkmTexto(arr_dis.getJSONObject(0).getJSONObject("distance").getString("text"));
+		distancia.setTimeTexto(arr_dis.getJSONObject(0).getJSONObject("duration").getString("text"));
+		System.out.println("");
 
-			String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
-			URL url = new URL(urlS);
-			return url;
-		}
-
-
+		return distancia;		
 	}
+
+	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) throws MalformedURLException {
+
+		String origenS = origen.getDireccion();
+		origenS = origenS.replace(", ", ",");
+		origenS = origenS.replace(" ", "+");
+		String destinoS = origen.getDireccion();
+		destinoS = destinoS.replace(", ", ",");
+		destinoS = destinoS.replace(" ", "+");
+
+		String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
+		URL url = new URL(urlS);
+		return url;
+	}
+
+
+}

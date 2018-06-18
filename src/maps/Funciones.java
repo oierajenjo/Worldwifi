@@ -162,7 +162,6 @@ public class Funciones {
 		try {
 			url = new URL(urlString);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return url;

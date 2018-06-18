@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.json.JSONException;
+
 import WiFi.Wifi;
 import maps.Distance;
 import maps.Funciones;
@@ -31,7 +34,7 @@ public class VentanaDistanciaWifis extends JFrame {
 	
 	
 	@SuppressWarnings("null")
-	public VentanaDistanciaWifis(Ubicacion u) throws UnsupportedEncodingException, MalformedURLException{
+	public VentanaDistanciaWifis(Ubicacion u) throws JSONException, IOException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel = new JPanel();
@@ -39,7 +42,7 @@ public class VentanaDistanciaWifis extends JFrame {
 		
 		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
 		wifisCercanas = Inicial.getListaWifis();
-		ArrayList<Distance> arrayDistancias = null;
+		ArrayList<Distance> arrayDistancias = new ArrayList<>();
 		for(Wifi wifi: wifisCercanas) {
 			System.out.println(wifi.toString());
 			URL url = Funciones.getDistanciaURL(u.getLatitud(), u.getLongitud(), wifi);
@@ -51,7 +54,7 @@ public class VentanaDistanciaWifis extends JFrame {
 		for (int i = 0; i < 10; i++) {
 			datos[i][0] = arrayDistancias.get(i).getDestino();
 			datos[i][1] = arrayDistancias.get(i).getkmTexto();
-			datos[i][2] = arrayDistancias.get(i).gettimeTexto();
+			datos[i][2] = arrayDistancias.get(i).getTimeTexto();
 		}
 		System.out.println(datos);
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia

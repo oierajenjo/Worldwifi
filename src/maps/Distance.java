@@ -39,10 +39,10 @@ public class Distance {
 	public void setDis_m(int dis_m) {
 		this.dis_m = dis_m;
 	}
-	public String gettimeTexto() {
+	public String getTimeTexto() {
 		return timeTexto;
 	}
-	public void settimeTexto(String timeTexto) {
+	public void setTimeTexto(String timeTexto) {
 		this.timeTexto = timeTexto;
 	}
 	public String getkmTexto() {

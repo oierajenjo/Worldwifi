@@ -3,9 +3,12 @@ package windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.json.JSONException;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 
@@ -39,6 +42,12 @@ public class VentanaSeleccion extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
