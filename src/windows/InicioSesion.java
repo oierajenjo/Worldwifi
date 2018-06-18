@@ -98,7 +98,7 @@ public class InicioSesion extends JFrame{
 		u.setEmail(email);
 		u.setCiudad(ciudad);
 		u.setTwitter(twitter);
-		u.setFacebook(facebook);
+//		u.setFacebook(facebook);
 	}
 	
 	public void primeraComprobacionInicioSesion(String nick, String password){

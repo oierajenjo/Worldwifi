@@ -48,7 +48,7 @@ public class VentanaDistanciaWifis extends JFrame {
 		}
 		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
 		
-		String[][] datos = new String[11][3];
+		String[][] datos = new String[10][3];
 		for (int i = 0; i < 10; i++) {
 			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
 			datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
@@ -85,16 +85,13 @@ public class VentanaDistanciaWifis extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Ubicacion u2 = new Ubicacion();
 				int i = jTabla.getSelectedRow();
-				String dir = (String) jTabla.getModel().getValueAt(i, 0);
-				u2.setDireccion(Funciones.getDireccionConTexto(dir));
-				double la = Funciones.getLatitud(dir);
-				double lo = Funciones.getLongitud(dir);
-				u2.setLatitud(la);
-				u2.setLongitud(lo);
-				Ruta v  = new Ruta(u, u2, true);
-				v.setVisible(true);
+				u2.setDireccion(arrayDistancias.get(i).destino);
+//				u2.setDireccion(Funciones.getDireccionConTexto(dir));
+				u2.setLatitud(Funciones.getLatitud(u2.getDireccion()));
+				u2.setLongitud(Funciones.getLongitud(u2.getDireccion()));
+				Ruta r  = new Ruta(u, u2, true);
+				r.setVisible(true);
 				dispose();
-				
 			}
 		});
 

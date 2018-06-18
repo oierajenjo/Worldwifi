@@ -346,7 +346,8 @@ public class Funciones {
 				u.setEmail(parts[4]);
 				u.setCiudad(parts[5]);
 				u.setTwitter(parts[6]);
-				u.setFacebook(parts[7]);
+//				u.setFacebook(parts[7]);
+
 				System.out.println(parts[1].toString());
 				grupoUsuarios.put(u.getUser(), u);
 				usuarios.add(u);

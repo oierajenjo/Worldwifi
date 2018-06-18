@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String ciudad;
 	private String twitter;
-	private String facebook;
+//	private String facebook;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -64,12 +64,12 @@ public class Usuario implements Serializable {
 	public void setTwitter(String twitter) {
 		this.twitter = twitter;
 	}
-	public String getFacebook() {
-		return facebook;
-	}
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
-	}
+//	public String getFacebook() {
+//		return facebook;
+//	}
+//	public void setFacebook(String facebook) {
+//		this.facebook = facebook;
+//	}
 //	public String getAmigoString() {
 //		String amigo = "";
 //		for (Usuario usuario: amigos) {
@@ -94,7 +94,7 @@ public class Usuario implements Serializable {
 	
 	
 	public Usuario(String user, String password, String nombre, String apellidos, String email,
-			String ciudad, String twitter, String facebook) {
+			String ciudad, String twitter) {
 		this.user = user;
 		this.password = password;
 		this.nombre = nombre;
@@ -102,7 +102,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.ciudad = ciudad;
 		this.twitter = twitter;
-		this.facebook = facebook;
+//		this.facebook = facebook;
 	}
 	
 	
@@ -112,8 +112,7 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return user + "/;" + password + "/;" + nombre
-				+ "/;" + apellidos + "/;" + email + "/;" + ciudad + "/;" + twitter
-				+ "/_;" + facebook + "/n";
+				+ "/;" + apellidos + "/;" + email + "/;" + ciudad + "/;" + twitter + "/n";
 	}
 	
 	

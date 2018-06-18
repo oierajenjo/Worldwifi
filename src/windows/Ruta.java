@@ -58,6 +58,7 @@ public class Ruta extends JFrame {
 	private Ubicacion u;
 
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada, Boolean botonVolver) { 
+		u = new Ubicacion();
 		u = uSalida;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializarComponentes();
