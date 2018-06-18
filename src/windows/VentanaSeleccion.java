@@ -39,16 +39,12 @@ public class VentanaSeleccion extends JFrame {
 						v.setVisible(true);
 						dispose();
 					} catch (UnsupportedEncodingException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (MalformedURLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (JSONException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
