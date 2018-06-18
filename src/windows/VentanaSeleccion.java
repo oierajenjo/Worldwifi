@@ -3,8 +3,6 @@ package windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ventanas.VentanaInicio;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +15,7 @@ public class VentanaSeleccion extends JFrame {
 	VentanaDistanciaWifis v;
 	private static final long serialVersionUID = 1L;
 
-	public VentanaSeleccion(Ubicacion u){
+	public VentanaSeleccion(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
 		
@@ -33,7 +31,7 @@ public class VentanaSeleccion extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					v = new VentanaDistanciaWifis(u);
+					v = new VentanaDistanciaWifis();
 				} catch (UnsupportedEncodingException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -54,7 +52,7 @@ public class VentanaSeleccion extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaTodasLasWifis v = new VentanaTodasLasWifis(u);
+				VentanaTodasLasWifis v = new VentanaTodasLasWifis(Inicial.getTuUbicacion());
 				v.setVisible(true);
 				dispose();
 				
