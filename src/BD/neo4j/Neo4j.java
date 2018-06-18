@@ -48,7 +48,7 @@ public class Neo4j {
 		}
 	}
 	/* Server Utility Methods */
-	private void readConfig() {
+ 	private void readConfig() {
 		NodeList nList = DocumentReader.getDoc("config.xml").getElementsByTagName("neo4j-server");
 		Node nNode = nList.item(0);
 		Element eElement = (Element) nNode;
@@ -154,25 +154,31 @@ public class Neo4j {
 
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Wifi> conseguirWifis(String ciudad){
+	public ArrayList<Wifi> conseguirWifis(String ciudad) {
 		ArrayList<Wifi> informacionWifis = new ArrayList();
-
-		StatementResult result = session.run("MATCH (c:Ciudad)-[:En]->(d:Distrito)-[:En]->(b:Barrio)-[:Tiene]->(w:Wifi)" +
-				"WHERE c.ci = '" + ciudad.toUpperCase()+"'" +
-				"RETURN w.id, w.la, w.lo"); //+
-		//								", w.x, w.y");
-		while (result.hasNext()) {
-			Wifi wifi = new Wifi();
-			Record record = result.next();
-			//			System.out.println(record.get("w.la").toString());
-			//			System.out.println(Double.parseDouble(record.get("w.la").toString().replace("\"", "").replaceAll(",", ".")));
-			wifi.setId(record.get("w.id").asString());
-			wifi.setLatitud(Double.parseDouble(record.get("w.la").toString().replace("\"", "").replaceAll(",", ".")));
-			wifi.setLongitud(Double.parseDouble(record.get("w.lo").toString().replace("\"", "").replaceAll(",", ".")));
-			//			wifi.setX(record.get("w.x").asLong());
-			//			wifi.setY(record.get("w.y").asLong());
-			informacionWifis.add(wifi);
+		try {
+			StatementResult result = session.run("MATCH (c:Ciudad)-[:En]->(d:Distrito)-[:En]->(b:Barrio)-[:Tiene]->(w:Wifi)" +
+					"WHERE c.ci = '" + ciudad.toUpperCase()+"'" +
+					"RETURN w.id, w.la, w.lo"); //+
+			//								", w.x, w.y");
+			while (result.hasNext()) {
+				Wifi wifi = new Wifi();
+				Record record = result.next();
+				//			System.out.println(record.get("w.la").toString());
+				//			System.out.println(Double.parseDouble(record.get("w.la").toString().replace("\"", "").replaceAll(",", ".")));
+				wifi.setId(record.get("w.id").asString());
+				wifi.setLatitud(Double.parseDouble(record.get("w.la").toString().replace("\"", "").replaceAll(",", ".")));
+				wifi.setLongitud(Double.parseDouble(record.get("w.lo").toString().replace("\"", "").replaceAll(",", ".")));
+				//			wifi.setX(record.get("w.x").asLong());
+				//			wifi.setY(record.get("w.y").asLong());
+				informacionWifis.add(wifi);
+				
+		} }catch (Exception e) {
+			System.out.println("La ciudad escogida no está disponible");
 		}
+		
+		
+		
 		return informacionWifis;
 	}
 }

@@ -96,6 +96,7 @@ public class Inicial extends JFrame{
 					System.out.println(ciudad);
 					TextField cargando = new TextField("Cargando...");
 					add(cargando);
+					cargando.setVisible(true);
 					Neo4j neo = new Neo4j();
 					setListaWifis(neo.conseguirWifis(ciudad));
 					cargando.setText("");
