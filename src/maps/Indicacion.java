@@ -9,6 +9,9 @@ public class Indicacion {
 	public String lo;
 	
 	
+	public Indicacion() {
+		super();
+	}
 	public Indicacion(String tiempo, String distancia, String descripcion, String la, String lo) {
 		super();
 		this.tiempo = tiempo;

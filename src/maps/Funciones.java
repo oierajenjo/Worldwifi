@@ -22,7 +22,8 @@ public class Funciones {
 	/*
 	 * Devuelve las coordenadas geográficas asociadas a la dirección postal enviada
 	 */
-	static String DIS_API_KEY = "AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0";
+	static String DIS_API_KEY = "AIzaSyCTVNxm5tt3YNfe2U5clUfr_RvKqEMlx-4";
+	
 	static String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
 
 
@@ -153,7 +154,20 @@ public class Funciones {
 		return direccion;
 	}
 
-	public static String getDistanciasURL( String localizacion, ArrayList<Wifi> wifis){
+	public static URL getDistanciaURL( Double lat_origen, Double lon_origen, Wifi wifi){
+		String destinos = wifi.getLatitud() + "%2C" + wifi.getLongitud();
+		String localizacion = lat_origen + "%2C" + lon_origen;
+		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
+		URL url = null;
+		try {
+			url = new URL(urlString);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}
+	public static URL getDistanciasURL( Double lat_origen, Double lon_origen, ArrayList<Wifi> wifis){
 		String destinos = "";
 		Double latitud = null;
 		Double longitud = null;
@@ -162,16 +176,22 @@ public class Funciones {
 			longitud = wifi.getLongitud();
 			destinos = destinos + latitud + "%2C" + longitud;
 			//			for (int i = 0; i < wifis.size(); i++) {
-			destinos = destinos + "%7C";
+			if(wifis.get(wifis.size()-1) != wifi) {
+				destinos = destinos + "%7C";
+			}
 			//			}
 		}
-		localizacion = localizacion.replace(", ", ",");
-		localizacion = localizacion.replace(" ", "+");
-		String URL_DIST = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
-
-		return URL_DIST;
+		String localizacion = lat_origen + "%2C" + lon_origen + "%7C";
+		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
+		URL url = null;
+		try {
+			url = new URL(urlString);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
 	}
-
 	//	Saca una json de la url
 	public static JSONObject readJsonFromUrl(URL url) throws IOException, JSONException {
 		InputStream is = url.openStream();
@@ -201,7 +221,12 @@ public class Funciones {
 		try {
 			String[][] resultado = ObjRout.getRoute(origen, destino, null, Boolean.TRUE, Route.mode.walking, Route.avoids.nothing);
 			for(int i=0; i<resultado.length; i++){
-				Indicacion indicacion = new Indicacion(resultado[i][0], resultado[i][1], resultado[i][2], resultado[i][3], resultado[i][4]);
+				Indicacion indicacion = new Indicacion();
+				indicacion.setTiempo(resultado[i][0]);
+				indicacion.setDistancia(resultado[i][1]);
+				indicacion.setDescripcion(resultado[i][2]);
+				indicacion.setLa(resultado[i][3]);
+				indicacion.setLo(resultado[i][4]);
 				indicaciones.add(indicacion);
 			}
 			return indicaciones;

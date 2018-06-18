@@ -55,12 +55,7 @@ public class VentanaTodasLasWifis extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				NodeList nList = null;
-				try {
-					nList = DocumentReader.getDoc("mapas.xml").getElementsByTagName(Funciones.getCiudad(u.getDireccion()));
-				} catch (UnsupportedEncodingException | MalformedURLException e2) {
-					e2.printStackTrace();
-				}
+				NodeList nList = DocumentReader.getDoc("mapas.xml").getElementsByTagName(Inicial.getCiudad());
 				Node nNode = nList.item(0);
 				Element eElement = (Element) nNode;
 				String direccionMapa = eElement.getElementsByTagName("url").item(0).getTextContent();

@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,14 +34,21 @@ public class VentanaDistanciaWifis extends JFrame {
 		
 		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
 		wifisCercanas = Inicial.getListaWifis();
-		ArrayList<Distance> arrayDistancias= FuncionesVariasWifis.getDistanciasTotalFromJson(new URL(Funciones.getDistanciasURL(Inicial.getTuUbicacion().getDireccion(), wifisCercanas)));
+		ArrayList<Distance> arrayDistancias = null;
+		for(Wifi wifi: wifisCercanas) {
+			System.out.println(wifi.toString());
+			URL url = Funciones.getDistanciaURL(u.getLatitud(), u.getLongitud(), wifi);
+			Distance distancia = FuncionesVariasWifis.getDistanciaTotalFromJson(url);
+			arrayDistancias.add(distancia);
+		}
+		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
 		String[][] datos = null;
 		for (int i = 0; i < 10; i++) {
-			datos[i][0] = arrayDistancias.get(i).getDestino();
-			datos[i][1] = arrayDistancias.get(i).getkmTexto();
-			datos[i][2] = arrayDistancias.get(i).gettimeTexto();
+			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
+			datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
+			datos[i][2] = arrayDistancias.get(i).gettimeTexto().toString();
 		}
-		
+		System.out.println(datos);
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
 		String[] cols= {"Destino", "Tiempo", "Distancia"};

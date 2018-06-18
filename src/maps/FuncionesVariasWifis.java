@@ -17,11 +17,11 @@ import windows.Ubicacion;
 
 public class FuncionesVariasWifis {
 
-//	https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins=40.6655101,-73.89188969999998&destinations=40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626&key=AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0
+	//	https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins=40.6655101,-73.89188969999998&destinations=40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626&key=AIzaSyBYkY-T5vBk-1uvs8lSrOuXNcqrjID65H0
 	public static ArrayList<Distance> getDistanciasTotalFromJson(URL url_dis) {
 		ArrayList<Distance> distancias = new ArrayList<Distance>();
 		try {
-			
+
 			JSONObject json = Funciones.readJsonFromUrl(url_dis);
 			JSONArray arr_des = json.getJSONArray("destination_addresses");
 			JSONArray arr_dis = json.getJSONArray("elements");
@@ -42,20 +42,38 @@ public class FuncionesVariasWifis {
 		Collections.sort(distancias, Comparator.comparingInt(Distance::getDis_m));
 		return distancias;		
 	}
-	
-	public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) throws MalformedURLException {
-		
-		String origenS = origen.getDireccion();
-		origenS = origenS.replace(", ", ",");
-		origenS = origenS.replace(" ", "+");
-		String destinoS = origen.getDireccion();
-		destinoS = destinoS.replace(", ", ",");
-		destinoS = destinoS.replace(" ", "+");
-		
-		String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
-		URL url = new URL(urlS);
-		return url;
+	public static Distance getDistanciaTotalFromJson(URL url_dis) {
+		Distance distancia = new Distance();
+			try {
+				JSONObject json = Funciones.readJsonFromUrl(url_dis);
+				distancia.setDestino(json.getJSONObject("destination_addresses").toString());
+				distancia.setDis_m(json.getJSONObject("elements").getJSONObject("distance").getInt("value"));
+				distancia.setDis_seg(json.getJSONObject("elements").getJSONObject("duration").getInt("value"));
+				distancia.setkmTexto(json.getJSONObject("elements").getJSONObject("distance").getString("text"));
+				distancia.settimeTexto(json.getJSONObject("elements").getJSONObject("duration").getString("text"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return distancia;		
+		}	
+		public static URL getURLIndicacion (Ubicacion origen, Ubicacion destino) throws MalformedURLException {
+
+			String origenS = origen.getDireccion();
+			origenS = origenS.replace(", ", ",");
+			origenS = origenS.replace(" ", "+");
+			String destinoS = origen.getDireccion();
+			destinoS = destinoS.replace(", ", ",");
+			destinoS = destinoS.replace(" ", "+");
+
+			String urlS = "https://www.google.com/maps/dir/?api=1&origin="+ origenS +"&destination=" + destinoS +"&travelmode=walking";
+			URL url = new URL(urlS);
+			return url;
+		}
+
+
 	}
-	
-	
-}

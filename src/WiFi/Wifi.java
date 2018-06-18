@@ -6,21 +6,17 @@ public class Wifi {
 	protected String id;
 	protected Double latitud;
 	protected Double longitud;
-	protected Long x;
-	protected Long y;
 	
 	
 	public Wifi() {
 		super();
 	}
 	
-	public Wifi(String id, Double latitud, Double longitud, Long x, Long y) {
+	public Wifi(String id, Double latitud, Double longitud) {
 		super();
 		this.id = id;
 		this.latitud = latitud;
 		this.longitud = longitud;
-		this.x = x;
-		this.y = y;
 	}
 
 	public String getId() {
@@ -47,27 +43,12 @@ public class Wifi {
 		this.longitud = longitud;
 	}
 
-	public Long getX() {
-		return x;
-	}
-
-	public void setX(Long x) {
-		this.x = x;
-	}
-
-	public Long getY() {
-		return y;
-	}
-
-	public void setY(Long y) {
-		this.y = y;
-	}
-
 	@Override
 	public String toString() {
-		
-		return "";
+		return "Wifi [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + "]";
 	}
+
+
 
 
 }

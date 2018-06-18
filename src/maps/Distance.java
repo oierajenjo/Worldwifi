@@ -17,6 +17,10 @@ public class Distance {
 		this.kmTexto = kmTexto;
 	}
 	
+	public Distance() {
+		super();
+	}
+
 	public String getDestino() {
 		return destino;
 	}
