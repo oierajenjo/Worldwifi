@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import BD.neo4j.Neo4j;
 import WiFi.Wifi;
 import maps.Distance;
 import maps.Funciones;
@@ -24,20 +23,23 @@ public class VentanaDistanciaWifis extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public VentanaDistanciaWifis(Ubicacion u) throws UnsupportedEncodingException, MalformedURLException{
+	@SuppressWarnings("null")
+	public VentanaDistanciaWifis() throws UnsupportedEncodingException, MalformedURLException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		ArrayList<Wifi> wifiCercanas = new ArrayList<>();
-		wifiCercanas = Inicial.getListaWifis();
-		ArrayList<Distance> arrayDistancias= FuncionesVariasWifis.getDistanciasTotalFromJson(new URL(Funciones.getDistanciasURL(Inicial.getTuUbicacion().getDireccion(), wifiCercanas)));
+		
+		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
+		wifisCercanas = Inicial.getListaWifis();
+		ArrayList<Distance> arrayDistancias= FuncionesVariasWifis.getDistanciasTotalFromJson(new URL(Funciones.getDistanciasURL(Inicial.getTuUbicacion().getDireccion(), wifisCercanas)));
 		String[][] datos = null;
-		for (int i = 0; i < arrayDistancias.size(); i++) {
+		for (int i = 0; i < 10; i++) {
 			datos[i][0] = arrayDistancias.get(i).getDestino();
 			datos[i][1] = arrayDistancias.get(i).getkmTexto();
 			datos[i][2] = arrayDistancias.get(i).gettimeTexto();
 		}
+		
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
 		String[] cols= {"Destino", "Tiempo", "Distancia"};
@@ -75,7 +77,7 @@ public class VentanaDistanciaWifis extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSeleccion v = new VentanaSeleccion(u);
+				VentanaSeleccion v = new VentanaSeleccion();
 				v.setVisible(true);
 				dispose();
 
