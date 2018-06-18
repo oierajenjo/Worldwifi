@@ -15,7 +15,7 @@ public class VentanaSeleccion extends JFrame {
 	VentanaDistanciaWifis v;
 	private static final long serialVersionUID = 1L;
 
-	public VentanaSeleccion(){
+	public VentanaSeleccion(Ubicacion u){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
 		
@@ -31,7 +31,7 @@ public class VentanaSeleccion extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					v = new VentanaDistanciaWifis();
+					v = new VentanaDistanciaWifis(u);
 				} catch (UnsupportedEncodingException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

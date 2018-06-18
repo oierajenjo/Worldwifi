@@ -50,8 +50,10 @@ public class Ruta extends JFrame {
 	private Route ObjRuta = new Route();
 	private String[][] datosRuta;
 	private javax.swing.JLabel label_Mapa;
+	private Ubicacion u;
 
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada, Boolean botonVolver) { 
+		u = uSalida;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		inicializarComponentes();
 		this.flagVolver=botonVolver;
@@ -83,7 +85,12 @@ public class Ruta extends JFrame {
 		setType(java.awt.Window.Type.UTILITY);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-				formWindowClosing(evt);
+				try {
+					formWindowClosing(evt);
+				} catch (UnsupportedEncodingException | MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -139,7 +146,12 @@ public class Ruta extends JFrame {
 		button_Volver.setText("Volver");
 		button_Volver.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				volverVentanaInicial(evt);
+				try {
+					volverVentanaInicial(evt);
+				} catch (UnsupportedEncodingException | MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -197,11 +209,11 @@ public class Ruta extends JFrame {
 
 
 
-	private void formWindowClosing(WindowEvent evt) {
+	private void formWindowClosing(WindowEvent evt) throws UnsupportedEncodingException, MalformedURLException {
 		this.cerrarVentana();
 	}
 
-	private void cerrarVentana(){
+	private void cerrarVentana() throws UnsupportedEncodingException, MalformedURLException{
 		if(flagVolver==true){
 			this.volver();
 		}else{
@@ -209,13 +221,13 @@ public class Ruta extends JFrame {
 		}
 	}
 
-	private void volver(){
+	private void volver() throws UnsupportedEncodingException, MalformedURLException{
 		this.setVisible(false);
-		Inicial inicial =new Inicial();
+		VentanaDistanciaWifis v =new VentanaDistanciaWifis(u);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		inicial.setLocation((d.width/2)-(inicial.getWidth()/2), (d.height/2)-(inicial.getHeight()/2));
-		inicial.setSize(new Dimension(400, 350));
-		inicial.setVisible(true);
+		v.setLocation((d.width/2)-(v.getWidth()/2), (d.height/2)-(v.getHeight()/2));
+		v.setSize(new Dimension(400, 350));
+		v.setVisible(true);
 	}
 
 
@@ -248,7 +260,7 @@ public class Ruta extends JFrame {
 		} catch (Exception ex) {
 		}
 	}
-	private void volverVentanaInicial(ActionEvent evt) {
+	private void volverVentanaInicial(ActionEvent evt) throws UnsupportedEncodingException, MalformedURLException {
 		this.volver();
 	}
 

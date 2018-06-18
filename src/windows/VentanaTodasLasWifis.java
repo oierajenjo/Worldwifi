@@ -31,7 +31,7 @@ public class VentanaTodasLasWifis extends JFrame{
 		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSeleccion v = new VentanaSeleccion();
+				VentanaSeleccion v = new VentanaSeleccion(u);
 				v.setVisible(true);
 				dispose();
 

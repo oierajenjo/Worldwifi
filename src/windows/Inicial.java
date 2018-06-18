@@ -70,7 +70,7 @@ public class Inicial extends JFrame{
 				lo = Funciones.getLongitud(dir);
 				u.setLatitud(la);
 				u.setLongitud(lo);
-				VentanaSeleccion v = new VentanaSeleccion();
+				VentanaSeleccion v = new VentanaSeleccion(u);
 				v.setVisible(true);
 				dispose();
 

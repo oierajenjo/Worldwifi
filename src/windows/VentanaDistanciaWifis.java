@@ -24,7 +24,7 @@ public class VentanaDistanciaWifis extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("null")
-	public VentanaDistanciaWifis() throws UnsupportedEncodingException, MalformedURLException{
+	public VentanaDistanciaWifis(Ubicacion u) throws UnsupportedEncodingException, MalformedURLException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -66,7 +66,17 @@ public class VentanaDistanciaWifis extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Ubicacion u2 = new Ubicacion();
+				int i = jTabla.getSelectedRow();
+				String dir = (String) jTabla.getModel().getValueAt(i, 0);
+				u2.setDireccion(Funciones.getDireccionConTexto(dir));
+				double la = Funciones.getLatitud(dir);
+				double lo = Funciones.getLongitud(dir);
+				u2.setLatitud(la);
+				u2.setLongitud(lo);
+				Ruta v  = new Ruta(u, u2, true);
+				v.setVisible(true);
+				dispose();
 				
 			}
 		});
@@ -77,7 +87,7 @@ public class VentanaDistanciaWifis extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSeleccion v = new VentanaSeleccion();
+				VentanaSeleccion v = new VentanaSeleccion(u);
 				v.setVisible(true);
 				dispose();
 
