@@ -154,7 +154,6 @@ public class Ruta extends JFrame {
 				try {
 					volverVentanaInicial(evt);
 				} catch (UnsupportedEncodingException | MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

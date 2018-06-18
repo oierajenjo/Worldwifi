@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import WiFi.Wifi;
 import maps.Distance;
@@ -25,12 +26,15 @@ import maps.FuncionesVariasWifis;
 public class VentanaDistanciaWifis extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	private JTable jTabla;
+	private JPanel panel;
+	
+	
 	@SuppressWarnings("null")
 	public VentanaDistanciaWifis(Ubicacion u) throws UnsupportedEncodingException, MalformedURLException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
@@ -45,16 +49,15 @@ public class VentanaDistanciaWifis extends JFrame {
 		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
 		String[][] datos = null;
 		for (int i = 0; i < 10; i++) {
-			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
-			datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
-			datos[i][2] = arrayDistancias.get(i).gettimeTexto().toString();
+			datos[i][0] = arrayDistancias.get(i).getDestino();
+			datos[i][1] = arrayDistancias.get(i).getkmTexto();
+			datos[i][2] = arrayDistancias.get(i).gettimeTexto();
 		}
 		System.out.println(datos);
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
-		String[] cols= {"Destino", "Tiempo", "Distancia"};
-		DefaultTableModel model = new DefaultTableModel(datos, cols);
-		JTable jTabla = new JTable(model);
+		
+		dibujarTabla(datos);
 		panel.add(jTabla);
 		
 		//		System.out.println(ciudad);
@@ -107,6 +110,12 @@ public class VentanaDistanciaWifis extends JFrame {
 			}
 		});
 
+
+	}
+	private void dibujarTabla(String[][] datosRuta) {
+		String[] cols= {"Destino", "Tiempo", "Distancia"};
+		TableModel tableModel=new DefaultTableModel(datosRuta, cols);
+		this.jTabla.setModel(tableModel);
 
 	}
 

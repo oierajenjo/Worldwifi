@@ -8,11 +8,7 @@ import org.w3c.dom.NodeList;
 
 import Comun.DocumentReader;
 import WiFi.Wifi;
-import Comun.DateUtils;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import static org.neo4j.driver.v1.Values.parameters;
 
 public class Neo4j {
