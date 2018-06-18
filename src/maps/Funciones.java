@@ -10,12 +10,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import org.json.*;
 
-
+import Comun.FicheroErrorException;
 import Comun.InvalidNameException;
 import WiFi.Wifi;
 import maps.java.*;
+import usuario.Usuario;
 
 
 public class Funciones {
@@ -25,7 +29,8 @@ public class Funciones {
 	static String DIS_API_KEY = "AIzaSyCTVNxm5tt3YNfe2U5clUfr_RvKqEMlx-4";
 	
 	static String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
-
+	public static HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
+	public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
 	//	public static String getCoordenadas(String sitio){
 	//		Geocoding ObjGeocod = new Geocoding();
@@ -296,6 +301,47 @@ public class Funciones {
 	//        Response response = client.newCall(request).execute();
 	//        return response.body().string();
 	//      }
+	public static HashMap<String, Usuario> leerFichero(){
+		try{
+			FileReader fr = new FileReader("UsuariosCreados.txt");
+			BufferedReader bf = new BufferedReader(fr);
+			String line = null;
+			while ((line = bf.readLine()) != null){
+				String[] parts = line.split("/_;");
+				Usuario u = new Usuario (parts[0], parts[1], parts[2],parts[3],parts[4],parts[5],parts[6], parts[7]);
+				System.out.println(parts[1].toString());
+				grupoUsuarios.put(u.getUser(), u);
+				usuarios.add(u);
+			}
+			bf.close();
+			fr.close();
+
+		}catch (IOException FileNotFound){
+			throw new FicheroErrorException("Fichero no encontrado", FileNotFound);
+		}
+		return grupoUsuarios;
+
+	}
+	
+	public static void guardarFichero(ArrayList<Usuario> usuarios){
+		try {
+			FileWriter fw = new FileWriter("UsuariosCreados.txt");
+			BufferedWriter bw = new BufferedWriter(fw);
+			Iterator<Usuario> it = usuarios.iterator();
+			
+			while(it.hasNext()){
+				Usuario u = it.next();
+				bw.write(u.toString());
+			}
+			bw.close();
+			fw.close();
+			
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
 
 
 	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException {

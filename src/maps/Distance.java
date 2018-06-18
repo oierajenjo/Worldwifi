@@ -57,6 +57,8 @@ public class Distance {
 		return "Distance [destino=" + destino + ", segundos=" + dis_seg + ", metros=" + dis_m + ", String tiempo="
 				+ timeTexto + ", String distanica=" + kmTexto + "]";
 	}
+
+
 	
 	
 }

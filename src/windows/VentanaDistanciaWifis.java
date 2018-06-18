@@ -5,8 +5,6 @@ import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,7 +31,6 @@ public class VentanaDistanciaWifis extends JFrame {
 	private JPanel panel;
 	
 	
-	@SuppressWarnings("null")
 	public VentanaDistanciaWifis(Ubicacion u) throws JSONException, IOException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -50,11 +47,12 @@ public class VentanaDistanciaWifis extends JFrame {
 			arrayDistancias.add(distancia);
 		}
 		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
-		String[][] datos = null;
+		
+		String[][] datos = new String[11][3];
 		for (int i = 0; i < 10; i++) {
-			datos[i][0] = arrayDistancias.get(i).getDestino();
-			datos[i][1] = arrayDistancias.get(i).getkmTexto();
-			datos[i][2] = arrayDistancias.get(i).getTimeTexto();
+			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
+			datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
+			datos[i][2] = arrayDistancias.get(i).getTimeTexto().toString();
 		}
 		System.out.println(datos);
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
@@ -116,10 +114,11 @@ public class VentanaDistanciaWifis extends JFrame {
 
 	}
 	private void dibujarTabla(String[][] datosRuta) {
-		String[] cols= {"Destino", "Tiempo", "Distancia"};
-		TableModel tableModel=new DefaultTableModel(datosRuta, cols);
+		jTabla = new JTable();
+		String[] cols= new String[]{"Destino", "Tiempo", "Distancia"};
+		TableModel tableModel = new DefaultTableModel(datosRuta, cols);
 		this.jTabla.setModel(tableModel);
 
 	}
-
+	
 }
