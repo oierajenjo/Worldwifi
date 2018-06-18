@@ -8,7 +8,12 @@ public class Wifi {
 	protected Double longitud;
 	protected Long x;
 	protected Long y;
-
+	
+	
+	public Wifi() {
+		super();
+	}
+	
 	public Wifi(String id, Double latitud, Double longitud, Long x, Long y) {
 		super();
 		this.id = id;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<neo4j-server>
-		<server_address>bolt://localhost:7474</server_address>
+		<server_address>bolt://localhost:7687</server_address>
 		<username>oier</username>
 		<password>ajenjo</password>
 	</neo4j-server>

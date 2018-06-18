@@ -30,8 +30,7 @@ public class VentanaDistanciaWifis extends JFrame {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		ArrayList<Wifi> wifiCercanas = new ArrayList<>();
-		String ciudad = Funciones.getCiudad(u.getDireccion());
-		wifiCercanas = Neo4j.conseguirWifis(ciudad);
+		wifiCercanas = Inicial.getListaWifis();
 		ArrayList<Distance> arrayDistancias= FuncionesVariasWifis.getDistanciasTotalFromJson(new URL(Funciones.getDistanciasURL(Inicial.getTuUbicacion().getDireccion(), wifiCercanas)));
 		String[][] datos = null;
 		for (int i = 0; i < arrayDistancias.size(); i++) {
@@ -44,7 +43,7 @@ public class VentanaDistanciaWifis extends JFrame {
 		String[] cols= {"Destino", "Tiempo", "Distancia"};
 		DefaultTableModel model = new DefaultTableModel(datos, cols);
 		JTable jTabla = new JTable(model);
-
+		panel.add(jTabla);
 		
 		//		System.out.println(ciudad);
 		//		for (Wifi w : wifiCercanas){
@@ -63,11 +62,10 @@ public class VentanaDistanciaWifis extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
+				
+				
 			}
 		});
 
