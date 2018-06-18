@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import WiFi.Wifi;
@@ -69,7 +70,10 @@ public class VentanaDistanciaWifis extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
-
+		
+		jTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jTabla.setRowSelectionInterval(0, 0);
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 		btnAceptar.addActionListener(new ActionListener() {
