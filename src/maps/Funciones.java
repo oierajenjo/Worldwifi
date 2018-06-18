@@ -337,8 +337,8 @@ public class Funciones {
 			BufferedReader bf = new BufferedReader(fr);
 			String line = null;
 			while ((line = bf.readLine()) != null){
-				String[] parts = line.split("/_;");
-				Usuario u = new Usuario (parts[0], parts[1], parts[2],parts[3],parts[4],parts[5],parts[6], parts[7]);
+				String[] parts = line.split("/;");
+				Usuario u = new Usuario (parts[0], parts[1], parts[2], parts[3],parts[4],parts[5],parts[6], parts[7]);
 				System.out.println(parts[1].toString());
 				grupoUsuarios.put(u.getUser(), u);
 				usuarios.add(u);
@@ -358,7 +358,6 @@ public class Funciones {
 			FileWriter fw = new FileWriter("UsuariosCreados.txt");
 			BufferedWriter bw = new BufferedWriter(fw);
 			Iterator<Usuario> it = usuarios.iterator();
-			
 			while(it.hasNext()){
 				Usuario u = it.next();
 				bw.write(u.toString());
@@ -367,7 +366,6 @@ public class Funciones {
 			fw.close();
 			
 		} catch (IOException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
