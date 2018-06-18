@@ -92,6 +92,7 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
+	
 	public Usuario(String user, String password, String nombre, String apellidos, String email,
 			String ciudad, String twitter, String facebook) {
 		this.user = user;
@@ -105,6 +106,9 @@ public class Usuario implements Serializable {
 	}
 	
 	
+	public Usuario() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return user + "/;" + password + "/;" + nombre
