@@ -1,21 +1,14 @@
 package windows;
 
 import javax.swing.JFrame;
-import Comun.FicheroErrorException;
-
+import maps.Funciones;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,6 +18,7 @@ import usuario.Usuario;
 
 import javax.swing.JPasswordField;
 
+@SuppressWarnings("serial")
 public class RegistrarUsuario extends JFrame{
 	private JTextField textField_Nick;
 	private JPasswordField passwordField;
@@ -34,7 +28,8 @@ public class RegistrarUsuario extends JFrame{
 	private JTextField textField_Ciudad;
 	private JTextField textField_Twitter;
 	private JTextField textField_Facebook;
-	public static HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
+	public HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
+	public ArrayList<Usuario> usuarios = new ArrayList<>();
 
 	public RegistrarUsuario() {
 		setSize (800, 400);
@@ -45,9 +40,45 @@ public class RegistrarUsuario extends JFrame{
 
 		JButton btnCancelar = new JButton("Cancelar");
 		panel.add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InicioSesion v = new InicioSesion();
+				v.setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		JButton btnAceptar = new JButton("Aceptar");
 		panel.add(btnAceptar);
+		btnAceptar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String user =  textField_Nick.getText();
+				char[] pass = passwordField.getPassword();
+				String nombre = textField_Nombre.getText();
+				String apellidos = textField_Apellido.getText();
+				String email = textField_Email.getText();
+				String ciudad = textField_Ciudad.getText();
+				String twitter = textField_Twitter.getText();
+				String facebook = textField_Facebook.getText();
+				
+				String password = "";
+				for (char a : pass){
+					password += a;
+				}
+				Usuario u = new Usuario(user, password, nombre, apellidos, email, ciudad, twitter, facebook);
+				grupoUsuarios.put(user, u);
+				usuarios.add(u);
+				Funciones.guardarFichero(usuarios);
+				InicioSesion v = new InicioSesion();
+				v.setVisible(true);
+				dispose();
+			}
+		});
 
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
@@ -126,47 +157,7 @@ public class RegistrarUsuario extends JFrame{
 
 	}
 
-	public ArrayList<Usuario> leerFichero(){
-		try{
-			FileReader fr = new FileReader("Usuarios.txt");
-			BufferedReader bf = new BufferedReader(fr);
-			String line = null;
-			while ((line = bf.readLine()) != null){
-				String[] parts = line.split("/_\\;");
-				char[] pass = parts[1].toCharArray();
-				int numero = Integer.parseInt(parts[2]);
-				Usuario u = new Usuario (parts[0], pass, parts[2],parts[3],parts[4],parts[5],parts[6], parts[7]);
-				grupoUsuarios.put(u.getUser(), u);
-			}
-			bf.close();
-			fr.close();
-
-		}catch (IOException FileNotFound){
-			throw new FicheroErrorException("Fichero no encontrado", FileNotFound);
-		}
-		return null;
-
-	}
-	
-	public static void guardarFichero(){
-		try {
-			FileWriter fw = new FileWriter("Usuarios.txt");
-			BufferedWriter bw = new BufferedWriter(fw);
-			Iterator<Usuario> it = ((List<Usuario>) grupoUsuarios).iterator();
-			
-			while(it.hasNext()){
-				Usuario u = it.next();
-				bw.write(u.toString());
-			}
-			bw.close();
-			fw.close();
-			
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
-	
+		
 
 
 }

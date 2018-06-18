@@ -1,7 +1,6 @@
 package usuario;
 
 import java.io.Serializable;
-import java.util.*;
 
 
 
@@ -11,7 +10,7 @@ public class Usuario implements Serializable {
 
 	
 	private String user;
-	private char[] password;
+	private String password;
 	private String nombre;
 	private String apellidos;
 	private String email;
@@ -28,10 +27,11 @@ public class Usuario implements Serializable {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	public char[] getPassword() {
+	
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(char[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getNombre() {
@@ -92,7 +92,7 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
-	public Usuario(String user, char[] password, String nombre, String apellidos, String email,
+	public Usuario(String user, String password, String nombre, String apellidos, String email,
 			String ciudad, String twitter, String facebook) {
 		this.user = user;
 		this.password = password;
@@ -104,11 +104,12 @@ public class Usuario implements Serializable {
 		this.facebook = facebook;
 	}
 	
+	
 	@Override
 	public String toString() {
-		return user + "/_\\;" + Arrays.toString(password) + "/_\\;" + nombre
-				+ "/_\\;" + apellidos + "/_\\;" + email + "/_\\;" + ciudad + "/_\\;" + twitter
-				+ "/_\\;" + facebook + "/n";
+		return user + "/;" + password + "/;" + nombre
+				+ "/;" + apellidos + "/;" + email + "/;" + ciudad + "/;" + twitter
+				+ "/_;" + facebook + "/n";
 	}
 	
 	

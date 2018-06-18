@@ -14,7 +14,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import org.json.*;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import Comun.DocumentReader;
 import Comun.FicheroErrorException;
 import Comun.InvalidNameException;
 import WiFi.Wifi;
@@ -26,11 +30,36 @@ public class Funciones {
 	/*
 	 * Devuelve las coordenadas geográficas asociadas a la dirección postal enviada
 	 */
-	static String DIS_API_KEY = "AIzaSyCTVNxm5tt3YNfe2U5clUfr_RvKqEMlx-4";
-	
-	static String DIR_API_KEY = "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
+	static String DIS_API_KEY; //= "AIzaSyCTVNxm5tt3YNfe2U5clUfr_RvKqEMlx-4";
+	static String DIR_API_KEY; //= "AIzaSyAyjcqYWIWpMqAjqedZbrOO70Wb96B-Z2Y";
 	public static HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
 	public static ArrayList<Usuario> usuarios = new ArrayList<>();
+
+	public static String readApiKey(String api) {
+		NodeList nList = DocumentReader.getDoc("config.xml").getElementsByTagName("maps");
+		Node nNode = nList.item(0);
+		Element eElement = (Element) nNode;
+		String key = eElement.getElementsByTagName(api).item(0).getTextContent();
+		return key;	
+	}
+	
+	public static String getDIS_API_KEY() {
+		return DIS_API_KEY;
+	}
+
+	public static void setDIS_API_KEY(String dIS_API_KEY) {
+		DIS_API_KEY = dIS_API_KEY;
+	}
+
+	public static String getDIR_API_KEY() {
+		return DIR_API_KEY;
+	}
+
+	public static void setDIR_API_KEY(String dIR_API_KEY) {
+		
+		DIR_API_KEY = dIR_API_KEY;
+	}
+	
 
 	//	public static String getCoordenadas(String sitio){
 	//		Geocoding ObjGeocod = new Geocoding();
@@ -46,6 +75,7 @@ public class Funciones {
 	//		return Address + ": " + resultadoCD.x + "," + resultadoCD.y;
 	//	}
 	
+
 	public static double getLatitud(String sitio){
 		Geocoding ObjGeocod = new Geocoding();
 		Point2D.Double resultadoCD = null;
@@ -162,7 +192,7 @@ public class Funciones {
 	public static URL getDistanciaURL( Double lat_origen, Double lon_origen, Wifi wifi){
 		String destinos = wifi.getLatitud() + "%2C" + wifi.getLongitud();
 		String localizacion = lat_origen + "%2C" + lon_origen;
-		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
+		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + readApiKey("DIS_API_KEY");
 		URL url = null;
 		try {
 			url = new URL(urlString);
@@ -186,7 +216,7 @@ public class Funciones {
 			//			}
 		}
 		String localizacion = lat_origen + "%2C" + lon_origen + "%7C";
-		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + DIS_API_KEY;
+		String urlString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&mode=walking&origins="+ localizacion + "&destinations=" + destinos + "&key=" + readApiKey("DIS_API_KEY");
 		URL url = null;
 		try {
 			url = new URL(urlString);

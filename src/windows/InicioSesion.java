@@ -12,13 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import usuario.SistemaUsuarios;
-import usuario.TipoUsuario;
+import maps.Funciones;
 import usuario.Usuario;
 
 import javax.swing.JPasswordField;
 
 public class InicioSesion extends JFrame{
+	private static final long serialVersionUID = 1L;
+
 	public InicioSesion() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
@@ -28,6 +29,16 @@ public class InicioSesion extends JFrame{
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
 		panel.add(btnRegistrarse);
+		btnRegistrarse.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RegistrarUsuario v = new RegistrarUsuario();
+				v.setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
 		panel.add(btnIniciarSesion);
@@ -37,7 +48,11 @@ public class InicioSesion extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String nick = textField_Usuario.getText();
 				char[] pass = passwordField.getPassword();
-				primeraComprobacionInicioSesion(nick, pass);
+				String password = "";
+				for (char a : pass){
+					password += a;
+				}
+				primeraComprobacionInicioSesion(nick, password);
 				if(inicio){
 					Inicial v = new Inicial();
 					v.setVisible(true);
@@ -86,8 +101,8 @@ public class InicioSesion extends JFrame{
 		u.setFacebook(facebook);
 	}
 	
-	public void primeraComprobacionInicioSesion(String nick, char[] password){
-		grupoUsuarios = SistemaUsuarios.getGrupoUsuarios();
+	public void primeraComprobacionInicioSesion(String nick, String password){
+		grupoUsuarios = Funciones.leerFichero();
 		if(grupoUsuarios.containsKey(nick)){
 			if(password.equals(grupoUsuarios.get(nick).getPassword()))
 					inicio = true;
