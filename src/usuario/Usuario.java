@@ -104,4 +104,12 @@ public class Usuario implements Serializable {
 		this.facebook = facebook;
 	}
 	
+	@Override
+	public String toString() {
+		return user + "/_\\;" + Arrays.toString(password) + "/_\\;" + nombre
+				+ "/_\\;" + apellidos + "/_\\;" + email + "/_\\;" + ciudad + "/_\\;" + twitter
+				+ "/_\\;" + facebook + "/n";
+	}
+	
+	
 }
