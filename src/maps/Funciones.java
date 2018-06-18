@@ -36,7 +36,7 @@ public class Funciones {
 	public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
 	public static String readApiKey(String api) {
-		NodeList nList = DocumentReader.getDoc("config.xml").getElementsByTagName("maps");
+		NodeList nList = DocumentReader.getDoc("keys.xml").getElementsByTagName("maps");
 		Node nNode = nList.item(0);
 		Element eElement = (Element) nNode;
 		String key = eElement.getElementsByTagName(api).item(0).getTextContent();
