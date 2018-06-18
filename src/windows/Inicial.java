@@ -3,6 +3,7 @@ package windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
@@ -15,6 +16,7 @@ import BD.neo4j.Neo4j;
 import WiFi.Wifi;
 import maps.Funciones;
 
+import javax.smartcardio.Card;
 import javax.swing.JButton;
 
 public class Inicial extends JFrame{
@@ -93,21 +95,24 @@ public class Inicial extends JFrame{
 				try {
 					setCiudad(Funciones.getCiudad(dir));
 					System.out.println(ciudad);
-//					Neo4j neo = new Neo4j();
-//					setListaWifis(neo.conseguirWifis(ciudad));
+					TextField cargando = new TextField("Cargando...");
+					add(cargando);
+					Neo4j neo = new Neo4j();
+					setListaWifis(neo.conseguirWifis(ciudad));
+					cargando.setText("");
 				} catch (UnsupportedEncodingException e1) {
 					e1.printStackTrace();
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				}
+				
 //				new Thread() { // Crea un hilo
 //					@Override
-//					public void run() {
-//						Neo4j neo = new Neo4j();
-//						setListaWifis(neo.conseguirWifis(ciudad));							
+//					public void run() {					
 //					}
 //				};
-				System.out.println(listaWifis);
+//				System.out.println(listaWifis);
+				
 				if (!textField_DirValidacion.getText().isEmpty()) {
 					btnAceptar.setEnabled(true);
 				}
