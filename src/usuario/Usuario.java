@@ -14,14 +14,10 @@ public class Usuario implements Serializable {
 	private char[] password;
 	private String nombre;
 	private String apellidos;
-	private long nacimiento;
 	private String email;
 	private String ciudad;
 	private String twitter;
 	private String facebook;
-	private ArrayList<Usuario> amigos;
-	private String fechaCreacion;
-	private TipoUsuario tipo;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -49,12 +45,6 @@ public class Usuario implements Serializable {
 	}
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
-	}
-	public long getNacimiento() {
-		return nacimiento;
-	}
-	public void setNacimiento(long nacimiento) {
-		this.nacimiento = nacimiento;
 	}	
 	public String getEmail() {
 		return email;
@@ -80,12 +70,6 @@ public class Usuario implements Serializable {
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
 	}
-	public ArrayList<Usuario> getAmigos() {
-		return amigos;
-	}
-	public void setAmigos(ArrayList<Usuario> amigos) {
-		this.amigos = amigos;
-	}
 //	public String getAmigoString() {
 //		String amigo = "";
 //		for (Usuario usuario: amigos) {
@@ -96,18 +80,8 @@ public class Usuario implements Serializable {
 //		}
 //		return amigo;
 //	}
-	public String getFechaCreacion() {
-		return fechaCreacion;
-	}
-	public void setFechaCreacion(String fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-	public TipoUsuario getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoUsuario tipo) {
-		this.tipo = tipo;
-	}
+	
+	
 	/** Constructor principal de usuario
 	 * @param user
 	 * @param password
@@ -118,21 +92,16 @@ public class Usuario implements Serializable {
 	 * @param email
 	 */
 	
-	public Usuario(String user, char[] password, String nombre, String apellidos, long nacimiento, String email,
-			String ciudad, String twitter, String facebook, ArrayList<Usuario> amigos, String fechaCreacion,
-			TipoUsuario tipo) {
-		super();
+	public Usuario(String user, char[] password, String nombre, String apellidos, String email,
+			String ciudad, String twitter, String facebook) {
 		this.user = user;
 		this.password = password;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.nacimiento = nacimiento;
 		this.email = email;
 		this.ciudad = ciudad;
 		this.twitter = twitter;
 		this.facebook = facebook;
-		this.amigos = amigos;
-		this.fechaCreacion = fechaCreacion;
-		this.tipo = tipo;
 	}
+	
 }

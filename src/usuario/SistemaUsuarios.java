@@ -11,7 +11,7 @@ import usuario.Usuario;
 @SuppressWarnings("serial")
 public class SistemaUsuarios implements Serializable {
 
-	public HashMap<String, Usuario> grupoUsuarios;
+	public static HashMap<String, Usuario> grupoUsuarios;
 	public ArrayList<Usuario> usuariosLoggeados;
 	
 	public SistemaUsuarios(){
@@ -26,7 +26,6 @@ public class SistemaUsuarios implements Serializable {
 		}
 		else{
 			grupoUsuarios.put( user, u);
-			u.setFechaCreacion(DateUtils.currentFormattedDate());
 			return true;
 		}
 	}
@@ -95,6 +94,9 @@ public class SistemaUsuarios implements Serializable {
 		}
 		return loggedUsersList;
 	   }
+	   public static HashMap<String, Usuario> getGrupoUsuarios() {
+		return grupoUsuarios;
+	}
 	   
 	   
 }
