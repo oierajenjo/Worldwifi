@@ -166,6 +166,7 @@ public class RegistrarUsuario extends JFrame{
 			e.printStackTrace();
 		}
 	}
+	
 
 
 }
