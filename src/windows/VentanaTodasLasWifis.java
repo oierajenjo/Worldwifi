@@ -2,14 +2,24 @@ package windows;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.lang.*;
-import WiFi.Wifi;
-import maps.java.*;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import Comun.DocumentReader;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import maps.Funciones;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import javax.swing.JButton;
 
 public class VentanaTodasLasWifis extends JFrame{
@@ -26,7 +36,6 @@ public class VentanaTodasLasWifis extends JFrame{
 
 		JButton btnVolver = new JButton("Volver");
 		panel.add(btnVolver);
-		ponerMarcadores(Inicial.getTuUbicacion(), Inicial.getListaWifis());
 		btnVolver.addActionListener(new ActionListener() {
 		
 			@Override
@@ -40,21 +49,29 @@ public class VentanaTodasLasWifis extends JFrame{
 
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
+		JButton btnBrowser = new JButton("Buscar");
+		panel_1.add(btnBrowser);
+		btnBrowser.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NodeList nList = null;
+				try {
+					nList = DocumentReader.getDoc("mapas.xml").getElementsByTagName(Funciones.getCiudad(u.getDireccion()));
+				} catch (UnsupportedEncodingException | MalformedURLException e2) {
+					e2.printStackTrace();
+				}
+				Node nNode = nList.item(0);
+				Element eElement = (Element) nNode;
+				String direccionMapa = eElement.getElementsByTagName("url").item(0).getTextContent();
+				try {
+					Desktop.getDesktop().browse(new URI(direccionMapa));
+				} catch (IOException | URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 
-	}
-	public static ShowMaps dibujarMapa() {
-		
-		
-		return null;
-		
-	}
-	public static void ponerMarcadores(Ubicacion tuUbicacion, ArrayList<Wifi> wifis) {
-		
-		
-	}
-	public static void unMarcador (Ubicacion ubi) {
-		
-		
-		
 	}
 }
