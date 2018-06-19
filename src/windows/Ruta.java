@@ -57,18 +57,17 @@ public class Ruta extends JFrame {
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada) { 
 		this.uSalida = uSalida;
 		this.uLlegada = uLlegada;
-		
+		inicializarComponentes();
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);inicializarComponentes();
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		direccionLlegada = uLlegada.getDireccion();
 		direccionSalida = uSalida.getDireccion();
 		try{
 
 			this.calcularRuta();
-			panel.add(table_Ruta);
+			
 		}catch(Exception ex){
 		}
 		//		button_Volver.setEnabled(true);
@@ -77,6 +76,8 @@ public class Ruta extends JFrame {
 
 	@SuppressWarnings("serial")
 	public void inicializarComponentes() {
+		panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
 
 		scrollPane1 = new JScrollPane();
 		table_Ruta = new JTable();
@@ -211,6 +212,7 @@ public class Ruta extends JFrame {
 //		this.table_Ruta.setModel(tableModel);
 		this.table_Ruta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.table_Ruta.setRowSelectionInterval(0, 0);
+		panel.add(table_Ruta);
 	}
 
 
