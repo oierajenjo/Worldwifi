@@ -32,7 +32,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 //import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
@@ -41,20 +40,20 @@ import java.net.MalformedURLException;
 public class Ruta extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-//	private BufferedImage mapa;
 	private JButton button_Volver;
 	private JButton btnMostrarMapa;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable table_Ruta;
-	//	private ArrayList<Indicacion> indicaciones;
+//	private ArrayList<Indicacion> indicaciones;
 	private String direccionLlegada;
 	private String direccionSalida;
 	private Boolean flagVolver;
-	private Route ObjRuta = new Route();
+	Route ObjRuta = new Route();
 	private JLabel label_Mapa;
-	//	private Ubicacion u;
+//	private Ubicacion u;
 	String[][] resultadoRuta;
+	
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada) { 
 		inicializarComponentes();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,8 +69,7 @@ public class Ruta extends JFrame {
 
 
 	public void inicializarComponentes() {
-		setSize (800, 500);
-
+		
 		scrollPane1 = new JScrollPane();
 		table_Ruta = new JTable();
 		panel1 = new JPanel();
@@ -85,7 +83,6 @@ public class Ruta extends JFrame {
 				try {
 					formWindowClosing(evt);
 				} catch (JSONException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -181,16 +178,15 @@ public class Ruta extends JFrame {
 				);
 
 	}
-	private void dibujarMapa(String referencia) throws MalformedURLException, UnsupportedEncodingException {
+	public void dibujarMapa(String referencia) throws MalformedURLException, UnsupportedEncodingException {
 		StaticMaps ObjStatic = new StaticMaps();
 		Image imagenRuta = ObjStatic.getStaticMapRoute(new Dimension(300,200),
 				1, StaticMaps.Format.png, StaticMaps.Maptype.roadmap, referencia);
 		label_Mapa.setIcon(new ImageIcon(imagenRuta));
-
 	}
 
 
-	private void dibujarTabla(String[][] datosRuta) {
+	public void dibujarTabla(String[][] datosRuta) {
 		String[] columnNames = {"Descripcion", "Distancia", "Tiempo"};
 		TableModel tableModel=new DefaultTableModel(datosRuta, columnNames);
 		this.table_Ruta.setModel(tableModel);
@@ -222,7 +218,7 @@ public class Ruta extends JFrame {
 
 
 
-	private void calcularRuta() throws MalformedURLException, UnsupportedEncodingException {
+	public void calcularRuta() throws MalformedURLException, UnsupportedEncodingException {
 		//		indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
 
 		resultadoRuta = ObjRuta.getRoute(direccionSalida, direccionLlegada, null, true, Route.mode.walking, Route.avoids.nothing);
