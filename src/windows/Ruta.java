@@ -17,9 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import org.json.JSONException;
+import org.jsoup.Jsoup;
 
-import maps.Funciones;
-import maps.Indicacion;
 import maps.java.Route;
 import maps.java.StaticMaps;
 
@@ -27,7 +26,7 @@ import maps.java.StaticMaps;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Toolkit;
+//import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +36,6 @@ import java.io.IOException;
 //import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 
 public class Ruta extends JFrame {
 
@@ -48,32 +46,25 @@ public class Ruta extends JFrame {
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable table_Ruta;
-	private ArrayList<Indicacion> indicaciones;
+//	private ArrayList<Indicacion> indicaciones;
 	private String direccionLlegada;
 	private String direccionSalida;
 	private Boolean flagVolver;
 	private Route ObjRuta = new Route();
-	private String[][] datosRuta;
-	private javax.swing.JLabel label_Mapa;
-	private Ubicacion u;
-
-	public Ruta(Ubicacion uSalida, Ubicacion uLlegada, Boolean botonVolver) { 
-		u = new Ubicacion();
-		u = uSalida;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	private JLabel label_Mapa;
+//	private Ubicacion u;
+	String[][] resultadoRuta;
+	public Ruta(Ubicacion uSalida, Ubicacion uLlegada) { 
 		inicializarComponentes();
-		this.flagVolver=botonVolver;
-		direccionLlegada=uLlegada.getDireccion();
-		direccionSalida= uSalida.getDireccion();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		direccionLlegada = uLlegada.getDireccion();
+		direccionSalida = uSalida.getDireccion();
 		try{
+			
 			this.calcularRuta();
 		}catch(Exception ex){
 		}
-		if(button_Volver.isEnabled()==true){
-			button_Volver.setEnabled(true);
-		}else{
-			button_Volver.setEnabled(false);
-		}
+//		button_Volver.setEnabled(true);
 	}
 
 
@@ -86,7 +77,6 @@ public class Ruta extends JFrame {
 		label_Mapa = new JLabel();
 		btnMostrarMapa = new JButton();
 		button_Volver = new JButton();
-
 		setAlwaysOnTop(true);
 		setType(java.awt.Window.Type.UTILITY);
 		addWindowListener(new WindowAdapter() {
@@ -103,20 +93,13 @@ public class Ruta extends JFrame {
 
 
 //		table_Ruta.setModel(new DefaultTableModel(
-//				new Object [][] {
-//
-//				},
-//				new String [] {
-//						"Descripcion", "Distancia", "Tiempo"
-//				}
-//				) {
-//
-//			@SuppressWarnings("rawtypes")
-//			Class[] types = new Class [] {
+//				new Object [][] {},
+//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
+//				Class[] types = new Class [] {
 //					String.class, String.class, String.class
 //			};
 //
-//			@SuppressWarnings("unchecked")
+//			
 //			public Class getColumnClass(int columnIndex) {
 //				return types [columnIndex];
 //			}
@@ -140,7 +123,7 @@ public class Ruta extends JFrame {
 		jPanel1Layout.setVerticalGroup(
 				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(label_Mapa, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-				);
+		);
 
 
 
@@ -157,7 +140,6 @@ public class Ruta extends JFrame {
 				try {
 					volverVentanaInicial(evt);
 				} catch (JSONException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -199,8 +181,8 @@ public class Ruta extends JFrame {
 
 	}
 	private void dibujarMapa(String referencia) throws MalformedURLException, UnsupportedEncodingException {
-		StaticMaps ObjStatic=new StaticMaps();
-		Image imagenRuta=ObjStatic.getStaticMapRoute(new Dimension(300,200),
+		StaticMaps ObjStatic = new StaticMaps();
+		Image imagenRuta = ObjStatic.getStaticMapRoute(new Dimension(300,200),
 				1, StaticMaps.Format.png, StaticMaps.Maptype.roadmap, referencia);
 		label_Mapa.setIcon(new ImageIcon(imagenRuta));
 
@@ -211,7 +193,8 @@ public class Ruta extends JFrame {
 		String[] columnNames = {"Descripcion", "Distancia", "Tiempo"};
 		TableModel tableModel=new DefaultTableModel(datosRuta, columnNames);
 		this.table_Ruta.setModel(tableModel);
-
+		this.table_Ruta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.table_Ruta.setRowSelectionInterval(0, 0);
 	}
 
 
@@ -230,30 +213,28 @@ public class Ruta extends JFrame {
 
 	private void volver() throws JSONException, IOException{
 		this.setVisible(false);
-		VentanaDistanciaWifis v =new VentanaDistanciaWifis(u);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		v.setLocation((d.width/2)-(v.getWidth()/2), (d.height/2)-(v.getHeight()/2));
-		v.setSize(new Dimension(400, 350));
+		Inicial v =new Inicial();
 		v.setVisible(true);
+		dispose();
 	}
 
 
 
 
 	private void calcularRuta() throws MalformedURLException, UnsupportedEncodingException {
-		indicaciones=Funciones.getIndicaciones(direccionSalida, direccionLlegada);
-		datosRuta=new String[indicaciones.size()][3];
-		int numFila = 0;
-		for(Indicacion i : indicaciones){
-			datosRuta[numFila][0]=i.getDescripcion();
-			datosRuta[numFila][1]=i.getDistancia();
-			datosRuta[numFila][2]=i.getTiempo();
-			numFila++;
+//		indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
+		
+		resultadoRuta = ObjRuta.getRoute(direccionSalida, direccionLlegada, null, true, Route.mode.walking, Route.avoids.nothing);
+		String[][] datosRuta=new String[resultadoRuta.length][3];
+		for(int i = 0; i< datosRuta.length;i++){
+			datosRuta[i][0]= resultadoRuta[i][0];
+			datosRuta[i][1]= resultadoRuta[i][2];
+			datosRuta[i][2]= Jsoup.parse(resultadoRuta[i][2]).text();
 		}
-		this.dibujarTabla(datosRuta);
+		System.out.println(datosRuta);
+		this.dibujarTabla(datosRuta);	
 		this.dibujarMapa(ObjRuta.getPolilines().get(0));
-		this.table_Ruta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.table_Ruta.setRowSelectionInterval(0, 0);	
+		
 	}
 
 	private void pulsarTramoRuta(MouseEvent evt) {

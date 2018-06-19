@@ -59,6 +59,16 @@ public class VentanaDistanciaWifis extends JFrame {
 		//arrayDistancias.size();
 		
 		dibujarTabla(datos);
+//		jTabla.setModel(new DefaultTableModel(
+//				new Object [][] {},
+//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
+//			Class[] types = new Class [] {
+//					String.class, String.class, String.class
+//			};
+//			public Class getColumnClass(int columnIndex) {
+//				return types [columnIndex];
+//			}
+//		});
 		panel.add(jTabla);
 		
 		//		System.out.println(ciudad);
@@ -80,25 +90,35 @@ public class VentanaDistanciaWifis extends JFrame {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
+		JButton btnVolver = new JButton("Volver");
+		panel_1.add(btnVolver);
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Ubicacion u2 = new Ubicacion();
-				int i = jTabla.getSelectedRow();
-				u2.setDireccion(arrayDistancias.get(i).destino);
-//				u2.setDireccion(Funciones.getDireccionConTexto(dir));
-				u2.setLatitud(Funciones.getLatitud(u2.getDireccion()));
-				u2.setLongitud(Funciones.getLongitud(u2.getDireccion()));
-				Ruta r  = new Ruta(u, u2, true);
-				r.setVisible(true);
-				dispose();
+//				Ubicacion u = new Ubicacion();
+//				u.setDireccion(Inicial.getTuUbicacion().getDireccion());
+//				u.setLatitud(Inicial.getTuUbicacion().getLatitud());
+//				u.setLongitud(Inicial.getTuUbicacion().getLongitud());
+				if(u.getDireccion() != null) {
+					try {
+						Ubicacion u2 = new Ubicacion();
+						int i = jTabla.getSelectedRow();
+						u2.setDireccion(arrayDistancias.get(i).destino);
+//						u2.setDireccion(Funciones.getDireccionConTexto(dir));
+						u2.setLatitud(Funciones.getLatitud(u2.getDireccion()));
+						u2.setLongitud(Funciones.getLongitud(u2.getDireccion()));
+						Ruta r  = new Ruta(u, u2);
+						r.setVisible(true);
+						dispose();
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+				}
+				
 			}
 		});
-
-		JButton btnVolver = new JButton("Volver");
-		panel_1.add(btnVolver);
+		
 		btnVolver.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaSeleccion v = new VentanaSeleccion(u);
