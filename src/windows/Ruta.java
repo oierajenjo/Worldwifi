@@ -32,6 +32,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 //import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
@@ -46,13 +47,13 @@ public class Ruta extends JFrame {
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable table_Ruta;
-//	private ArrayList<Indicacion> indicaciones;
+	//	private ArrayList<Indicacion> indicaciones;
 	private String direccionLlegada;
 	private String direccionSalida;
 	private Boolean flagVolver;
 	private Route ObjRuta = new Route();
 	private JLabel label_Mapa;
-//	private Ubicacion u;
+	//	private Ubicacion u;
 	String[][] resultadoRuta;
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada) { 
 		inicializarComponentes();
@@ -60,11 +61,11 @@ public class Ruta extends JFrame {
 		direccionLlegada = uLlegada.getDireccion();
 		direccionSalida = uSalida.getDireccion();
 		try{
-			
+
 			this.calcularRuta();
 		}catch(Exception ex){
 		}
-//		button_Volver.setEnabled(true);
+		//		button_Volver.setEnabled(true);
 	}
 
 
@@ -92,18 +93,18 @@ public class Ruta extends JFrame {
 
 
 
-//		table_Ruta.setModel(new DefaultTableModel(
-//				new Object [][] {},
-//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
-//				Class[] types = new Class [] {
-//					String.class, String.class, String.class
-//			};
-//
-//			
-//			public Class getColumnClass(int columnIndex) {
-//				return types [columnIndex];
-//			}
-//		});
+		//		table_Ruta.setModel(new DefaultTableModel(
+		//				new Object [][] {},
+		//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
+		//				Class[] types = new Class [] {
+		//					String.class, String.class, String.class
+		//			};
+		//
+		//			
+		//			public Class getColumnClass(int columnIndex) {
+		//				return types [columnIndex];
+		//			}
+		//		});
 		table_Ruta.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				pulsarTramoRuta(evt);
@@ -123,7 +124,7 @@ public class Ruta extends JFrame {
 		jPanel1Layout.setVerticalGroup(
 				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(label_Mapa, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-		);
+				);
 
 
 
@@ -222,8 +223,8 @@ public class Ruta extends JFrame {
 
 
 	private void calcularRuta() throws MalformedURLException, UnsupportedEncodingException {
-//		indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
-		
+		//		indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
+
 		resultadoRuta = ObjRuta.getRoute(direccionSalida, direccionLlegada, null, true, Route.mode.walking, Route.avoids.nothing);
 		String[][] datosRuta=new String[resultadoRuta.length][3];
 		for(int i = 0; i< datosRuta.length;i++){
@@ -234,7 +235,7 @@ public class Ruta extends JFrame {
 		System.out.println(datosRuta);
 		this.dibujarTabla(datosRuta);	
 		this.dibujarMapa(ObjRuta.getPolilines().get(0));
-		
+
 	}
 
 	private void pulsarTramoRuta(MouseEvent evt) {
