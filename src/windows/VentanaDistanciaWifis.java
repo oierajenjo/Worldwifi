@@ -29,14 +29,14 @@ public class VentanaDistanciaWifis extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable jTabla;
 	private JPanel panel;
-	
-	
+
+
 	public VentanaDistanciaWifis(Ubicacion u) throws JSONException, IOException{
 		setSize (800, 500);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		
+
 		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
 		wifisCercanas = Inicial.getListaWifis();
 		ArrayList<Distance> arrayDistancias = new ArrayList<>();
@@ -47,7 +47,7 @@ public class VentanaDistanciaWifis extends JFrame {
 			arrayDistancias.add(distancia);
 		}
 		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
-		
+
 		String[][] datos = new String[10][3];
 		for (int i = 0; i < 10; i++) {
 			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
@@ -57,20 +57,20 @@ public class VentanaDistanciaWifis extends JFrame {
 		System.out.println(datos);
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
-		
+
 		dibujarTabla(datos);
-//		jTabla.setModel(new DefaultTableModel(
-//				new Object [][] {},
-//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
-//			Class[] types = new Class [] {
-//					String.class, String.class, String.class
-//			};
-//			public Class getColumnClass(int columnIndex) {
-//				return types [columnIndex];
-//			}
-//		});
+		//		jTabla.setModel(new DefaultTableModel(
+		//				new Object [][] {},
+		//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
+		//			Class[] types = new Class [] {
+		//					String.class, String.class, String.class
+		//			};
+		//			public Class getColumnClass(int columnIndex) {
+		//				return types [columnIndex];
+		//			}
+		//		});
 		panel.add(jTabla);
-		
+
 		//		System.out.println(ciudad);
 		//		for (Wifi w : wifiCercanas){
 		//			ArrayList<Distance> distancias =  new ArrayList<>();
@@ -84,10 +84,10 @@ public class VentanaDistanciaWifis extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
-		
+
 		jTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jTabla.setRowSelectionInterval(0, 0);
-		
+
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 		JButton btnVolver = new JButton("Volver");
@@ -95,16 +95,16 @@ public class VentanaDistanciaWifis extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				Ubicacion u = new Ubicacion();
-//				u.setDireccion(Inicial.getTuUbicacion().getDireccion());
-//				u.setLatitud(Inicial.getTuUbicacion().getLatitud());
-//				u.setLongitud(Inicial.getTuUbicacion().getLongitud());
+				//				Ubicacion u = new Ubicacion();
+				//				u.setDireccion(Inicial.getTuUbicacion().getDireccion());
+				//				u.setLatitud(Inicial.getTuUbicacion().getLatitud());
+				//				u.setLongitud(Inicial.getTuUbicacion().getLongitud());
 				if(u.getDireccion() != null) {
 					try {
 						Ubicacion u2 = new Ubicacion();
 						int i = jTabla.getSelectedRow();
 						u2.setDireccion(arrayDistancias.get(i).destino);
-//						u2.setDireccion(Funciones.getDireccionConTexto(dir));
+						//						u2.setDireccion(Funciones.getDireccionConTexto(dir));
 						u2.setLatitud(Funciones.getLatitud(u2.getDireccion()));
 						u2.setLongitud(Funciones.getLongitud(u2.getDireccion()));
 						Ruta r  = new Ruta(u, u2);
@@ -114,10 +114,10 @@ public class VentanaDistanciaWifis extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
+
 			}
 		});
-		
+
 		btnVolver.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -130,12 +130,24 @@ public class VentanaDistanciaWifis extends JFrame {
 
 
 	}
+	
+	@SuppressWarnings("serial")
 	private void dibujarTabla(String[][] datosRuta) {
 		jTabla = new JTable();
 		String[] cols= new String[]{"Destino", "Tiempo", "Distancia"};
-		TableModel tableModel = new DefaultTableModel(datosRuta, cols);
-		this.jTabla.setModel(tableModel);
+		jTabla.setModel(new DefaultTableModel(
+				datosRuta,
+				cols) {
+			@SuppressWarnings("rawtypes")
+			Class[] types = new Class [] {
+					String.class, String.class, String.class
+			};
 
+
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
+				return types [columnIndex];
+			}
+		});
 	}
-	
 }

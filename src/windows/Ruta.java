@@ -1,6 +1,7 @@
 package windows;
 
 
+import javax.naming.event.ObjectChangeListener;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -19,6 +20,8 @@ import javax.swing.table.TableModel;
 import org.json.JSONException;
 import org.jsoup.Jsoup;
 
+import maps.Funciones;
+import maps.Indicacion;
 import maps.java.Route;
 import maps.java.StaticMaps;
 
@@ -35,6 +38,7 @@ import java.io.IOException;
 //import java.awt.image.BufferedImage;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public class Ruta extends JFrame {
 
@@ -45,7 +49,7 @@ public class Ruta extends JFrame {
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable table_Ruta;
-	//	private ArrayList<Indicacion> indicaciones;
+	private ArrayList<Indicacion> indicaciones;
 	private String direccionLlegada;
 	private String direccionSalida;
 	Route ObjRuta = new Route();
@@ -53,6 +57,7 @@ public class Ruta extends JFrame {
 	private Ubicacion uSalida;
 	private Ubicacion uLlegada;
 	String[][] resultadoRuta;
+	public String[][] datosRuta;
 
 	public Ruta(Ubicacion uSalida, Ubicacion uLlegada) { 
 		this.uSalida = uSalida;
@@ -78,7 +83,7 @@ public class Ruta extends JFrame {
 	public void inicializarComponentes() {
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-
+		
 		scrollPane1 = new JScrollPane();
 		table_Ruta = new JTable();
 		panel1 = new JPanel();
@@ -96,28 +101,28 @@ public class Ruta extends JFrame {
 				}
 			}
 		});
-		
 		table_Ruta.setModel(new DefaultTableModel(
 				new Object [][] {},
-				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
-			@SuppressWarnings("rawtypes")
+				new String [] {"Descripcion", "Distancia", "Tiempo"}
+				) {
 			Class[] types = new Class [] {
 					String.class, String.class, String.class
 			};
 
 
-			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return types [columnIndex];
 			}
 		});
-
+		
 		table_Ruta.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				pulsarTramoRuta(evt);
 			}
 		});
 		scrollPane1.setViewportView(table_Ruta);
+		panel.add(scrollPane1);
+//		panel.add(table_Ruta);
 //		panel1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 //		label_Mapa.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -154,6 +159,7 @@ public class Ruta extends JFrame {
 				}
 			}
 		});
+		
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
@@ -207,27 +213,33 @@ public class Ruta extends JFrame {
 
 
 	public void dibujarTabla(String[][] datosRuta) {
-//		String[] columnNames = {"Descripcion", "Distancia", "Tiempo"};
-//		TableModel tableModel=new DefaultTableModel(datosRuta, columnNames);
-//		this.table_Ruta.setModel(tableModel);
+		String[] columnNames = {"Descripcion", "Distancia", "Tiempo"};
+		TableModel tableModel=new DefaultTableModel(datosRuta, columnNames);
+		this.table_Ruta.setModel(tableModel);
 		this.table_Ruta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.table_Ruta.setRowSelectionInterval(0, 0);
-		panel.add(table_Ruta);
+
 	}
 
 
 
 
 	public void calcularRuta() throws MalformedURLException, UnsupportedEncodingException {
-		//		indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
+		ArrayList<Indicacion> indicaciones = Funciones.getIndicaciones(direccionSalida, direccionLlegada);
 
-		resultadoRuta = ObjRuta.getRoute(direccionSalida, direccionLlegada, null, true, Route.mode.walking, Route.avoids.nothing);
-		String[][] datosRuta=new String[resultadoRuta.length][3];
+//		resultadoRuta = ObjRuta.getRoute(direccionSalida, direccionLlegada, null, true, Route.mode.walking, Route.avoids.nothing);
+		String[][] datosRuta=new String[indicaciones.size()][3];
+//		for(int i = 0; i< datosRuta.length;i++){
+//			datosRuta[i][0]= resultadoRuta[i][0];
+//			datosRuta[i][1]= resultadoRuta[i][1];
+//			datosRuta[i][2]= Jsoup.parse(resultadoRuta[i][2]).text();
+//		}
 		for(int i = 0; i< datosRuta.length;i++){
-			datosRuta[i][0]= resultadoRuta[i][0];
-			datosRuta[i][1]= resultadoRuta[i][1];
-			datosRuta[i][2]= Jsoup.parse(resultadoRuta[i][2]).text();
+			datosRuta[i][0]= indicaciones.get(i).getDescripcion();
+			datosRuta[i][1]= indicaciones.get(i).getTiempo();
+			datosRuta[i][2]= indicaciones.get(i).getDistancia();
 		}
+		
 		System.out.println(datosRuta);
 		this.dibujarTabla(datosRuta);	
 //		this.dibujarMapa(ObjRuta.getPolilines().get(0));
