@@ -4,6 +4,8 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,11 +21,14 @@ import javax.swing.JPasswordField;
 
 public class InicioSesion extends JFrame{
 	private static final long serialVersionUID = 1L;
-
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
 	public InicioSesion() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
-		
+		setIconImage(getIconImage());
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
 		

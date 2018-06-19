@@ -5,22 +5,50 @@ import javax.swing.JPanel;
 
 import org.json.JSONException;
 
+import maps.Distance;
+
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 public class VentanaSeleccion extends JFrame {
 	private static final long serialVersionUID = 1L;
+	public static String[][] wifis;
+	public static ArrayList<Distance> alDistancias;
+	
+	public static ArrayList<Distance> getAlDistancias() {
+		return alDistancias;
+	}
 
+	public static void setAlDistancias(ArrayList<Distance> alDistancias2) {
+		alDistancias = alDistancias2;
+	}
+
+	public static String[][] getWifis() {
+		return wifis;
+	}
+
+	public static void setWifis(String[][] wifis2) {
+		wifis = wifis2;
+	}
+	
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
+	
 	public VentanaSeleccion(Ubicacion u){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
-
+		setIconImage(getIconImage());
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -58,7 +86,7 @@ public class VentanaSeleccion extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaTodasLasWifis v = new VentanaTodasLasWifis(Inicial.getTuUbicacion());
+				VentanaTodasLasWifis v = new VentanaTodasLasWifis(u);
 				v.setVisible(true);
 				dispose();
 

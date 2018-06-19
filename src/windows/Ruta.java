@@ -28,8 +28,10 @@ import maps.java.StaticMaps;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 //import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -75,15 +77,18 @@ public class Ruta extends JFrame {
 			
 		}catch(Exception ex){
 		}
-		//		button_Volver.setEnabled(true);
+				button_Volver.setEnabled(true);
 	}
 
-
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
 	@SuppressWarnings("serial")
 	public void inicializarComponentes() {
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		
+		setIconImage(getIconImage());
 		scrollPane1 = new JScrollPane();
 		table_Ruta = new JTable();
 		panel1 = new JPanel();
@@ -148,16 +153,22 @@ public class Ruta extends JFrame {
 //		});
 
 		button_Volver.setText("Volver");
-		button_Volver.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		button_Volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				try {
-					VentanaSeleccion v = new VentanaSeleccion(uSalida);
+					VentanaDistanciaWifis v= new VentanaDistanciaWifis(uSalida);
 					v.setVisible(true);
 					dispose();
-				} catch (JSONException e) {
-					e.printStackTrace();
+					
+				} catch (JSONException | IOException e1) {
+					
+					e1.printStackTrace();
 				}
+				
 			}
+				
 		});
 		
 		JPanel panel_1 = new JPanel();
@@ -166,6 +177,23 @@ public class Ruta extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					VentanaDistanciaWifis v= new VentanaDistanciaWifis(uSalida);
+					v.setVisible(true);
+					dispose();
+					
+				} catch (JSONException | IOException e1) {
+					
+					e1.printStackTrace();
+				}
+				
+			
+			}
+		});
 		panel_1.add(btnVolver);
 
 //		GroupLayout layout = new GroupLayout(getContentPane());

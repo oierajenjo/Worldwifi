@@ -5,6 +5,8 @@ import maps.Funciones;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,11 +32,15 @@ public class RegistrarUsuario extends JFrame{
 //	private JTextField textField_Facebook;
 	public HashMap<String, Usuario> grupoUsuarios = new HashMap<>();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
-
+	
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
 	public RegistrarUsuario() {
 		setSize (800, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+		setIconImage(getIconImage());
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
 

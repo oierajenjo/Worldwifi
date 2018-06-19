@@ -3,7 +3,9 @@ package windows;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.TextField;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
@@ -25,10 +27,14 @@ public class Inicial extends JFrame{
 	private static String ciudad;
 	private static ArrayList<Wifi> listaWifis;
 	private static Ubicacion tuUbicacion;
-
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
 	public Inicial() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize (450, 300);
+		setIconImage(getIconImage());
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

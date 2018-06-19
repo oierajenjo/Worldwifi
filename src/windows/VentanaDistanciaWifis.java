@@ -1,6 +1,8 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import org.json.JSONException;
 
 import WiFi.Wifi;
@@ -29,36 +29,66 @@ public class VentanaDistanciaWifis extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable jTabla;
 	private JPanel panel;
+	public Ubicacion uAnt;
+	public ArrayList<Distance> arrayDistancias = new ArrayList<>();
+	public Ubicacion getuAnt() {
+		return uAnt;
+	}
 
-
+	public void setuAnt(Ubicacion uAnt) {
+		this.uAnt = uAnt;
+	}
+	public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logo.png"));
+        return retValue;
+    }
 	public VentanaDistanciaWifis(Ubicacion u) throws JSONException, IOException{
 		setSize (800, 500);
+		setIconImage(getIconImage());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-
+		arrayDistancias = new ArrayList<>();
 		ArrayList<Wifi> wifisCercanas = new ArrayList<Wifi>();
-		wifisCercanas = Inicial.getListaWifis();
-		ArrayList<Distance> arrayDistancias = new ArrayList<>();
-		for(Wifi wifi: wifisCercanas) {
-			System.out.println(wifi.toString());
-			URL url = Funciones.getDistanciaURL(u.getLatitud(), u.getLongitud(), wifi);
-			Distance distancia = FuncionesVariasWifis.getDistanciaTotalFromJson(url);
-			arrayDistancias.add(distancia);
-		}
-		Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
-
 		String[][] datos = new String[10][3];
-		for (int i = 0; i < 10; i++) {
-			datos[i][0] = arrayDistancias.get(i).getDestino().toString();
-			datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
-			datos[i][2] = arrayDistancias.get(i).getTimeTexto().toString();
+		System.out.println(u.toString());
+		getuAnt();
+		if (u != uAnt) {
+			wifisCercanas = Inicial.getListaWifis();
+			for(Wifi wifi: wifisCercanas) {
+				System.out.println(wifi.toString());
+				URL url = Funciones.getDistanciaURL(u.getLatitud(), u.getLongitud(), wifi);
+				Distance distancia = FuncionesVariasWifis.getDistanciaTotalFromJson(url);
+				arrayDistancias.add(distancia);
+			}
+			Collections.sort(arrayDistancias, Comparator.comparingInt(Distance::getDis_m));
+
+			
+			for (int i = 0; i < 10; i++) {
+				datos[i][0] = arrayDistancias.get(i).getDestino().toString();
+				datos[i][1] = arrayDistancias.get(i).getkmTexto().toString();
+				datos[i][2] = arrayDistancias.get(i).getTimeTexto().toString();
+			}
+			System.out.println(datos);
+			uAnt = new Ubicacion();
+			setuAnt(u);
+			dibujarTabla(datos);
+			VentanaSeleccion.setWifis(datos);
+			VentanaSeleccion.setAlDistancias(arrayDistancias);
+			System.out.println(uAnt.toString());
 		}
-		System.out.println(datos);
+		else {
+			System.out.println(uAnt.toString());
+			datos = VentanaSeleccion.getWifis();
+			arrayDistancias.clear();
+			arrayDistancias = VentanaSeleccion.getAlDistancias();
+		}
+		
+		
 		//Se crea una tabla con tres huecos uno destino, otro tiempo y otro distancia
 		//arrayDistancias.size();
 
-		dibujarTabla(datos);
+		
 		//		jTabla.setModel(new DefaultTableModel(
 		//				new Object [][] {},
 		//				new String [] {"Descripcion", "Distancia", "Tiempo"}) {
